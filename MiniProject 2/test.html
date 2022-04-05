@@ -87,9 +87,10 @@
         animation: morph 3s linear infinite;
         animation-delay: 400ms;
         opacity: .89;
-        content: "What'cSS up?";
-       line-height: 120px;
-       text-indent: -21px;
+        content: "글자뭐넣지";
+        text-align: center;
+        line-height: 120px;
+        text-indent: -21px;
       }
       @keyframes morph{
         0%,100%{
@@ -114,7 +115,19 @@
         transform: scale(1.03);
         opacity: 0;
         }
-      }  
+      }
+      @font-face {
+        font-family: 'GongGothicMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+      .upper{
+        font-family: 'GongGothicMedium';
+        text-align: center;
+        font-size: 45px;
+
+      } 
     </style>
   </head>
 
@@ -122,12 +135,17 @@
   <body>
     <div class="gooey"></div>
 <main>
-  <h1 class="visually-hidden">Features examples</h1>
-
-  <!-- 이미지 검색 버튼 -->
-  <div class="container px-4 py-5" id="featured-3">
-    <h2 class="pb-2 border-bottom">Columns with icons</h2>
+  <p class="upper">
+    Text Extractor</p>
+  <div class="container px-4 py-5" id="featured-3">    
+    <h2 class="pb-2 border-bottom">이미지를 업로드하여 검색</h2>
+    <!-- 선택시 가게될 링크 -->
+    <!-- 예시 링크 주소 이름 : /ms?file=KakaoTalk_20220401_142228809.jpg-->
+    <!-- "action주소명"?"검색버튼name명"="onchange명"-->
+    <form action= "">
+    <!-- 이미지 검색 버튼 name값 설정필요 -->
     <input id="fileInput" type="file" name="file" onchange="checkImageFile(this);">
+    <!-- 추후 벨류값설정 필요 -->
     <input type="submit" value="SEARCH" id="searchButton">
   </div>
 
