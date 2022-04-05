@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+        <title>글자 추출기</title>
+          <style>
+            html, body {
+              width: 100vw;
+              height: 100vh;
+              background: #0d0722;
+            }
+            aside{
+              width:30%;
+              height: 100%;
+              line-height: 1;
+              float: left;
+              position: left;
+              object-fit: cover;
+              margin:20px;
+            } 
+            section {
+              width:60%;
+              height: 100%;
+              line-height: 1;
+              float: left;
+              object-fit: cover;
+              margin:30px;
+            }
+            img {
+              max-width: 100%;
+              height: auto;
+            }
+            a { text-decoration: none; color: snow; }
+            a:visited { text-decoration: none; }
+            a:hover { text-decoration: none; }
+            a:focus { text-decoration: none; }
+            a:hover, a:active { text-decoration: none; }
+            .text-type1{
+              color:snow;
+              font-size:20px;
+            }
+            p {
+              color : snow;
+              font-size:18px;
+            }
+          </style>
+      </head>
+    <body>
+      <main>
+        <div id="wrap">
+        <!-- 이미지부분 -->
+        <aside>
+          <!-- src값은 index.html의 "onchange명"을받아오면됨 -->
+          <img class="your-img" src="./test2.jpg">
+          <br><br><br>
+          <li class="text-type1"><a class="text-download" href="">여기</a>를 눌러서 텍스트를 다운로드하기</li>
+        </aside>
+
+        
+        <!-- 텍스트 부분 -->
+        <section>
+            <!-- p태그쪽에 오는 텍스트는 사진을 인식한 텍스트를 받아오면됨 -->
+            <p>머시기머시기 솰랴솰라</p>
+        </section>
+        </div>
+      </main>
+    </body>
+  </html>

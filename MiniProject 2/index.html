@@ -8,37 +8,19 @@
 
 
     <!-- 웹사이트 이름 -->
-    <title>글자 인식기</title>
+    <title>글자 추출기</title>
     <!-- 부트스트랩 사용선언 -->
     <link href="/resource/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 
     <!-- 부트스트랩 외 각종 스타일 설정 -->
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-      @import url('https://fonts.googleapis.com/css?family=Exo+2');
-      * {
-          margin: 0px;
-          padding: 0px;
-          box-sizing: content-box;
-        }
-        html, body {
+      html, body {
         width: 100vw;
         height: 100vh;
         background: #0d0722;
-        }
-        body{
+      }
+      body{
         display: flex; 
         align-items: center;
         justify-content: center;
@@ -47,7 +29,7 @@
         font-family: 'Exo 2';
         font-size: 24px;
         animation: fadeIn 500ms reverse;
-        }
+      }
       .gooey{
         background-image: linear-gradient(120deg, #34e0f0 0%, #b400ff 100%);
         border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
@@ -128,13 +110,12 @@
     <div class="gooey"></div>
     <main>
       <!-- 맨위 텍스트 -->
-      <p class="upper">
-        Text Extractor</p>
+      <p class="upper">Text Extractor</p>
 
   
       <!-- 두번째 컨테이너 -->
       <div class="container px-4 py-5" id="featured-3">    
-      <h2 class="pb-2 border-bottom" >이미지를 업로드하여 검색</h2>
+      <h2 class="pb-2 border-bottom">이미지를 업로드하여 검색</h2>
       <!-- 선택시 가게될 링크 -->
       <!-- 예시 링크 주소 이름 : /ms?file=KakaoTalk_20220401_142228809.jpg-->
       <!-- "action주소명"?"검색버튼name명"="onchange명"-->
