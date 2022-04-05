@@ -5,18 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.88.1">
+
 
     <!-- 웹사이트 이름 -->
     <title>글자 인식기</title>
-
-    
-
-    <!-- Bootstrap core CSS -->
-<link href="/resource/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#7952b3">
+    <!-- 부트스트랩 사용선언 -->
+    <link href="/resource/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 
     <!-- 부트스트랩 외 각종 스타일 설정 -->
@@ -28,7 +22,6 @@
         -moz-user-select: none;
         user-select: none;
       }
-
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -87,7 +80,7 @@
         animation: morph 3s linear infinite;
         animation-delay: 400ms;
         opacity: .89;
-        content: "글자뭐넣지";
+        content: "";
         text-align: center;
         line-height: 120px;
         text-indent: -21px;
@@ -126,47 +119,37 @@
         font-family: 'GongGothicMedium';
         text-align: center;
         font-size: 45px;
-
-      } 
+      }
     </style>
   </head>
 
   
   <body>
     <div class="gooey"></div>
-<main>
-  <p class="upper">
-    Text Extractor</p>
-  <div class="container px-4 py-5" id="featured-3">    
-    <h2 class="pb-2 border-bottom">이미지를 업로드하여 검색</h2>
-    <!-- 선택시 가게될 링크 -->
-    <!-- 예시 링크 주소 이름 : /ms?file=KakaoTalk_20220401_142228809.jpg-->
-    <!-- "action주소명"?"검색버튼name명"="onchange명"-->
-    <form action= "">
-    <!-- 이미지 검색 버튼 name값 설정필요 -->
-    <input id="fileInput" type="file" name="file" onchange="checkImageFile(this);">
-    <!-- 추후 벨류값설정 필요 -->
-    <input type="submit" value="SEARCH" id="searchButton">
-  </div>
+    <main>
+      <!-- 맨위 텍스트 -->
+      <p class="upper">
+        Text Extractor</p>
 
-  <div class="b-example-divider"></div>
-
-  <div class="container px-4 py-5" id="hanging-icons">
-    <h2 class="pb-2 border-bottom">Hanging icons</h2>
-  </div>
-
-  <div class="b-example-divider"></div>
-
-  <div class="container px-4 py-5" id="custom-cards">
-    <h2 class="pb-2 border-bottom">Custom cards</h2>
-
-    
-  </div>
-</main>
+  
+      <!-- 두번째 컨테이너 -->
+      <div class="container px-4 py-5" id="featured-3">    
+      <h2 class="pb-2 border-bottom" >이미지를 업로드하여 검색</h2>
+      <!-- 선택시 가게될 링크 -->
+      <!-- 예시 링크 주소 이름 : /ms?file=KakaoTalk_20220401_142228809.jpg-->
+      <!-- "action주소명"?"검색버튼name명"="onchange명"-->
+      <form action= "test2">
+      <!-- 이미지 검색 버튼 name값 설정필요 -->
+      <input id="fileInput" type="file" name="file" onchange="checkImageFile(this);">
+      <!-- 추후 벨류값설정 필요 -->
+      <input type="submit" value="SEARCH" id="searchButton">
+      </div>
 
 
-    <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-      
+      <!-- 세번째 컨테이너, 추후 사용 할수있어서 코드는 남김 
+      <div class="container px-4 py-5" id="custom-cards">
+      <h2 class="pb-2 border-bottom">Custom cards</h2> 
+      </div> -->
+    </main>  
   </body>
 </html>
