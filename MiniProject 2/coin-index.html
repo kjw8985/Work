@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+
+
+    <!-- 웹사이트 이름 -->
+    <title>코인탐색기</title>
+    <!-- 부트스트랩 사용선언 -->
+    <link href="/resource/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+    <!-- 부트스트랩 외 각종 스타일 설정 -->
+    <style>
+      html, body {
+        width: 100vw;
+        height: 100vh;
+        background: #0d0722;
+      }
+      body{
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        color: #fff;
+        font-family: 'Exo 2';
+        font-size: 18px;
+        animation: fadeIn 500ms reverse;
+      }
+      .gooey{
+        background-image: linear-gradient(120deg, #34e0f0 0%, #b400ff 100%);
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+        width: 150px; height: 144px;
+        animation: morph 3s linear infinite; 
+        transform-style: preserve-3d;
+        outline: 1px solid transparent;
+        will-change: border-radius;
+      }
+      .gooey:before,
+      .gooey:after{
+        content: '';
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        left: 0; top: 0;
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+        box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
+        will-change: border-radius, transform, opacity;
+        animation-delay: 200ms;
+        background-image: linear-gradient(120deg, rgba(0,67,255,.55) 0%, rgba(0,103,255,.89) 100%);
+      }
+      .gooey:before{
+        animation: morph 3s linear infinite;
+        opacity: .21;
+        animation-duration: 1.5s;
+      }
+      .gooey:after{
+        animation: morph 3s linear infinite;
+        animation-delay: 400ms;
+        opacity: .89;
+        content: "";
+        text-align: center;
+        line-height: 120px;
+        text-indent: -21px;
+      }
+      @keyframes morph{
+        0%,100%{
+          border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+          transform: translate3d(0,0,0) rotateZ(0.01deg);
+        }
+        34%{
+          border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+          transform:  translate3d(0,5px,0) rotateZ(0.01deg);
+        }
+        50%{
+          opacity: .89;
+          transform: translate3d(0,0,0) rotateZ(0.01deg);
+        }
+        67%{
+          border-radius: 100% 60% 60% 100% / 100% 100% 60% 60% ;
+          transform: translate3d(0,-3px,0) rotateZ(0.01deg);
+        }
+      }
+      @keyframes fadeIn{
+        100%{
+        transform: scale(1.03);
+        opacity: 0;
+        }
+      }
+      @font-face {
+        font-family: 'GongGothicMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+      .upper{
+        font-family: 'GongGothicMedium';
+        text-align: center;
+        font-size: 54px;
+      }
+    </style>
+  </head>
+<body>
+    <!-- 물방울 그림 -->
+    <div class="gooey"></div>
+
+    <!-- 코인 선택 버튼 테이블 묶음 -->
+    <div class ="table-wrap-1">
+
+        <!-- 타이틀명 -->
+        <p class="upper">Coin Oracle</p>
+
+        <div class="container px-4 py-5" id="featured-3">    
+            <h2 class="pb-2 border-bottom">코인 이름확인</h2>
+            <form action="" method ="">
+                <select id="coin-list" name="coin">
+                    <!-- 리스트들목록, for문 사용예정, sql에서 이름 오름차순 정렬할것-->
+                    <!-- "market" ㅡ "korean_name" 방식으로 출력-->
+                    <!-- 주소 예시 http://127.0.0.1:5500/coin-index.html?coin="아래벨류값"&coin=SEARCH -->
+                    <option value ="가나다라">KRW-ABC ㅡ 가나다라</option>
+                    <option value ="도지">KRW-DEF ㅡ 도지</option>
+                    <option value ="도자">KRW-GHI ㅡ 도자</option>
+                    <option value ="이더리움">KRW-JKL ㅡ 이더리움</option>
+                    <option value ="삼성전자">KRW-MNO ㅡ 삼성전자</option>
+                </select>
+                <input type="submit" name="coin" value="SEARCH">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
