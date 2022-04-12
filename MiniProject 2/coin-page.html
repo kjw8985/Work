@@ -78,6 +78,7 @@
                         <!-- 리스트들목록, for문 사용예정, sql에서 이름 오름차순 정렬할것-->
                         <!-- "market" ㅡ "korean_name" 방식으로 출력-->
                         <!-- 주소 예시 http://127.0.0.1:5500/coin-index.html?coin="아래벨류값"&coin=SEARCH -->
+                        <!-- value값은"{{ct.KR}}", 텍스트 쪽은 {{ct.CN}} ㅡ {{ct.KR}} 형식 예상-->
                         <option value ="가나다라">KRW-ABC ㅡ 가나다라</option>
                         <option value ="도지">KRW-DEF ㅡ 도지</option>
                         <option value ="도자">KRW-GHI ㅡ 도자</option>
@@ -94,6 +95,7 @@
         <!-- 차트표 & 상위 텍스트 부분 -->
         <aside>
         <div>
+            <!-- 이쪽값도 위에처럼 {{}} 처리 필요함-->
             <li class="text-type1"><a class="text-download" href=""></a>KRW-ABC ㅡ 김철수코인</li>
         </div>
 
