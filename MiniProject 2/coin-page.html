@@ -1,95 +1,98 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-      <title>코인 탐색기</title>
-      <!-- 부트스트랩 사용선언 -->
-    <link href="/resource/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <style>
-          html, body {
-            width: 100vw;
-            height: 100vh;
-            background: #0d0722;
-          }
-          aside{
-            width:55%;
-            height: 100%;
-            line-height: 1;
-            float: left;
-            position: left;
-            object-fit: cover;
-            margin-top:1%;
-            margin-bottom:3%;
-            margin-left:3%;
-            margin-right:3%;
-
-          } 
-          section {
-            width:25%;
-            height: 100%;
-            line-height: 1;
-            float: left;
-            object-fit: cover;
-            margin-top:1%;
-          }
-          img {
-            max-width: 100%;
-            height: auto;
-            padding-bottom: 5%;
-          }
-          a { text-decoration: none; color: snow; text-align: left; }
-          .text-type1{
-            color:snow;
-            font-size:18px;
-            padding-bottom: 5%;
-          }
-          .text-download{
-            color:snow;
-            font-size:18px;
-          }
-          p {
-            color : snow;
-            font-size:16px;
-          }
-          @font-face {
-            font-family: 'GongGothicMedium';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-          }
-          .upper{
-            font-family: 'GongGothicMedium';
-            text-align: left;
-            color : snow;
-            font-size: 33px;
-          }
-        </style>
+        <title>코인 탐색기</title>
+            <style>
+                html, body {
+                    width: 100vw;
+                    height: 100vh;
+                    background: #0d0722;
+                }
+                .topbar{
+                    margin:1%;
+                }
+                @font-face {
+                    font-family: 'GongGothicMedium';
+                    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+                    font-weight: normal;
+                    font-style: normal;
+                }
+                .upper{
+                    font-family: 'GongGothicMedium';
+                    text-align: left;
+                    color : snow;
+                    font-size: 33px;
+                    margin:1%;
+                }
+                aside{
+                    width:55%;
+                    height: 100%;
+                    line-height: 1;
+                    float: left;
+                    position: left;
+                    object-fit: cover;
+                    margin-top:1%;
+                    margin-bottom:3%;
+                    margin-left:3%;
+                    margin-right:3%;
+                }      
+                section {
+                    width:25%;
+                    height: 100%;
+                    line-height: 1;
+                    float: left;
+                    object-fit: cover;
+                    margin-top:1%;
+                }
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    padding-bottom: 5%;
+                }      
+                a { 
+                    text-decoration: none; 
+                    color: snow; 
+                    text-align: left; }
+                .text-type1{
+                    color:snow;
+                    font-size:18px;
+                    padding-bottom: 5%;
+                }
+                p {
+                    color : snow;
+                    font-size:16px;
+                }
+            </style>
     </head>
-  <body>
+    <body>
     <main>
-        <header class="p-3 bd-white mb-3 border-bottom">
-            <div class="container">
-              <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        
-                <ul class="abc">
-                    <p class="upper"><a href="./coin-index.html">Coin Oracle</a>
-                  </p>
-                </ul>
-                
-                <!-- search 버튼
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                  <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <div class = "topbar">
+            <div class="upper"><a href="./coin-index.html">Coin Oracle</a>
+                <div class="coin-list">
+                <form action="" method ="">
+                    <select id="coin-list" name="coin">
+                        <!-- 리스트들목록, for문 사용예정, sql에서 이름 오름차순 정렬할것-->
+                        <!-- "market" ㅡ "korean_name" 방식으로 출력-->
+                        <!-- 주소 예시 http://127.0.0.1:5500/coin-index.html?coin="아래벨류값"&coin=SEARCH -->
+                        <option value ="가나다라">KRW-ABC ㅡ 가나다라</option>
+                        <option value ="도지">KRW-DEF ㅡ 도지</option>
+                        <option value ="도자">KRW-GHI ㅡ 도자</option>
+                        <option value ="이더리움">KRW-JKL ㅡ 이더리움</option>
+                        <option value ="삼성전자">KRW-MNO ㅡ 삼성전자</option>
+                    </select>
+                    <input type="submit" name="coin" value="SEARCH">
                 </form>
-                 -->
-              </div>
+                </div>
             </div>
-          </header>
-      <div id="wrap">
-      <!-- 차트표 & 상위 텍스트 부분 -->
-      <aside>
+        </div>
+
+        <div id="wrap">
+        <!-- 차트표 & 상위 텍스트 부분 -->
+        <aside>
         <div>
             <li class="text-type1"><a class="text-download" href=""></a>KRW-ABC ㅡ 김철수코인</li>
         </div>
@@ -111,5 +114,5 @@
       </section>
       </div>
     </main>
-  </body>
+    </body>
 </html>
