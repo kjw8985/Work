@@ -44,7 +44,6 @@
             height: 100%;
             line-height: 1;
             float: left;
-            position: left;
             object-fit: cover;
             margin-top:1%;
             margin-bottom:3%;
@@ -52,8 +51,8 @@
             margin-right:3%;
         }
         img {
-            max-width: 100%;
-            height: auto;
+            width: 100%;
+            height: 600px;
             padding-bottom: 5%;
         }      
         a { 
@@ -91,6 +90,28 @@
             background-color: #0d0722;
             border-radius: 10px;
             box-shadow: inset 0px 0px 5px whitesmoke;
+        }
+        #table_ticker:hover tbody tr:hover td {
+            background: #34c7f2;
+        }
+        #chart-button {
+            font-size: 18px;
+            margin-bottom: 3%;
+        }
+        #chart-button button{
+            background-color: snow;
+        }
+        #button1{
+            border-radius: 10px;
+            padding: 6px;
+        }
+        #button2{
+            border-radius: 10px;
+            padding: 6px;
+        }
+        #chart-button button:hover{
+            color: snow;
+            background-color: #34c7f2;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -151,19 +172,14 @@
         <div class = "topbar">
             <div class="upper"><a href="./coin-index.html">Coin Oracle</a>
                 <div class="coin-list">
-                <form action="" method ="">
+                <!-- 이쪽부터 169라인까지 수정했습니다 ! -->
+                <form action="/coin_info/detail/" method ="post">
                     <select id="coin-list" name="coin">
-                        <!-- 리스트들목록, for문 사용예정, sql에서 이름 오름차순 정렬할것-->
-                        <!-- "market" ㅡ "korean_name" 방식으로 출력-->
-                        <!-- 주소 예시 http://127.0.0.1:5500/coin-index.html?coin="아래벨류값"&coin=SEARCH -->
-                        <!-- value값은"{{ct.KR}}", 텍스트 쪽은 {{ct.CN}} ㅡ {{ct.KR}} 형식 예상-->
-                        <option value ="가나다라">KRW-ABC ㅡ 가나다라</option>
-                        <option value ="도지">KRW-DEF ㅡ 도지</option>
-                        <option value ="도자">KRW-GHI ㅡ 도자</option>
-                        <option value ="이더리움">KRW-JKL ㅡ 이더리움</option>
-                        <option value ="삼성전자">KRW-MNO ㅡ 삼성전자</option>
-                    </select>
-                    <input type="submit" name="coin" value="SEARCH">
+                    {% for tmp in coin_list %}
+                      <option name='coin_name' id="coin{{ tmp.id }}" value ="{{ tmp.id }}">{{ tmp.coin_list }}</option>
+                    {% endfor %}
+                </select>
+                    <input type="submit" name="coin1" value="SEARCH">
                 </form>
                 </div>
             </div>
@@ -173,13 +189,29 @@
         <!-- 차트표 & 상위 텍스트 부분 -->
         <aside>
         <div>
-            <!-- 이쪽값도 위에처럼 {{}} 처리 필요함-->
-            <li class="text-type1"><a class="text-download" href=""></a>KRW-ABC ㅡ 김철수코인</li>
+            <!-- 텍스트 부분에 "지금 선택된 {{ tmp.coin_list }}가 표시되어야함-->
+            <li class="text-type1">KRW-ABC ㅡ 김철수코인</li>
         </div>
 
         <div>
-        <!-- src값은 차트표 이미지를 받아오면됨 -->
-        <img class="chart-img" src="test.jpg">
+            <div id="chart-button">
+                <button id="button1" onclick="toggleimg1()">10분봉 확인</button>
+                <button id="button2" onclick="toggleimg2()">일봉 확인</button>
+            </div>
+        <!-- 조작없이 보이게 될 이미지 (1~10분봉 사이 이미지 선택) -->
+        <img id = "img" class="chart-img" src="../../../media/last_10minutes/tenminutes.png">
+        <!-- 10분봉 버튼 클릭시 보이게될 이미지 -->
+        <script>
+            function toggleimg1() {
+                document.getElementById("img").src = "../../../media/last_10minutes/tenminutes.png";
+            }
+        </script>
+        <!-- 일봉 버튼 클릭시 보이게될 이미지 -->
+        <script>
+            function toggleimg2(){
+                document.getElementById("img").src="../../../media/last_1day/oneday.png";
+            }
+        </script>
         </div>
 
         <div>
@@ -193,9 +225,9 @@
         <table id="table_ticker" class="table table-hover text-center">
             <thead>
             <tr>
-              <td>한글명</td>
-              <td>현재가</td>
-              <td>전일대비</td>
+              <td>코인이름</td>
+              <td>현재가(원)</td>
+              <td>전일대비(%)</td>
               <td>거래대금</td>
             </tr>
             </thead>

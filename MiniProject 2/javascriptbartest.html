@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<style>
+#percentbar {
+  position: center;
+  width: 80%;
+  height: 30px;
+  background-color: #ddd;
+  margin-bottom: 5%;
+}
+
+#bar {
+  position: center;
+  width: 0%;
+  height: auto;
+  background-color: green;
+}
+
+#percent {
+  text-align: center;
+  line-height: 28px;
+  color: snow;
+}s
+.title{
+    font-size:18px;
+
+}
+</style>
+<body>
+
+<h1 class="title">코딩 테스트용</h1>
+
+<div id="percentbar">
+  <div id="bar">
+    <div id="percent">0%</div>
+  </div>
+</div>
+<button onclick="move()">스크립트 동작시키기</button> 
+
+<script>
+function move() {
+  var elem = document.getElementById("bar");   
+  var width = 0;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+      document.getElementById("percent").innerHTML = width + '%';
+    }
+  }
+}
+</script>
+
+</body>
+</html>
