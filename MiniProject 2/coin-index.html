@@ -121,24 +121,16 @@
         <p class="upper">Coin Oracle</p>
 
         <div class="container px-4 py-5" id="featured-3">    
-            <h2 class="pb-2 border-bottom">코인 이름확인하는 텍스트</h2>
-            <form action="./coin-page.html" method ="">
-                <select id="coin-list" name="coin">
-                    <!-- 리스트들목록, for문 사용예정, sql에서 이름 오름차순 정렬할것-->
-                    <!-- "market" ㅡ "korean_name" 방식으로 출력-->
-                    <!-- 주소 예시 http://127.0.0.1:5500/coin-index.html?coin="아래벨류값"&coin=SEARCH -->
-                    <!-- value값은"{{ct.KR}}", 텍스트 쪽은 {{ct.CN}} ㅡ {{ct.KR}} 형식 예상-->
-                    <option value ="가나다라">KRW-ABC ㅡ 가나다라</option>
-                    <option value ="도지">KRW-DEF ㅡ 도지</option>
-                    <option value ="도자">KRW-GHI ㅡ 도자</option>
-                    <option value ="이더리움">KRW-JKL ㅡ 이더리움</option>
-                    <option value ="삼성전자">KRW-MNO ㅡ 삼성전자</option>
-                </select>
-                <input type="submit" name="coin" value="SEARCH">
-                <div class = "waiting-text">
-                  <p>최초 데이터 분석에 약 2분의 시간이 걸릴수있습니다</p>
-                </div>
-            </form>
+          <h2 class="pb-2 border-bottom">코인 이름확인하는 텍스트</h2>
+          <form action="/coin_info/detail/" method ="post">
+            {% csrf_token%}
+              <select id="coin-list" name="coin">
+                  {% for tmp in coin_list %}
+                    <option name='coin_name' id="coin{{ tmp.id }}" value ="{{ tmp.id }}">{{ tmp.coin_list }}</option>
+                  {% endfor %}
+              </select>
+              <input type="submit" name="coin1" value="SEARCH">
+          </form>
         </div>
     </div>
 </body>
