@@ -170,15 +170,15 @@
 <body>
     <main>
         <div class = "topbar">
-            <div class="upper"><a href="./coin-index.html">Coin Oracle</a>
+            <div class="upper"><a href="../../">Coin Oracle</a>
                 <div class="coin-list">
-                <!-- 이쪽부터 169라인까지 수정했습니다 ! -->
-                <form action="/coin_info/detail/" method ="post">
+                <form action="/coin_info/gogo/" method ="post">
+                    {% csrf_token%}
                     <select id="coin-list" name="coin">
-                    {% for tmp in coin_list %}
-                      <option name='coin_name' id="coin{{ tmp.id }}" value ="{{ tmp.id }}">{{ tmp.coin_list }}</option>
-                    {% endfor %}
-                </select>
+                        {% for i in coin_info_1 %}
+                            <option value ="{{ i.id }}">{{ i.coin_name }}</option>
+                        {% endfor %}
+                    </select>
                     <input type="submit" name="coin1" value="SEARCH">
                 </form>
                 </div>
@@ -189,8 +189,7 @@
         <!-- 차트표 & 상위 텍스트 부분 -->
         <aside>
         <div>
-            <!-- 텍스트 부분에 "지금 선택된 {{ tmp.coin_list }}가 표시되어야함-->
-            <li class="text-type1">KRW-ABC ㅡ 김철수코인</li>
+            <li class="text-type1"><a class="text-download" href=""></a>{{coin_info.coin_name}}</li>
         </div>
 
         <div>
@@ -215,7 +214,11 @@
         </div>
 
         <div>
-            <p> 차트 정보 필요할거같으면 이쪽 태그에 뭔가 넣기</p>
+            <ul>
+                <li class="text-type1">예측율(낮을수록 상승 예측) : {{coin_info.coin_predict}}</li>
+                <li class="text-type1">데이터 학습율 : {{coin_info.accuracy}}</li>
+                <li class="text-type1">신뢰도(낮을수록 높다) : {{coin_info.loss}}</li>
+            </ul>
         </div>
       </aside>
 
