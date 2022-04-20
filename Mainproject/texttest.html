@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        textarea{
+            resize: none;
+        }
+        #textinput{
+            width: 350px;
+            height: 50px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        #textoutput{
+
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    
+    <script type="text/javascript">
+        var temp;        
+        function input(){
+        var input = document.getElementById("textinput").value;
+        temp = input;
+        }        
+        function output(){
+        document.getElementById("textoutput").value = temp;
+        }       
+        function inoutput(){
+            var input = document.getElementById("textinput").value;
+            document.getElementById("textoutput)")
+
+        } 
+    </script>
+
+
+    <input class = "textinput" type="input" id="textinput" ><br>
+    <textarea id="textoutput" cols="50"rows="20"></textarea>
+    <br>
+    <button onclick="input()">텍스트 입력해두기</button>
+    <button onclick="output()">입력해둔 텍스트 출력하기</button>
+    <button onclick="inoutput()">입력과동시에받기</button>
+</body>
+</html>
