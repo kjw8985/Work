@@ -12,49 +12,67 @@
         }
         #top{
             margin: 3%;
+            margin-bottom: 5%;
             vertical-align: top;
         }
         #one{
             margin : 3%;
+            margin-left : 20%;
             float : left;
             text-align: center;
         }
         #two{
+            margin: 3%;
+            margin-right: 20%;
             float:right;
+            text-align: center;
+        }
+        #center{
+            margin-top:20%;
+            margin-bottom: 5%;
             text-align: center;
         }
         #bottom{
             margin: 3%;
+            margin-top: 5%;
             vertical-align: bottom;
         }
         #three{
             margin : 3%;
+            margin-left: 20%;
             float : left;
             text-align: center;
         }
         #four{
             margin : 3%;
+            margin-right: 20%;
             float : right;
             text-align: center;  
         }
     </style>
 </head>
 <body>
-    <section id = "title">메인페이지</section>
-    <section id = "menu">
-        <section id = "top" >
+    <h1 id = "title">메인페이지</h1>
+        <div id = "top" >
             <div id = "one">
-                <img src = "제목 없음.png"><br>첫번째 메뉴</div>
+                <a href=""><img id = "img" src = "제목 없음.png"></a>
+                <p id = mtext>첫번째 메뉴</p></div>
             <div id = "two">
-                <img src = "제목 없음.png"><br>두번째 메뉴</div>
-        </section>
-        <br>
-        <table id ="bottom">
+                <a href=""><img id = "img" src = "제목 없음.png"></a>
+                <p id = mtext>두번째 메뉴</p></div>
+        </div>
+        <div id = "center">
+            <p id = "centertext">
+                이 사이트를 소개하는 텍스트칸
+            </p>
+        </div>
+        <div id ="bottom">
             <div id = "three">
-                <img src = "제목 없음.png"><br>세번째 메뉴</div>
+                <a href=""><img id = "img" src = "제목 없음.png"></a>
+                <p id = mtext>세번째 메뉴</p></div>
             <div id = "four">
-                <img src = "제목 없음.png"><br>네번째 메뉴</div>
-        </table>
-    </section>
+                <a href=""><img id = "img" src = "제목 없음.png"></a>
+                <p id = mtext>네번째 메뉴</p></div>
+        </div>
 </body>
 </html>
