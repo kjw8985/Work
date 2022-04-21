@@ -5,8 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #title{
+            margin-top: 3%;
+            margin-left: 3%;
+            margin-bottom: 3%;
+            text-align: left;
+        }
+        #img{
+            width: 33%;
+            height: auto;
+            margin-left: 3%;
+            margin-bottom: 3%;
+        }
+        #checkimg{
+            margin-left: 3%;
+        }
+        #abc{
+            width: 33%;
+            height: auto;
+            resize: none;
+            float: right;
+        }
+
+        
+    </style>
 </head>
 <body>
-    
+    <h1 id = "title">제목 블라블라블라</h1>
+        <div>
+            <textarea name="" id="abc"  readonly placeholder="응애"></textarea>
+        </div>
+        <div id = "imgbox">
+            <img id = "img" src = "question.png">
+            <div id = "checkimg">
+            <input class="button" type="file" id="inputimg" name="file" />
+            </div>
+        </div>
+
+    <!-- 자바스크립트 영역 -->
+    <script type="text/javascript">
+        let imgElement = document.getElementById('img');
+        let inputElement = document.getElementById('inputimg');
+        inputElement.addEventListener('change', (e) => {
+            imgElement.src = URL.createObjectURL(e.target.files[0]);
+        }, false);
+    </script>
+
 </body>
 </html>
