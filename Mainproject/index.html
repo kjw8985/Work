@@ -45,8 +45,17 @@
       text-decoration: none;
     }
     #center{
-      margin-top:20%;
+      margin-top:27%;
       margin-bottom: 3%;
+      text-align: center;
+    }
+    #quick_title{
+      text-decoration: none;
+    }
+    #quick_table{
+      width: 50%;
+      margin: auto;
+      margin-top: 1%;
       text-align: center;
     }
     #mtext{
@@ -72,11 +81,45 @@
     </header>
       <div id = "one">
           <a href=""><img id = "img" src = "graph.jpg"></a><br><br>
-          <p id = mtext>주택 가격, 거래량 확인</p></div>
+          <p id = mtext>주택가격 변동 예측하기</p></div>
       <div id = "two">
           <a href=""><img id = "img" src = "map.png"></a><br><br>
-          <p id = mtext>가격 지도</p></div>
-          <div id = "center"></div>
+          <p id = mtext>부동산 가격지도</p></div>
+          <div id = "center">
+            <div id = "quick_view">
+              <a id = "quick_title" href="">청약분양 한 눈에 보기</a>
+              <table id = "quick_table">
+                <thead>
+                  <tr>
+                    <th>청약명</th>
+                    <th>청약일</th>
+                    <th>평형</th>
+                    <th>금액</th>
+                    <th>조회수</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p>청약명 받아오기</p>
+                    </td>
+                    <td>
+                      <p>청약일 받아오기</p>
+                    </td>
+                    <td>
+                      <p>평형 받아오기</p>
+                    </td>
+                    <td>
+                      <p>금액 받아오기</p>
+                    </td>
+                    <td>
+                      <p>조회수 받아오기</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
       <div id = "three">
           <a id = "threetitle" href="./board.html">개인 거래 커뮤니티</a><br><br>
           <a href= "" id = mtext>게시판 제목들 sql에서 받아오면서 for문 돌릴것</a></div>
