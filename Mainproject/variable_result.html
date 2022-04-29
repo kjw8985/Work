@@ -28,17 +28,74 @@
     </header>
     <h1>주택가격 오를까?</h1>
     <div id ="predict">
-        <p>ㅁㅁㅁㅁ지역 (거래종류)거래 %%평형 주택가격 예측율 입니다.</p>
+        <p id = "firstmeet1" >ㅁㅁㅁㅁ지역 (거래종류)거래 %%평형 주택가격 예측율 입니다.</p>
+        <p id = "needbtn1" >ㅁㅁㅁㅁ지역 (거래종류)거래 %%평형 주택 거래량 입니다.</p>
     </div>
     <!-- 이미지 크기 조절해서 받기 -->
     <div id = "graph">
-        <img id = "img" src = "graph.jpg">
+        <img id = "firstmeet2" src = "graph.jpg">
+        <img id = "needbtn2" src = "graph2.jpg">
     </div>
     <div id = "text">
         <p id ="predict_per">다음달 해당 매물이 상승할 확률은 %%입니다.</p>
-        <button id="variable_button">거래량 보기</button>
-        <button id="average_button" display="hidden">평당가 보기</button>
+        <input type="button" id="needbtn3"  value="거래량 보기" onclick="clickbtn2()"/>
+        <input type="button" id="firstmeet3" value="평당가 보기" onclick="clickbtn()"/>
         <button id="variable_button" onclick="location.href='./variable_predict.html' ">다른 주택 알아보기</button>
     </div>
+
+    <script>
+        function clickbtn(){
+            let needbtn1 = document.getElementById('needbtn1');
+            if (needbtn1.style.display !== 'none'){
+                needbtn1.style.display = 'none';
+            }
+            else {
+                needbtn1.style.display ='block';
+                firstmeet1.style.display ='none';
+            }
+            let needbtn2 = document.getElementById('needbtn2');
+            if (needbtn2.style.display !== 'none'){
+                needbtn2.style.display = 'none';
+            }
+            else {
+                needbtn2.style.display ='block';
+                firstmeet2.style.display ='none';
+            }
+            let needbtn3 = document.getElementById('needbtn3');
+            if (needbtn3.style.display !== 'none'){
+                needbtn3.style.display = 'none';
+            }
+            else {
+                needbtn3.style.display ='block';
+                firstmeet3.style.display ='none';
+            }
+        }
+        function clickbtn2(){
+            let firstmeet1 = document.getElementById('firstmeet1');
+            if (firstmeet1.style.display !== 'none'){
+                firstmeet1.style.display = 'none';
+            }
+            else {
+                firstmeet1.style.display ='block';
+                needbtn1.style.display ='none';
+            }
+            let firstmeet2 = document.getElementById('firstmeet2');
+            if (firstmeet2.style.display !== 'none'){
+                firstmeet2.style.display = 'none';
+            }
+            else {
+                firstmeet2.style.display ='block';
+                needbtn2.style.display ='none';
+            }
+            let firstmeet3 = document.getElementById('firstmeet3');
+            if (firstmeet3.style.display !== 'none'){
+                firstmeet3.style.display = 'none';
+            }
+            else {
+                firstmeet3.style.display ='block';
+                needbtn3.style.display ='none';
+            }
+        }
+    </script>
 </body>
 </html>

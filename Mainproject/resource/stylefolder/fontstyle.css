@@ -182,7 +182,29 @@ tbody{
     font-size:24px;
     text-align: center;
 }
-#predict_per{
+#firstmeet{
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 21px;
+}
+#needbtn1{
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 21px;
+    display: none;
+}
+#firstmeet1{
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 21px;
+    display:block;
+}
+#needbtn2{
+    display: none;
+}
+#needbtn3{
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 21px;
+    display: none;
+}
+#firstmeet3{
     font-family: "IBMPlexSansKR-Regular";
     font-size: 21px;
 }
