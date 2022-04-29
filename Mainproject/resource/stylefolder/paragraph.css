@@ -38,6 +38,7 @@
 }
 
 /* index */
+
 #one{
     width: 30%;
     height: 15%;
@@ -58,20 +59,22 @@
 #img2{
     margin-bottom: 3%;
 }
-#maintext3{
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-    float:left;
-}
-#abc{
-    float: right;
-}
 #center{
+    display: inline-block;
     width: 100%;
     margin-bottom: 3%;
     text-align: center;
 }
+#maintext3{
+    width: 100%;
+    text-align: center;
+}
+#viewbutton{
+    position: absolute;
+    width:30%;
+    float: right;
+}
+
 #quick_table{
     width: 50%;
     margin: auto;
@@ -79,18 +82,26 @@
     text-align: center;
 }
 #three{
-    width: 40%;
+    width: 95%;
     margin : 3%;
-    margin-left: 7%;
-    float : left;
+    margin-bottom: 7%;
     text-align: center;
 }
+#tradebutton{
+    position: absolute;
+    width:30%;
+    float: right;
+}
 #four{
-    width:40%;
+    width:95%;
     margin : 3%;
-    margin-right: 7%;
-    float : right;
-    text-align: center;  
+    text-align: center;
+
+}
+#longmonthbutton{
+    position: absolute;
+    width:30%;
+    float: right;
 }
 
 /* variable_predict */

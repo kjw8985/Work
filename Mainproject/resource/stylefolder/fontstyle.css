@@ -80,13 +80,13 @@ a{
 #one{
     text-align: center;
 }
-#two{
-    text-align: center;
-}
 #maintext1{
     font-family: "SLEIGothicTTF";
     font-size: 30px;
     text-decoration: none;
+    text-align: center;
+}
+#two{
     text-align: center;
 }
 #maintext2{
@@ -101,6 +101,29 @@ a{
     text-decoration: none;
     text-align: left;
 }
+#viewbuttontext{
+    font-family:"IBMPlexSansKR-Regular";
+    font-size: 15px;
+    border-radius: 8px;
+    padding: 0.5% 2%;
+    text-align: center;
+}
+#indexwritebutton{
+    font-family:"IBMPlexSansKR-Regular";
+    font-size: 15px;
+    border-radius: 8px;
+    padding: 0.5% 2%;
+    text-align: center;
+}
+
+thead{
+    font-family: "IBMPlexSansKR-Regular";
+    font-size:21px;
+}
+tbody{
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+}
 #maintext4{
     font-family: "SLEIGothicTTF";
     font-size: 30px;
@@ -112,14 +135,6 @@ a{
     font-size: 30px;
     text-decoration: none;
     text-align: center;
-}
-thead{
-    font-family: "IBMPlexSansKR-Regular";
-    font-size:21px;
-}
-tbody{
-    font-family: "IBMPlexSansKR-Regular";
-    font-size: 18px;
 }
 #minitext{
     font-family: "IBMPlexSansKR-Regular";
