@@ -226,6 +226,14 @@ tbody{
     text-align: center;
     float: right;
 }
+#writeboardtitle{
+    font-family: "SLEIGothicTTF";
+    font-size: 36px;
+}
+#boardtextarea{
+    font-family: "IBMPlexSansKR-Regular";
+    font-size:18px;
+}
 
 
 /* longmonth & trade_boardwriting */

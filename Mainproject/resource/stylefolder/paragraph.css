@@ -164,7 +164,15 @@
 .pagination{
     justify-content: center;
 }
-
+#writeboardtitle{
+    margin:5%;
+}
+#userid{
+    margin-left: 4%;
+}
+#writedate{
+    margin-left: 4%;
+}
 /* longmonth & trade_boardwriting */
 #titlearea{
     text-align: center;
