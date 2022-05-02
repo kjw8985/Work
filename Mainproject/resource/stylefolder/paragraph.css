@@ -37,6 +37,34 @@
     background: white;
 }
 
+/* login */
+#loginbody{
+    text-align: center;
+    margin: auto;
+}
+#loginform{
+    width: 100%;
+    text-align: center;
+    list-style: none;
+}
+#loginbox{
+    background: white;
+    color: black;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 15px;
+    text-align: left;
+}
+#loginbox>#box{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    margin: 5%;
+    text-align: center;
+    list-style: none;
+}
+#passwordbox{
+    margin-right: 6%;
+}
+
 /* index */
 
 #one{

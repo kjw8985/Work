@@ -15,8 +15,13 @@
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li id ="indexpage"><a href="index.html" class="nav-link px-2 text-white">주모</a></li>
-            </ul>
+                <li id ="indexpage"><a href="index.html" class="nav-link px-2 text-white">주모</a></li>
+                <li id ="indexpage"><a href="./variable_predict.html" class="nav-link px-2 text-secondary">가격변동</a></li>
+                <li id ="indexpage"><a href="./averageprice.html" class="nav-link px-2 text-secondary">가격지도</a></li>
+                <li id ="indexpage"><a href="./sub_division.html" class="nav-link px-2 text-secondary">청약분양</a></li>
+                <li id ="indexpage"><a href="./trade_board.html" class="nav-link px-2 text-secondary">개인거래</a></li>
+                <li id ="indexpage"><a href="./longmonth_board.html" class="nav-link px-2 text-secondary">전월세</a></li>
+              </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"></form>
             <div class="text-end">
                 <button id="logout" type="button" class="btn btn-outline-light me-2" onclick="location.href='' ">로그아웃</button>
@@ -27,10 +32,10 @@
     <article id = "writewrap">
         <form method="post" id = "titleandtext" action ="">
             <div id="titlearea">
-                <textarea id="areatitle" cols = "130"rows="1" placeholder="제목을 입력해주세요"></textarea>
+                <textarea id="areatitle" cols = "130"rows="1" name="" placeholder="제목을 입력해주세요" required></textarea>
             </div>
             <div id="textarea">
-                <textarea id="areatext" cols="130"rows="20" placeholder="글내용을 입력해주세요"></textarea>
+                <textarea id="areatext" cols="130"rows="20" name="" placeholder="글내용을 입력해주세요">응애 <br /></textarea>
                 <br>                
                 <button id="goback" type="button" onclick="location.href='./trade_board.html' " >글작성 취소</button>   
                 <input id ="writing" type= "submit" name="" value='글쓰기'/>

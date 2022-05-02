@@ -15,11 +15,16 @@
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li id ="indexpage"><a href="index.html" class="nav-link px-2 text-white">주모</a></li>
-            </ul>
+                <li id ="indexpage"><a href="index.html" class="nav-link px-2 text-white">주모</a></li>
+                <li id ="indexpage"><a href="./variable_predict.html" class="nav-link px-2 text-secondary">가격변동</a></li>
+                <li id ="indexpage"><a href="./averageprice.html" class="nav-link px-2 text-secondary">가격지도</a></li>
+                <li id ="indexpage"><a href="./sub_division.html" class="nav-link px-2 text-secondary">청약분양</a></li>
+                <li id ="indexpage"><a href="./trade_board.html" class="nav-link px-2 text-secondary">개인거래</a></li>
+                <li id ="indexpage"><a href="./longmonth_board.html" class="nav-link px-2 text-secondary">전월세</a></li>
+              </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"></form>
             <div class="text-end">
-                <button id="login" type="button" class="btn btn-outline-light me-2" onclick="location.href='' ">로그인</button>
+                <button id="login" type="button" class="btn btn-outline-light me-2" onclick="login();">로그인</button>
                 <button id="logout" type="button" class="btn btn-outline-light me-2" onclick="location.href='' ">로그아웃</button>
                 <button type="button" class="btn btn-outline-light me-2" onclick="location.href='./signup.html' ">회원가입</button>
             </div>
@@ -28,18 +33,20 @@
     </header>
     <h1>주택가격 오를까?</h1>
     <div id ="predict">
-        <p id = "firstmeet1" >ㅁㅁㅁㅁ지역 (거래종류)거래 %%평형 주택가격 예측율 입니다.</p>
-        <p id = "needbtn1" >ㅁㅁㅁㅁ지역 (거래종류)거래 %%평형 주택 거래량 입니다.</p>
+        <p id = "firstmeet1" class="firstmeet" >ㅁㅁㅁㅁ지역 (거래종류)거래 %%평형 주택가격 예측율 입니다.</p>
+        <p id = "needbtn1" class="needbtn">ㅁㅁㅁㅁ지역 (거래종류)거래 %%평형 주택 거래량 입니다.</p>
     </div>
     <!-- 이미지 크기 조절해서 받기 -->
     <div id = "graph">
-        <img id = "firstmeet2" src = "graph.jpg">
-        <img id = "needbtn2" src = "graph2.jpg">
+        <img id = "firstmeet2" class="firstmeet" src = "graph.jpg">
+        <img id = "needbtn2" class="needbtn" src = "graph2.jpg">
     </div>
     <div id = "text">
         <p id ="predict_per">다음달 해당 매물이 상승할 확률은 %%입니다.</p>
-        <input type="button" id="needbtn3"  value="거래량 보기" onclick="clickbtn2()"/>
-        <input type="button" id="firstmeet3" value="평당가 보기" onclick="clickbtn()"/>
+        <div id ="checkbtn">
+            <input type="button" id="needbtn3" class="needbtn" value="거래량 보기" onclick="clickbtn2()"/>
+            <input type="button" id="firstmeet3" class="firstmeet" value="평당가 보기" onclick="clickbtn()"/>
+        </div>
         <button id="variable_button" onclick="location.href='./variable_predict.html' ">다른 주택 알아보기</button>
     </div>
 
@@ -97,5 +104,13 @@
             }
         }
     </script>
+
+    <script>
+        const x_coordinate = (window.screen.width/2) - (400/2);
+        const y_coordinate= (window.screen.height/2) - (300/2);
+        function login() {
+          window.open("./login.html", "loginpage",'status=no, width=400, height=300, left='+ x_coordinate + ', top='+ y_coordinate);
+        }
+      </script>
 </body>
 </html>

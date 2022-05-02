@@ -182,9 +182,8 @@ tbody{
     font-size:24px;
     text-align: center;
 }
-#firstmeet{
-    font-family: "IBMPlexSansKR-Regular";
-    font-size: 21px;
+#checkbtn{
+    margin-bottom: 3%;
 }
 #needbtn1{
     font-family: "IBMPlexSansKR-Regular";
@@ -213,6 +212,7 @@ tbody{
     font-family: "IBMPlexSansKR-Regular";
     font-size: 15px;
 }
+
 
 /* longmonth & trade_board */
 #boardtitle{

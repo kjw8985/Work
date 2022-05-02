@@ -14,11 +14,16 @@
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li id ="indexpage"><a href="index.html" class="nav-link px-2 text-white">주모</a></li>
-            </ul>
+                <li id ="indexpage"><a href="index.html" class="nav-link px-2 text-white">주모</a></li>
+                <li id ="indexpage"><a href="./variable_predict.html" class="nav-link px-2 text-secondary">가격변동</a></li>
+                <li id ="indexpage"><a href="./averageprice.html" class="nav-link px-2 text-secondary">가격지도</a></li>
+                <li id ="indexpage"><a href="./sub_division.html" class="nav-link px-2 text-secondary">청약분양</a></li>
+                <li id ="indexpage"><a href="./trade_board.html" class="nav-link px-2 text-secondary">개인거래</a></li>
+                <li id ="indexpage"><a href="./longmonth_board.html" class="nav-link px-2 text-secondary">전월세</a></li>
+              </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"></form>
             <div class="text-end">
-                <button id="login" type="button" class="btn btn-outline-light me-2" onclick="location.href='' ">로그인</button>
+                <button id="login" type="button" class="btn btn-outline-light me-2" onclick="login();">로그인</button>
                 <button id="logout" type="button" class="btn btn-outline-light me-2" onclick="location.href='' ">로그아웃</button>
                 <button type="button" class="btn btn-outline-light me-2" onclick="location.href='./signup.html' ">회원가입</button>
             </div>
@@ -74,5 +79,12 @@
     </section>
 
     <!-- 자바스크립트 공간 -->
+    <script>
+        const x_coordinate = (window.screen.width/2) - (400/2);
+        const y_coordinate= (window.screen.height/2) - (300/2);
+        function login() {
+          window.open("./login.html", "loginpage",'status=no, width=400, height=300, left='+ x_coordinate + ', top='+ y_coordinate);
+        }
+      </script>
 </body>
 </html>
