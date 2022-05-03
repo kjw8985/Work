@@ -1,0 +1,49 @@
+/* sub_division */
+#basic{
+    width:37%;
+    float:left;
+    margin-left: 15%;
+    margin-bottom: 10%;
+}
+caption{
+    caption-side: top;
+    text-align: center;
+}
+#basictitle{
+    text-align: left;
+    margin-left: 10%;
+    font-size: 21px;
+    font-weight: bolder;
+}
+#divisionmap{
+    width: 30%;
+    float: right;
+    margin-left: 3%;
+    margin-right: 15%;
+}
+#item{
+    width: 60%;
+    text-align: center;
+    margin-left: 15%;
+    margin-bottom: 10%;
+}
+#itemtitle{
+    text-align: left;
+    margin-left: 10%;
+    font-size: 21px;
+    font-weight: bolder;
+}
+table{
+    text-align: center;
+}
+th, td{
+    border-top: 0.5px solid black;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+th{
+    width: 3%;
+}
+td{
+    width:8%;
+}
