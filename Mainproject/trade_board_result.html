@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./resource/stylefolder/fontstyle.css">
     <link rel="stylesheet" href="./resource/stylefolder/paragraph.css">
     <title>글 읽기</title>
+    <style>
+    </style>
 </head>
 <body>
     <header class="p-3 bg-dark text-white">
@@ -57,8 +59,23 @@
 연락처▶
 
     </div>
-    <div id = "signupbox">
-        이자리에 댓글구현기능 필요함
+    <div id = "commentbox">
+        <span id = "userid">유저명</span>
+        <span id = "writedate">작성날짜</span>
+    <hr>
+        <p id = "commentarea">쓴 댓글이 보여질 공간</p>
     </div>
+    <form>
+        <div id = "writecommentbox">
+            <textarea id="commentwrite" rows="3" name="" placeholder="댓글을 입력해주세요"></textarea>
+            <div id="commenton">
+            <input id = "submitcomment" type="submit" name="" value="댓글쓰기"/>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        
+    </script>
 </body>
 </html>

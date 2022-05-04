@@ -190,3 +190,26 @@
     resize: none;
     margin-bottom: 1%;
 }
+
+/* longmonth & trade_boardresult */
+
+#commentbox{
+    width: 50%;
+    margin: 7% auto 0;
+    margin-bottom: 3%;
+    padding: 2%;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+#writecommentbox{
+    text-align: center;
+    margin-bottom: 1%;
+}
+#commentwrite{
+    resize: none;
+    width: 50%;
+    margin-bottom: 1%;
+}
+#commenton{
+    position: static;
+    margin-left: 50%;
+}
