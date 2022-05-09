@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    a{
+    color:
+    black;
+    }
+</style>
+    <title>joomo</title>
+      <div id = "one">
+          <a href="{% url 'main:variable_pd' %}"><img id = "img1" src = "/media/graph.jpg"></a>
+          <p id = maintext1>주택가격 변동 예측하기</p>
+      </div>
+      <div id = "two">
+          <a href="{% url 'main:avg' %}"><img id = "img2" src = "/media/map.png"></a>
+          <p id = maintext2>평단가를 알려줘</p>
+      </div>
+          <div id = "center">
+            <div id = "quick_view">
+              <p id = "maintext3">
+                 <a href="{% url 'main:joomo' %}">청약분양 한 눈에 보기</a>
+
+              </p>
+              <table id = "quick_table">
+                <thead>
+                  <tr>
+                    <th>청약명</th>
+                    <th>청약일</th>
+                    <th>평형</th>
+                    <th>금액</th>
+                    <th>조회수</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p>청약명 받아오기</p>
+                    </td>
+                    <td>
+                      <p>청약일 받아오기</p>
+                    </td>
+                    <td>
+                      <p>평형 받아오기</p>
+                    </td>
+                    <td>
+                      <p>금액 받아오기</p>
+                    </td>
+                    <td>
+                      <p>조회수 받아오기</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+      <div id = "three">
+          <p id = "maintext4">
+              <a href="{% url 'board:trade' %}">개인거래 게시판</a>
+            <span id = tradebutton>
+              <button id = "indexwritebutton" class="btn btn-primary"  onclick="location.href='{% url 'board:trade_writi'%}' ">새글쓰기</button>
+            </span>
+          </p>
+          <p>
+          <a href= "" id = minitext>게시판 제목들 sql에서 받아오면서 for문 돌릴것</a></div></p>
+      <div id = "four">
+          <p id = "maintext5">
+               <a href="{% url 'board:long_board' %}">전월세 물건지 리뷰</a>
+            <span id = longmonthbutton>
+              <button id = "indexwritebutton" class="btn btn-primary" onclick="location.href='{% url 'board:long_writi' %}' ">새글쓰기</button>
+            </span>
+          </p>
+          <p>
+          <a href = "" id = minitext>크롤링한 관련 뉴스들 sql에서 받아오면서 for문 돌릴것</a></div></p>
+{% endblock %}

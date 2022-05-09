@@ -1,0 +1,289 @@
+/* 큰제목 전용 폰트 */
+@font-face {
+    font-family: 'SLEIGothicTTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SLEIGothicTTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 내용 전용 폰트 , 문단제목 설정시 이 폰트로 bold 설정주기 */
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* navbar */
+#indexpage {
+    font-size: 18px;
+}
+
+
+h1 {
+    margin: 7%;
+    font-family: "SLEIGothicTTF";
+    text-align: center;
+    font-size: 48px;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* signup */
+#signupbox {
+    background: white;
+    color: black;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+    text-align: left;
+}
+
+#signupbox>#box {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+#idcheck {
+    background: black;
+    color: white;
+    font-size: 15px;
+    transition: 0.5s;
+}
+
+#idcheck:hover {
+    background: white;
+    color: black;
+}
+
+#namecheck {
+    background: black;
+    color: white;
+    font-size: 15px;
+    transition: 0.5s;
+}
+
+#namecheck:hover {
+    background: white;
+    color: black;
+}
+
+#submit {
+    color: white;
+    background: black;
+    transition: 0.5s;
+}
+
+#submit:hover {
+    color: black;
+    background: white;
+}
+
+/* index */
+#one {
+    text-align: center;
+}
+
+#maintext1 {
+    font-family: "SLEIGothicTTF";
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#two {
+    text-align: center;
+}
+
+#maintext2 {
+    font-family: "SLEIGothicTTF";
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#maintext3 {
+    font-family: "SLEIGothicTTF";
+    font-size: 30px;
+    text-decoration: none;
+    text-align: left;
+}
+
+#viewbuttontext {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 15px;
+    border-radius: 8px;
+    padding: 0.5% 2%;
+    text-align: center;
+}
+
+#indexwritebutton {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 15px;
+    border-radius: 8px;
+    padding: 0.5% 2%;
+    text-align: center;
+}
+
+thead {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 21px;
+}
+
+tbody {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+}
+
+#maintext4 {
+    font-family: "SLEIGothicTTF";
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#maintext5 {
+    font-family: "SLEIGothicTTF";
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#minitext {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+    text-decoration: none;
+}
+
+/* variable_predict */
+#selectbox {
+    font-family: "IBMPlexSansKR-Regular";
+}
+
+#locate {
+    width: auto;
+    height: 7%;
+    padding: 1%;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 33px;
+}
+
+#kinds {
+    width: auto;
+    height: 5%;
+    padding: 1%;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 33px;
+}
+
+#size {
+    width: auto;
+    padding: 1%;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 33px;
+}
+
+#button {
+    width: 30%;
+    border-radius: 18px;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 30px;
+    padding: 1%;
+    text-align: center;
+    margin-top: 4%;
+}
+
+/* variable_result */
+#predict {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 24px;
+    text-align: center;
+}
+
+#checkbtn {
+    margin-bottom: 3%;
+}
+
+#needbtn1 {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 21px;
+    display: none;
+}
+
+#firstmeet1 {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 21px;
+    display: block;
+}
+
+#needbtn2 {
+    display: none;
+}
+
+#needbtn3 {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 21px;
+    display: none;
+}
+
+#firstmeet3 {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 21px;
+}
+
+#variable_button {
+    border-radius: 18px;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 15px;
+}
+
+
+/* longmonth & trade_board */
+#boardtitle {
+    text-decoration: none;
+}
+
+#write {
+    width: 7%;
+    font-family: "IBMPlexSansKR-Regular";
+    border-radius: 14px;
+    font-size: 18px;
+    text-align: center;
+    float: right;
+}
+
+#writeboardtitle {
+    font-family: "SLEIGothicTTF";
+    font-size: 36px;
+}
+
+#boardtextarea {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+}
+
+
+/* longmonth & trade_boardwriting */
+#goback {
+    width: 7%;
+    font-family: "IBMPlexSansKR-Regular";
+    border-radius: 14px;
+    padding: 0.2%;
+    font-size: 18px;
+    text-align: center;
+}
+
+#writing {
+    width: 6%;
+    font-family: "IBMPlexSansKR-Regular";
+    border-radius: 14px;
+    padding: 0.2%;
+    font-size: 18px;
+    text-align: center;
+}

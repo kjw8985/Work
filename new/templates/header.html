@@ -1,0 +1,50 @@
+<!-- 헤더, 네비게이션 바-->
+<header xmlns="http://www.w3.org/1999/html">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li id ="indexpage"><a href="{% url 'main:index' %}" class="nav-link px-2 text-white">주모</a></li>
+        <li id ="indexpage"><a href="{% url 'main:variable_pd' %}" class="nav-link px-2 text-secondary">가격변동</a></li>
+        <li id ="indexpage"><a href="{% url 'main:avg' %}" class="nav-link px-2 text-secondary">가격지도</a></li>
+        <li id ="indexpage"><a href="{% url 'main:joomo'%}" class="nav-link px-2 text-secondary">청약분양</a></li>
+        <li id ="indexpage"><a href="{% url 'board:trade' %}" class="nav-link px-2 text-secondary">개인거래</a></li>
+        <li id ="indexpage"><a href="{% url 'board:long_board' %}" class="nav-link px-2 text-secondary">전월세</a></li>
+      </ul>
+<!--      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"></form>-->
+
+        <!-- 로그인 옵션  -->
+        <div class="collapse navbar-collapse" >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                     <a class="nav-link text-white" href="{% url 'common:logout' %}">
+                         <button type="button" class="btn btn-outline-light me-2">{{ user.username }} (로그아웃)</button></a>
+                    {% else %}
+                     <a class="nav-link text-white" href="{% url 'common:login' %}">
+                         <button type="button" class="btn btn-outline-light me-2" >로그인</button></a>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if not user.is_authenticated %}
+                    <a class="nav-link text-white" href="{% url 'common:signup' %}">
+                        <button type="button" class="btn btn-outline-light me-2">회원가입</button></a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+  </div>
+    </nav>
+</header>
+<script>
+  const x_coordinate = (window.screen.width/2) - (400/2);
+  const y_coordinate= (window.screen.height/2) - (300/2);
+  function login() {
+    window.open("./login.html", "loginpage",'status=no, width=400, height=300, left='+ x_coordinate + ', top='+ y_coordinate);
+  }
+</script>
+
+
+
+<!--    onclick="location.href='{% url 'common:login' %}' ">로그인</button>-->

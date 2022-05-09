@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <title>가격변동</title>
+    <h1>주택가격 오를까?</h1>
+    <form action="{% url 'main:variable_rs'%}">
+        <div id ="selectbox">
+            <select id="locate">
+                <option value="" disable selected hidden>지역</option>
+                <option> for문 1</option>
+                <option> for문 2</option>
+                <option> for문 3</option>
+            </select>
+            <select id ="kinds">
+                <option value="" disable selected hidden>거래종류(매매)</option>
+                <option> for문 1</option>
+                <option> for문 2</option>
+                <option> for문 3</option>
+            </select>
+            <select id = "size">
+                <option value="" disable selected hidden>평수</option>
+                <option> for문 1</option>
+                <option> for문 2</option>
+                <option> for문 3</option>
+            </select>
+            </div>
+        <div id = "buttonbox">
+            <button id ="button">예측하기!</button>
+        </div>
+    </form>
+{% endblock%}

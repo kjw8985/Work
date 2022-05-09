@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+    <title>전월세 리뷰작성 완료</title>
+    <div id="signupbox">
+        <p id="writeboardtitle">제목 : {{ question2.subject }}</p>
+        <span id = "userid">작성자 : {{ question2.author.username }}</span>
+        <span id = "writedate">작성일시 : {{ question2.create_date }}</span>
+    <hr>
+        <pre>
+        <!-- css 넣어주면 좋을것 같습니다-->
+        <p>{{ question2.content }}</p>
+        </pre>
+    </div>
+
+    <!-- 게시판 글수정 -->
+    <div id="editpost">
+    {% if request.user == question2.author %}
+        <a href="{% url 'board:long_modify' question2.id %}"
+           class="btn btn-sm btn-outline-secondary">수정하기</a>
+    {% endif %}
+    
+    {% if request.user == question2.author %}
+        <a href="{% url 'board:long_delete' question2.id %}"
+           class="btn btn-sm btn-outline-secondary">삭제하기</a>
+    {% endif %}
+    </div>
+    
+    <div id = "commentbox">
+        <span id = "userid">작성자 : {{ answer.author.username }}</span>
+        <span id = "writedate">작성일자 : {{ answer.create_date }}</span>
+    <hr>
+        <p id = "commentarea">{{ answer.content }}</p>
+    </div>
+    <form>
+        <div id = "writecommentbox">
+            <textarea id="commentwrite" rows="3" name="" placeholder="댓글을 입력해주세요"></textarea>
+            <div id="commenton">
+            <input id = "submitcomment" type="submit" name="" value="댓글쓰기"/>
+            </div>
+        </div>
+    </form>
+{% endblock %}

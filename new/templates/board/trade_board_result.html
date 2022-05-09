@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- 작성글 보여주기 -->
+    <title>개인거래 게시판 리뷰작성 완료</title>
+    <div id="signupbox">
+        <p id="writeboardtitle">제목 : {{ question.subject }}</p>
+        <span id = "userid">작성자 : {{ question.author.username }}</span>
+        <span id = "writedate">작성일자 : {{ question.create_date }}</span>
+    <hr>
+        <pre>
+        <p>{{ question.content }}</p>
+        </pre>
+    </div>
+
+    <!-- 작성글 수정하기 -->
+    <div id= "editpost">
+        {% if request.user == question.author %}
+        <a href="{% url 'board:trade_modify' question.id %}"
+           class="btn btn-sm btn-outline-secondary">수정하기</a>
+        {% endif %}
+        
+        {% if request.user == question.author %}
+        <a href="{% url 'board:trade_delete' question.id %}"
+           class="btn btn-sm btn-outline-secondary">삭제하기</a>
+        {% endif %}
+    </div>
+
+    <h5 id= "answernumber">{{question.answer_set.count}}개의 답변이 있습니다.</h5>
+    {% for answer in question.answer_set.all %}
+    <div id = "commentbox">
+        <span id = "userid"><u>유저명</u>: {{ answer.author.username }}</span>
+        <span id = "writedate"><u>작성일자</u>: {{ answer.create_date }}</span>
+    <hr>
+        <p id = "commentarea">{{ answer.content }}쓴 댓글이 보여질 공간</p>
+    </div>
+    {% endfor %}
+
+    <!-- 댓글 작성하기 -->
+    <form action="{% url 'board:answer_create' question.id" mathod="post">
+        {% csrf_token %}
+        <!-- 오류표시 시작 -->
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for field in form %}
+            {% if field.errors %}
+            <div>
+                <strong>{{ field.label }}</strong>
+                {{ field.errors }}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <!-- 오류표시 끝 -->
+        <div id = "writecommentbox">
+            <textarea {% if not user.is_authenticated %}disabled{% endif %}
+                    id="commentwrite" rows="3" name="content" id="content" placeholder="댓글을 입력해주세요"></textarea>
+            <div id="commenton">
+            <input id = "submitcomment" type="submit" value="댓글쓰기"/>
+            </div>
+        </div>
+    </form>
+{% endblock %}

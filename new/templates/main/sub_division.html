@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+    <title>청약정보</title>
+     <style>
+        #indexpage{
+            font-size:18px;
+        }
+        #logout{
+            display: none;
+        }
+        #boardtitle{
+            text-decoration: none;
+        }
+        #writing{
+            float: right;
+        }
+        #link{
+            text-decoration: none;
+        }
+      </style>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <!-- 텍스트 자리는 앞에 선택한것에 반응시키기 -->
+                    <br><br>
+                    <h1 class="heading-section">청약분양 한눈에 보기</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrap">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>청약명</th>
+                                        <th>청약일</th>
+                                        <th>평형</th>
+                                        <th>금액</th>
+                                        <th>조회수</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a id ="link" href="">청약명 받아오기</a>
+                                        </td>
+                                        <td>
+                                            <p>청약일 받아오기</p>
+                                        </td>
+                                        <td>
+                                            <p>평형 받아오기</p>
+                                        </td>
+                                        <td>
+                                            <p>금액 받아오기</p>
+                                        </td>
+                                        <td>
+                                            <p>조회수 받아오기</p>
+                                        </td>
+                                      </tr>
+                                </tbody>
+                            </table>
+                        </form>	
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 자바스크립트 공간 -->
+{% endblock%}
