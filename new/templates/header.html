@@ -1,50 +1,51 @@
 <!-- 헤더, 네비게이션 바-->
-<header xmlns="http://www.w3.org/1999/html">
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li id ="indexpage"><a href="{% url 'main:index' %}" class="nav-link px-2 text-white">주모</a></li>
-        <li id ="indexpage"><a href="{% url 'main:variable_pd' %}" class="nav-link px-2 text-secondary">가격변동</a></li>
-        <li id ="indexpage"><a href="{% url 'main:avg' %}" class="nav-link px-2 text-secondary">가격지도</a></li>
-        <li id ="indexpage"><a href="{% url 'main:joomo'%}" class="nav-link px-2 text-secondary">청약분양</a></li>
-        <li id ="indexpage"><a href="{% url 'board:trade' %}" class="nav-link px-2 text-secondary">개인거래</a></li>
-        <li id ="indexpage"><a href="{% url 'board:long_board' %}" class="nav-link px-2 text-secondary">전월세</a></li>
-      </ul>
-<!--      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"></form>-->
+<header xmlns="http://www.w3.org/1999/html" class=" bg-shodow text-white col-xs">
+  <li id ="maintitle"><a href="{% url 'board:index' %}" class="col-xs nav-link px-1 text-dark">주모</a></li>
+    <ul class="nav col-xs">
+      <a id ="indexpage" href="{% url 'main:variable_pd' %}" class="nav-link px-2 text-dark">
+        <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
+        </svg><span> 가격변동</span></a>
+      <a id ="indexpage" href="{% url 'main:avg' %}" class="col-xs-1 nav-link px-1 text-dark">
+        <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-map-fill" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.502.502 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5V.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.498.498 0 0 0-.196 0L5 14.09zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1-.5-.1z"/>
+        </svg><span> 가격지도</span></a></li>
+      <a id ="indexpage" href="{% url 'main:joomo'%}" class="col-xs-1 nav-link px-1 text-dark">
+        <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+          <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+          <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+        </svg><span> 청약분양</span></a></li>
+      <a id ="indexpage" href="{% url 'board:trade' %}" class="col-xs-1 nav-link px-1 text-dark">
+        <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+        </svg><span> 개인거래</span></a></li>
+      <a id ="indexpage" href="{% url 'board:long_board' %}" class="col-xs-1 nav-link px-1 text-dark">
+        <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-basket3" viewBox="0 0 16 16">
+          <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM3.394 15l-1.48-6h-.97l1.525 6.426a.75.75 0 0 0 .729.574h9.606a.75.75 0 0 0 .73-.574L15.056 9h-.972l-1.479 6h-9.21z"/>
+        </svg><span> 전월세</span></a></li>
 
         <!-- 로그인 옵션  -->
-        <div class="collapse navbar-collapse" >
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
+          <span id="buttonset" class="col-2 center">
                     {% if user.is_authenticated %}
-                     <a class="nav-link text-white" href="{% url 'common:logout' %}">
-                         <button type="button" class="btn btn-outline-light me-2">{{ user.username }} (로그아웃)</button></a>
+                          <a href="{% url 'common:logout' %}"><button type="button" class="btn  btn-outline-dark me-2" >{{ user.username }} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock-fill" viewBox="0 0 16 16">
+                          <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2z"/>
+                        </svg>(로그아웃)</button></a>
                     {% else %}
-                     <a class="nav-link text-white" href="{% url 'common:login' %}">
-                         <button type="button" class="btn btn-outline-light me-2" >로그인</button></a>
+                          <a href="{% url 'common:login' %}"><button type="button" class="btn btn-outline-dark me-2" >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                          </svg>로그인</button></a>
                     {% endif %}
-                </li>
-                <li>
                     {% if not user.is_authenticated %}
-                    <a class="nav-link text-white" href="{% url 'common:signup' %}">
-                        <button type="button" class="btn btn-outline-light me-2">회원가입</button></a>
+                          <a><button type="button" class="btn btn-outline-dark me-2" href="{% url 'common:signup' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                          <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                          <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                          <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                        </svg>회원가입</button></a>
                     {% endif %}
-                </li>
-            </ul>
-        </div>
-    </div>
-  </div>
-    </nav>
+          </span>
+  </ul>
 </header>
-<script>
-  const x_coordinate = (window.screen.width/2) - (400/2);
-  const y_coordinate= (window.screen.height/2) - (300/2);
-  function login() {
-    window.open("./login.html", "loginpage",'status=no, width=400, height=300, left='+ x_coordinate + ', top='+ y_coordinate);
-  }
-</script>
-
 
 
 <!--    onclick="location.href='{% url 'common:login' %}' ">로그인</button>-->

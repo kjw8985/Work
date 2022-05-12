@@ -25,6 +25,12 @@ class Subscription(models.Model):
     supply_total = models.IntegerField() #공급계
     price = models.CharField(max_length=20, null=True) # 금액
     views = models.IntegerField() # 조회수
+    date_start = models.DateField() # 해딩
+    date_finish = models.DateField()
+    size_one = models.DecimalField(max_digits=8,decimal_places=4)
+    size_two = models.DecimalField(max_digits=8,decimal_places=4, null=True)
+    price_one = models.CharField(max_length=20)
+    price_two = models.CharField(max_length=20, null=True)
 
     def __str__(self):
         return self.title

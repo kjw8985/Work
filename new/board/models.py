@@ -12,6 +12,7 @@ class Question(models.Model):
     def __str__(self):
         return self.subject
 
+# 개인 게시판 댓글 모델
 class Answer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -29,3 +30,11 @@ class Question2(models.Model):
 
     def __str__(self):
         return self.subject
+
+# 전월세 게시판 댓글 모델
+class Answer2(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    question = models.ForeignKey(Question2, on_delete=models.CASCADE)
+    content = models.TextField()
+    create_date = models.DateTimeField()
+    modify_date = models.DateTimeField(null=True, blank=True)

@@ -3,8 +3,8 @@
     <title>전월세 리뷰작성 완료</title>
     <div id="signupbox">
         <p id="writeboardtitle">제목 : {{ question2.subject }}</p>
-        <span id = "userid">작성자 : {{ question2.author.username }}</span>
-        <span id = "writedate">작성일시 : {{ question2.create_date }}</span>
+        <span id = "userid"><u>작성자</u> : {{ question2.author.username }}</span>
+        <span id = "writedate"><u>작성일시</u> : {{ question2.create_date }}</span>
     <hr>
         <pre>
         <!-- css 넣어주면 좋을것 같습니다-->
@@ -13,29 +13,64 @@
     </div>
 
     <!-- 게시판 글수정 -->
-    <div id="editpost">
+    <div>
     {% if request.user == question2.author %}
         <a href="{% url 'board:long_modify' question2.id %}"
-           class="btn btn-sm btn-outline-secondary">수정하기</a>
+           class="btn btn-sm btn-outline-secondary">수정하기</a> <!-- 구현만 해놨습니다 스타일 잡아주세요 -->
     {% endif %}
-    
+    </div>
+
+    <!-- 게시판 글삭제 -->
+    <div>
     {% if request.user == question2.author %}
         <a href="{% url 'board:long_delete' question2.id %}"
-           class="btn btn-sm btn-outline-secondary">삭제하기</a>
+           class="btn btn-sm btn-outline-secondary">삭제하기</a> <!-- 구현만 해놨습니다. 스타일 잡아주세요 -->
     {% endif %}
     </div>
-    
+
+    <!-- 댓글  -->
+    <h5>{{ question2.answer2_set.count }} 개의 댓글이 있습니다.</h5>
+    {% for answer2 in question2.answer2_set.all %}
     <div id = "commentbox">
-        <span id = "userid">작성자 : {{ answer.author.username }}</span>
-        <span id = "writedate">작성일자 : {{ answer.create_date }}</span>
-    <hr>
-        <p id = "commentarea">{{ answer.content }}</p>
+        <span id = "userid"><u>작성자</u> : {{ answer2.author.username }}</span>
+        <span id = "writedate"><u>작성일자</u> : {{ answer2.create_date }}</span>
+        <!-- 댓글 수정하기 -->
+    <div>
+        {% if request.user == answer2.author %}
+        <a href="{% url 'board:answer_modify2' answer2.id %}"
+        class="btn btn-sm btn-outline-secondary">수정하기</a><!-- 버튼위치 잡아주세요 구현만 해놨습니다.-->
+       <!-- 댓글 삭제하기 -->
+        <a href="{% url 'board:answer_delete2' answer2.id %}"
+           class="btn btn-sm btn-outline-secondary">삭제하기</a> <!-- 버튼위치 잡아주세요 구현만 해놨습니다.-->
+        {% endif %}
     </div>
-    <form>
+    <hr>
+        <p id = "commentarea">{{ answer2.content }}</p>
+    </div>
+    {% endfor %}
+
+    <!-- 댓글 작성하기-->
+    <form action="{% url 'board:answer_create2' question2.id %}" method="post">
+        {% csrf_token %}
+        <!-- 오류표시 시작 -->
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for field in form %}
+            {% if field.errors %}
+          <div>
+            <strong>{{ field.textarea }}</strong>
+            {{ field.errors }}
+          </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <!-- 오류표시 끝 -->
         <div id = "writecommentbox">
-            <textarea id="commentwrite" rows="3" name="" placeholder="댓글을 입력해주세요"></textarea>
+            <textarea {% if not user.is_authenticated %}disabled{% endif %}
+                    id="commentwrite" rows="3" name="content" placeholder="댓글을 입력해주세요"></textarea>
             <div id="commenton">
-            <input id = "submitcomment" type="submit" name="" value="댓글쓰기"/>
+            <input id = "submitcomment" type="submit"  value="댓글쓰기"/>
             </div>
         </div>
     </form>

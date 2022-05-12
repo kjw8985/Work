@@ -18,10 +18,9 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                    <th>글번호</th>
                                     <th>글제목</th>
                                     <th>유저명</th>
-                                    <th>작성날짜</th>
+                                    <th>작성날짜(시,분단위까지있으면좋음)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,10 +28,14 @@
                                 {% if longmonth_board %}
                                 {% for question2 in longmonth_board %}
                                     <tr>
-                                        <td>{{ longmonth_board.paginator.count|sub:longmonth_board.start_index|sub:forloop.counter0|add:1 }}
-                                        </td>
                                         <td>
+                                            <!-- board_filter 로드해야 작동됨-->
+                                            {{ longmonth_board.paginator.count|sub:longmonth_board.start_index|sub:forloop.counter0|add:1 }}
                                             <a id ="boardtitle" href ="{% url 'board:long_result' question2.id %}">{{ question2.subject }}</a>
+                                            <!-- 댓글 표시 시작-->
+                                            {% if question2.answer2_set.count > 0 %}
+                                        <span class="text-danger small mx 3">댓글수: {{ question2.answer2_set.count }}</span>
+                                            {% endif %}
                                         </td>
                                         <td>
                                             <p>{{ question2.author.username }}</p>

@@ -8,7 +8,6 @@ from django.conf.urls.static import static
 app_name = 'main'
 
 urlpatterns = [
-    path('',views.index, name='index'), # 메인 화면
     path('joomo/',views.joomo, name='joomo'), # 청약분양
     path('common/', TemplateView.as_view(template_name='signup.html')), # 회원가입
     path('variable_pd/', views.variable_predict, name='variable_pd'), # 가격변동

@@ -18,10 +18,9 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                    <th>글번호</th>
                                     <th>글제목</th>
                                     <th>유저명</th>
-                                    <th>작성날짜</th>
+                                    <th>작성날짜(시,분단위까지있으면좋음)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,13 +28,15 @@
                                 {% if trade_board %}
                                 {% for question in trade_board %}
                                     <tr>
-                                        <td>{{ trade_board.paginator.count|sub:trade_board.start_index|sub:forloop.counter0|add:1 }}
-                                        </td>
                                         <td>
+                                            <!-- board_filter 로드해야 작동됨-->
+                                            {{ trade_board.paginator.count|sub:trade_board.start_index|sub:forloop.counter0|add:1 }}
                                             <a id ="boardtitle" href ="{% url 'board:trade_result' question.id %}">{{ question.subject}}</a>
+                                            <!-- 댓글 표시 시작 -->
                                                 {% if question.answer_set.count > 0 %}
-                                        <span class="text-danger small mx-2">{{ question.answer_set.count }}</span>
+                                        <span class="text-danger small mx-2">댓글수: {{ question.answer_set.count }}</span>
                                         {% endif %}
+                                            <!-- 댓글 표시 끝 -->
                                         </td>
                                         <td>
                                             <p>{{ question.author.username }}</p>
@@ -50,7 +51,7 @@
                                 </tbody>
                             </table>
                         <!-- 페이징 처리 -->
-                         <div>
+                        <div>
                             <ul class="pagination justify-content-center">
                                 <!-- 이전 페이지 -->
                                 {% if trade_board.has_previous %}
@@ -71,7 +72,7 @@
                                 </li>
                                 {% else %}
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                    <a class="page-item" href="?page={{ page_number }}">{{ page_number }}</a>
                                 </li>
                                 {% endif %}
                                 {% endif %}

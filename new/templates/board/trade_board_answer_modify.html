@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- 답변 수정-->
+<!-- 댓글 작성하기 -->
+<form method="post" action="{% url 'board:trade_result' question_id=answer.question.id %}">
+    {% csrf_token %}
+    <!-- 오류표시 시작 -->
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for field in form %}
+        {% if field.errors %}
+        <div>
+            <strong>{{ field.textarea }}</strong>
+            {{ field.errors }}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <!-- 오류표시 끝 -->
+    <div id = "writecommentbox">
+        <textarea id="commentwrite" rows="3" name="content" placeholder="댓글을 입력해주세요"></textarea>
+        <div id="commenton">
+            <input id = "submitcomment" type="submit" value="저장하기"/>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+<!-- 작동은 하는데 댓글 수정이 안됩니다. 이부분은 기능구현 부탁드립니다. -->

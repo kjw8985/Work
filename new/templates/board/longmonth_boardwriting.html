@@ -20,12 +20,10 @@
             {% endif %}
             <!-- 오류 표시  끝-->
             <div id="titlearea">
-                <textarea id="areatitle" cols = "130"rows="1" name="subject" id="subject" placeholder="제목을 입력해주세요"
-                value="{{ form.subject.value|default_if_none:'' }}"></textarea>
+                <textarea id="areatitle" cols = "130"rows="1" name="subject" id="subject" placeholder="제목을 입력해주세요"></textarea>
             </div>
             <div id="textarea">
-
-                    <textarea id="areatext" cols="130"rows="20" name="content" id-="content" placeholder="글내용을 입력해주세요">
+                <textarea id="areatext" cols="130"rows="20" name="content" id-="content" placeholder="글내용을 입력해주세요">
 
 장점▶
 
@@ -33,11 +31,10 @@
 
 바라는점▶
 
-                   </textarea>
-
+                </textarea>
                 <br>                         
                 <button id="goback" type="button" class="btn btn-primary" onclick="location.href='{% url 'board:long_board' %}' " >글작성 취소</button>
-                <input id ="writing" type= "submit" class="btn btn-primary" name="" value='글쓰기'/>
+                <input id ="writing" type="submit" class="btn btn-primary" name="" value='글쓰기'/>
             </div>
         </form>
     </article>

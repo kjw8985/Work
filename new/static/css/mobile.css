@@ -1,0 +1,127 @@
+*{  
+    margin: 0px;
+    position: relative;
+}
+#background{
+    position: relative;
+}
+#background::before{
+    content:"";
+    background-image: url(/giphy.gif);
+    background-repeat: repeat-x;
+    animation: infinite;
+    background-size: cover;
+    background-attachment: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.5;
+}
+/* navbar 고정 */
+#maintitle {
+    display: flex;
+    align-items: center;
+    margin-left: 45%;
+    margin-right: auto;
+}
+#indexpage {
+    display: flex;
+    align-items: center;
+    margin: 1px;
+}
+#buttonset {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    padding-left: 5%;
+}
+span {
+    font-size: 0px;
+}
+
+#icon {
+    width: 25px;
+    height: 25px;
+}
+
+#login{
+    font-size: 0; 
+}
+#logout{
+    font-size: 0;
+}
+.btn{
+    font-size: 0;
+    image-rendering: url(http://www.w3.org/2000/svg);
+}
+/* 주택가격 변동 예측 */
+#one {
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    padding: 0; 
+}
+#maintext1 {
+    background-color: burlywood;
+}
+#img1 {
+    display: none;
+}
+#two {
+    margin: 0;
+    width: 100%;
+    padding: 0;
+}
+#maintext2{
+    background-color: burlywood;
+}
+#img2 {
+    display: none;
+}
+#ggimg{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+#maintext3{
+    background-color: whitesmoke;
+    text-align: left;
+}
+
+#quick_table{
+    display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    overflow-x: auto;
+    overflow-y: auto;
+    margin-left: 0;
+}
+#quick_table tbody{
+    display: inline-flex;
+}
+#quick_table th,td{
+    display: block;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+/* 게시판 */
+#three {
+
+}
+#maintext4{
+    background-color: whitesmoke;
+    text-align: left;
+}
+#indexwritebutton {
+    float: right;
+    margin-top: 5%;
+    outline: white;
+}
+/* 뉴스 */
+#maintext5{
+    background-color: whitesmoke;
+    text-align: left;
+
+}
