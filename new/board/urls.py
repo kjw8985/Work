@@ -8,7 +8,6 @@ app_name = 'board'
 
 urlpatterns = [
     path('', views.index, name='index'), # 메인 페이지
-    path('index2/', views.index2, name='index2'), # index 페이지에 전월세 게시글 띄우려고 만든 뷰
 
 
     path('trade/', views.trade, name='trade'),  # 개인 게시판 연결

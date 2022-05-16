@@ -12,8 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os, json
+from pickle import TRUE
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
+from pymysql import DATETIME
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -101,7 +103,7 @@ DATABASES = {
     	'ENGINE': 'django.db.backends.mysql',
         'NAME': 'joomo',
         'USER': 'root',
-        'PASSWORD': 'dldnjsgml7',
+        'PASSWORD': '03191121asd!@',
         'HOST': 'localhost',
         'PORT': '3306',
      }
@@ -129,14 +131,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'ko'
+LANGUAGE_CODE = 'ko-KR'
 
 TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

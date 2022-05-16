@@ -4,27 +4,28 @@ from .models import Question, Question2, Answer, Answer2, BoardNews
 from django.http import HttpResponseNotAllowed
 from .forms import QuestionForm, AnswerForm, Question2Form, Answer2Form, BoardNewsForm
 from django.core.paginator import Paginator
+from main.models import Subscription
 from django.contrib.auth.decorators import login_required  # 로그인한 유저만 접근가능하게 하는 클래스
 from django.contrib import messages
 
 # 메인 페이지 뷰 (게시판 글 표시 함수)
 def index(request):
     page = request.GET.get('page', '1')  # 페이지
+    page2 = request.GET.get('page', '1')
+    page3 = request.GET.get('page', '1')
+    subscription =  Subscription.objects.all()
+    question = Question.objects.all()
+    question2 = Question2.objects.all()
     trade_board = Question.objects.order_by('-create_date')
-    paginator = Paginator(trade_board, 5)   # 페이지당 5개씩 보여주기
-    page_obj = paginator.get_page(page)
-    context = {'trade_board': page_obj}
-    return render(request, 'board/index.html', context)
-
-
-# 이 뷰는 인덱스 페이지에 전월세 최신글을 보여주려 만들었으나
-# 잘못된거 같음 삭제하실떼 board 에 url 맴필된 것도 같이 삭제 하셔야 합니다. 주석처리 해놨습니다,
-def index2(request):
-    page = request.GET.get('page, 1') #페이지
     longmonth_board = Question2.objects.order_by('-create_date')
-    paginator = Paginator(longmonth_board, 5) # 페이지당 5개씩 보여주기
+    subscription_board = Subscription.objects.order_by('-id')
+    paginator = Paginator(trade_board, 5)   # 페이지당 5개씩 보여주기
+    paginator2 = Paginator(longmonth_board, 5)
+    paginator3 = Paginator(subscription_board, 5)
     page_obj = paginator.get_page(page)
-    context = {'longmonth_board': page_obj}
+    page_obj2 = paginator2.get_page(page2)
+    page_obj3 = paginator3.get_page(page3)
+    context = {'trade_board': page_obj, 'longmonth_board': page_obj2, 'subscription_board':page_obj3,' question': question, 'question2': question2, 'subscription': subscription}
     return render(request, 'board/index.html', context)
 
 

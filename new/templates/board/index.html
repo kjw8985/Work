@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load board_filter %} <!-- 게시글 불러오기 위해 보드앱에 만들어 놓은 템플릿테그 폴더 안에 board_filter 를 로드-->
 {% block content %}
+{{ subscription.date_start | date:'Y-m-d' }}
   <title>joomo</title>
   <div class='main_content'>
     <section class="right-content">
@@ -95,28 +96,36 @@
                             <th class="d2"><p>조회수</p></th>
                           </tr>
                         </thead>
+
                         <tbody>
-                          <tr>
+                          {% if subscription_board %}
+                          {% for subscription in subscription_board %}
+                          <tr>                          
                             <td class="d1">
-                              <p>청약명 받아오기</p>
+                              
+                              <p>{{subscription.title}}&nbsp;&nbsp;</p>
                             </td>
                             <td class="d1">
-                              <p>청약일 받아오기</p>
+                              <p>{{subscription.date_start| date:'Y-m-d'}}&nbsp;&nbsp;</p>
                             </td>
                             <td class="d1">
-                              <p>평형 받아오기</p>
+                              <p>{{subscription.size_one}}㎡&nbsp;&nbsp;</p>
                             </td>
                             <td class="d1">
-                              <p>금액 받아오기</p>
+                              <p>{{subscription.price_one}}만원&nbsp;&nbsp;</p>
                             </td>
                             <td class="d1">
-                              <p>조회수 받아오기</p>
+                              <p>조회수</p>
+                      
                             </td>
                           </tr>
+                          {% endfor %}
+                          {% endif %}
                         </tbody>
                       </table>
                     </div>
                   </div>
     </section>
+
     </div>
 {% endblock %}
