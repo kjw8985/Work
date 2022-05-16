@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load board_filter %} <!-- 게시글 불러오기 위해 보드앱에 만들어 놓은 템플릿테그 폴더 안에 board_filter 를 로드-->
 {% block content %}
+<style>
+    *{border:solid 1px Red
+    }
+</style>
     <title>전월세 리뷰 게시판</title>
     <section class="ftco-section">
         <div class="container">
@@ -13,7 +17,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- 버튼 style 넣기 -->
-                    <button id="write" type="button" class="btn btn-primary" onclick="location.href='{% url 'board:long_writi' %}' ">글쓰기</button>
+                    <button id="write" type="button" class="btn btn-primary" onclick="location.href='{% url 'board:long_writi' %}'">글쓰기</button>
                     <div class="table-wrap">
                             <table class="table">
                                 <thead>
