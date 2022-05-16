@@ -7,7 +7,7 @@
 }
 #background::before{
     content:"";
-    background-image: url(/giphy.gif);
+    background-image: url(/media/moonsky.jpg);
     background-repeat: repeat-x;
     animation: infinite;
     background-size: cover;
@@ -18,6 +18,24 @@
     right: 0;
     bottom: 0;
     opacity: 0.5;
+}
+
+body{
+    padding-top: 30%;
+}
+
+.main_content{
+    width: auto;
+    margin: auto;
+}
+.left-content{
+    float: none;
+    width: 100%;
+}
+.right-content{
+    float: none;
+    width: 100%;
+    position: top;
 }
 /* navbar 고정 */
 #maintitle {
@@ -101,15 +119,25 @@ span {
 #quick_table tbody{
     display: inline-flex;
 }
-#quick_table th,td{
+.d1{
     display: block;
     overflow-y: auto;
     overflow-x: auto;
 }
-/* 게시판 */
+.d2{
+    display: block;
+}
+/* 개인거래 게시판 */
 #three {
 
 }
+#boardcount{
+    width: 20%;
+}
+.boardtext{
+    display: revert;
+}
+
 #maintext4{
     background-color: whitesmoke;
     text-align: left;

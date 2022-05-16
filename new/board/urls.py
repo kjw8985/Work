@@ -29,4 +29,7 @@ urlpatterns = [
     path('answer2/create2/<int:question2_id>/', views.answer_create2, name='answer_create2'), # 전월세 게시판 댓글
     path('answer2/modify2/<int:answer2_id>/', views.answer_modify2, name='answer_modify2'),  # 전월세 게시판 댓글 수정
     path('answer2/delete2/<int:answer2_id>/', views.answer_delete2, name='answer_delete2'),  # 전월세 게시판 삭제
+
+
+    path('board_news/', views.board_news, name='board_news')
 ]

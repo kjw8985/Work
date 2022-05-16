@@ -101,7 +101,7 @@ DATABASES = {
     	'ENGINE': 'django.db.backends.mysql',
         'NAME': 'joomo',
         'USER': 'root',
-        'PASSWORD': '03191121asd!@',
+        'PASSWORD': 'dldnjsgml7',
         'HOST': 'localhost',
         'PORT': '3306',
      }

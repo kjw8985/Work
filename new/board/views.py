@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Question, Question2, Answer, Answer2
+from .models import Question, Question2, Answer, Answer2, BoardNews
 from django.http import HttpResponseNotAllowed
-from .forms import QuestionForm, AnswerForm, Question2Form, Answer2Form
+from .forms import QuestionForm, AnswerForm, Question2Form, Answer2Form, BoardNewsForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required  # 로그인한 유저만 접근가능하게 하는 클래스
 from django.contrib import messages
@@ -256,3 +256,21 @@ def longmonth_board_result(request, question2_id):
     question2 = get_object_or_404(Question2, pk=question2_id)
     context = {'question2': question2}
     return render(request, 'board/longmonth_board_result.html', context)
+
+
+# 뉴스 게시판
+# def board_news(request):
+#     page = request.GET.get('page', '1')  # 페이지
+#     paginator = Paginator(board_news, 5)  # 페이지당 5개씩 보여주기
+#     page_obj = paginator.get_page(page)
+#     context = {'board_news': board_news}
+#     return render(request, 'board/news_board.html', context)
+
+def board_news(request):
+    page = request.GET.get('page', '1')
+    board_news = BoardNews.objects.order_by('-id')
+    paginator = Paginator(board_news, 12)
+    page_obj = paginator.get_page(page)
+    context = {'board_news': page_obj}
+    return render(request, 'board/news_board.html', context)
+

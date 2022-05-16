@@ -1,92 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
     <title>가격지도</title>
-    <style>
-        #indexpage{
-            font-size:18px;
-        }
-        #logout{
-            display: none; 
-        }
-        h1{
-            margin: 7%;
-            text-align: center;
-        }
-        #selectbox{
-            margin-left: 15%;
-            float: left;
-        }
-        #map{
-            margin-right: 30%;
-            float: right;
-        }
-        #locate{
-            width: 110%;
-            height: 7%;
-            padding: 1%;
-            font-size: 33px;
-            margin: 10%;
-        }
-        #kinds{
-            width: 110%;
-            height: 7%;
-            padding: 1%;
-            font-size: 33px;
-            margin: 10%;
-        }
-        #size{
-            width: 110%;
-            height: 7%;
-            padding: 1%;
-            font-size: 33px;
-            margin: 10%;
-        }
-        #buttonbox{
-            text-align: center;
-        }
-        #button{
-            width:110%;
-            border-radius: 18px;
-            font-size: larger;
-            padding : 1%;
-            text-align: center;
-            margin: 10%;
-        }
-    </style>
-    <h1>평단가를 알려줘</h1>
-    <div id = "selectbox">
-        <form>
-            <div>
-                <select id="locate">
-                    <option value="" disable selected hidden>지역</option>
-                    <option> for문 1</option>
-                    <option> for문 2</option>
-                    <option> for문 3</option>
-                </select>
+    <h1>평단가를 알려줘~</h1>
+    <form action="{% url 'main:map_html'%}" method = 'post'>
+        {% csrf_token %}
+        <div id ="selectbox">
+            <select id ="kinds" name='month'>
+                <option value="" disable selected hidden>기간 선택</option>
+                <option name='2203' id="202203" value ="2203">2022년 3월</option>
+                <option name='2202' id="202202" value ="2202">2022년 2월</option>
+                <option name='2201' id="202201" value ="2201">2022년 1월</option>
+            </select>
+            <select id = "size" name= 'size'>
+                <option value="" disable selected hidden>평수</option>
+                <option name='10' id="10" value ="10">10평대</option>
+                <option name='15' id="15" value ="15">15평대</option>
+                <option name='20' id="20" value ="20">20평대</option>
+                <option name='25' id="25" value ="25">25평대</option>
+                <option name='30' id="30" value ="30">30평대</option>
+                <option name='35' id="35" value ="35">35평대</option>
+                <option name='40' id="40" value ="40">40평대</option>
+
+            </select>
             </div>
-            <div>
-                <select id ="kinds">
-                <option value="" disable selected hidden>거래종류(매매)</option>
-                <option> for문 1</option>
-                <option> for문 2</option>
-                <option> for문 3</option>
-                </select>
-            </div>
-            <div>
-                <select id = "size">
-                    <option value="" disable selected hidden>평수</option>
-                    <option> for문 1</option>
-                    <option> for문 2</option>
-                    <option> for문 3</option>
-                </select>
-            </div>
-            <div id = "buttonbox">
-                <button id ="button">지도에서 찾아보기!</button>
-            </div>
-        </form>
-    </div>
-</br></br></br></br>
-    <div id = "map">
-        <img id = "img" src = "/media/graph.jpg">
-    </div>
+        <div id = "buttonbox">
+            <button id ="button">지도보기</button>
+        </div>
+    </form>
+
+    
 {% endblock%}

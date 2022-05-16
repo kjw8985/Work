@@ -27,8 +27,9 @@
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSArirang-RegularA1.woff') format('woff');
             font-weight: normal;
             font-style: normal;
-            color: black;
+            color: black;  
 }
+
 #indexpage{
     font-family: "";
     font-size:18px;
@@ -92,6 +93,12 @@ a{
 }
 
 /* index */
+#news{
+    font-family: "SLEIGothicTTF";
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+}
 #one{
     text-align: center;
 }
@@ -131,9 +138,14 @@ a{
     text-align: center;
 }
 
+#quick_table thead{
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+    color: #fff;
+}
 thead{
     font-family: "IBMPlexSansKR-Regular";
-    font-size:21px;
+    font-size: 18px;
 }
 tbody{
     font-family: "IBMPlexSansKR-Regular";

@@ -38,3 +38,13 @@ class Answer2(models.Model):
     content = models.TextField()
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
+
+# 뉴스 게시판
+class BoardNews(models.Model):
+    title = models.CharField(max_length=80, null=False)
+    href = models.CharField(max_length=200, null=False)
+    datecreated = models.CharField(max_length=30, null=False)
+
+    def __str__(self):
+        return self.title
+

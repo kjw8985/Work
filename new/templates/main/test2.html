@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
+    
     #image{
         
         width: 50%;
@@ -13,6 +14,7 @@
         width: 50%;
         float: right;
     }
+
 </style>
     <title>가격변동 결과</title>
     <h1>주택가격 오를까?</h1>
@@ -23,13 +25,13 @@
     <!-- 이미지 크기 조절해서 받기 -->
     <div >
         <div id='image'>
-            <img  id = "firstmeet2" class="firstmeet" src = "/media/img/predict.png" width='600'>
-            <img  id = 'needbtn2' class="needbtn" src = "/media/img/amount.png" width='600'>
+            <img  id = "firstmeet2" class="firstmeet" src = "/media/graph.jpg" width = '500'>
+            <img  id = 'needbtn2' class="needbtn" src = "/media/graph2.png">
         </div>
         <div id='text2'>
             <p id ="predict_per">해당 매물이 향후 상승할 확률은{{model.9}}% 입니다.</p>
             <p id ="predict_per">해당 매물이 한달후 상승할 확률은{{model.3}}% 입니다.</p>
-            <p id ="predict_per">해당 매물이 한달 후 평당 예측된 평단가는 {{model.5}} 만원 입니다.</p>
+            <p id ="predict_per">해당 매물이 한달 후 평당 예측된 평단가는 {{model.5}}원 입니다.</p>
         
             <div id ="checkbtn">
                 <input type="button" id="needbtn3" class="needbtn" value="거래량 보기" onclick="clickbtn2()"/>
@@ -40,6 +42,9 @@
         
     </div>
 
+
+
+    </form>
     <script>
         function clickbtn(){
             let needbtn1 = document.getElementById('needbtn1');

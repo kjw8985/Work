@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import *
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
+import folium
+from folium.plugins import MarkerCluster
+from .funtion import *
 
 
 # # Create your views here.
@@ -26,9 +28,30 @@ def variable_predict(request):
 
 # 가격변동 예측결과 가는 뷰
 def variable_result(request):
-    return render(request, 'main/variable_result.html')
+    reset_dir() # 폴더 초기화
+    
+    locate = request.POST['locate']
+    size = request.POST['size']
+    print(locate, size)
+    if len(locate)==0 or len(size)==0:
+        return render(request,'main/variable_predict.html')
+    
+    model_result = model(locate, size) # 데이터 가져오기
+    model_result = model_result + (locate, size)
+    print(model_result)
+    context = {'model' : model_result}
+    return render(request, 'main/variable_result.html', context)
 
 # 가격지도 가는 뷰
 def averageprice(request):
     return render(request, 'main/averageprice.html')
 
+def map_html(request):
+    month = request.POST['month']
+    size = request.POST['size']
+    # value값이 넘어온다.
+    print(month, size)
+    m = foliumMap(month, size)
+    maps=m._repr_html_()
+    context = {'map':maps}
+    return render(request, 'main/map.html',context)

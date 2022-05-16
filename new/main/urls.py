@@ -12,7 +12,8 @@ urlpatterns = [
     path('common/', TemplateView.as_view(template_name='signup.html')), # 회원가입
     path('variable_pd/', views.variable_predict, name='variable_pd'), # 가격변동
     path('variable_rs/', views.variable_result, name='variable_rs'), # 가격변동 결과
-    path('averageprice/', views.averageprice, name='avg'), #
+    path('averageprice/', views.averageprice, name='avg'),
+    path('map_html/', views.map_html, name='map_html'),#
     #path('board/', TemplateView.as_view(template_name='trade_boardwriting.html')),
 ]
 

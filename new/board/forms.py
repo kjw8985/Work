@@ -1,5 +1,5 @@
 from django import forms
-from board.models import Question, Answer, Question2, Answer2
+from board.models import Question, Answer, Question2, Answer2, BoardNews
 
 # 개인거래 게시판 폼
 class QuestionForm(forms.ModelForm):
@@ -36,4 +36,15 @@ class Answer2Form(forms.ModelForm):
         fields = ['content']
         textarea = {
             'content': '',
+        }
+
+# 뉴스 게시판
+class BoardNewsForm(forms.ModelForm):
+    class Meta:
+        model = BoardNews
+        fields = ['title', 'href', 'datecreated']
+        textarea = {
+            'title': '',
+            'href': '',
+            'dataCreated': '',
         }

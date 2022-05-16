@@ -2,29 +2,25 @@
 {% block content %}
     <title>가격변동</title>
     <h1>주택가격 오를까?</h1>
-    <form action="{% url 'main:variable_rs'%}">
+    <form action="{% url 'main:variable_rs'%}"  method = 'post' >
+        {% csrf_token %}
         <div id ="selectbox">
-            <select id="locate">
-                <option value="" disable selected hidden>지역</option>
-                <option> for문 1</option>
-                <option> for문 2</option>
-                <option> for문 3</option>
-            </select>
-            <select id ="kinds">
-                <option value="" disable selected hidden>거래종류(매매)</option>
-                <option> for문 1</option>
-                <option> for문 2</option>
-                <option> for문 3</option>
-            </select>
-            <select id = "size">
+            <input id="locate" type='text' name = 'locate'>
+
+            <select id = "size" name= 'size'>
                 <option value="" disable selected hidden>평수</option>
-                <option> for문 1</option>
-                <option> for문 2</option>
-                <option> for문 3</option>
+                <option name='10' id="10" value ="10">10평대</option>
+                <option name='15' id="15" value ="15">15평대</option>
+                <option name='20' id="20" value ="20">20평대</option>
+                <option name='25' id="25" value ="25">25평대</option>
+                <option name='30' id="30" value ="30">30평대</option>
+                <option name='35' id="35" value ="35">35평대</option>
+                <option name='40' id="40" value ="40">40평대</option>
             </select>
             </div>
         <div id = "buttonbox">
-            <button id ="button">예측하기!</button>
+            <input type='submit' id='button' value =' 예측하기'>
+            
         </div>
     </form>
 {% endblock%}
