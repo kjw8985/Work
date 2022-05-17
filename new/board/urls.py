@@ -8,6 +8,7 @@ app_name = 'board'
 
 urlpatterns = [
     path('', views.index, name='index'), # 메인 페이지
+    
 
 
     path('trade/', views.trade, name='trade'),  # 개인 게시판 연결

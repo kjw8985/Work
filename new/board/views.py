@@ -12,20 +12,44 @@ from django.contrib import messages
 def index(request):
     page = request.GET.get('page', '1')  # 페이지
     page2 = request.GET.get('page', '1')
-    page3 = request.GET.get('page', '1')
-    subscription =  Subscription.objects.all()
     question = Question.objects.all()
     question2 = Question2.objects.all()
+    boardnews = BoardNews.objects.all()
     trade_board = Question.objects.order_by('-create_date')
     longmonth_board = Question2.objects.order_by('-create_date')
-    subscription_board = Subscription.objects.order_by('-id')
     paginator = Paginator(trade_board, 5)   # 페이지당 5개씩 보여주기
     paginator2 = Paginator(longmonth_board, 5)
-    paginator3 = Paginator(subscription_board, 5)
     page_obj = paginator.get_page(page)
     page_obj2 = paginator2.get_page(page2)
+    page3 = request.GET.get('page', '1')
+    board_news = BoardNews.objects.order_by('-id')
+    paginator3 = Paginator(board_news, 5)
     page_obj3 = paginator3.get_page(page3)
-    context = {'trade_board': page_obj, 'longmonth_board': page_obj2, 'subscription_board':page_obj3,' question': question, 'question2': question2, 'subscription': subscription}
+    page4 = request.GET.get('page', '1')
+    subscription =  Subscription.objects.all()
+    subscription_board = Subscription.objects.order_by('-id')
+    paginator4 = Paginator(subscription_board, 5)
+    page_obj4 = paginator4.get_page(page4)
+    context = {'trade_board': page_obj, 'longmonth_board': page_obj2, ' question': question, 'question2': question2, 'board_news': page_obj3, 'boardnews': boardnews,
+               'subscription_board':page_obj4,'subscription': subscription}
+    return render(request, 'board/index.html', context)
+
+# def board_news(request):
+#     page = request.GET.get('page', '1')
+#     board_news = BoardNews.objects.order_by('-id')
+#     paginator = Paginator(board_news, 12)
+#     page_obj = paginator.get_page(page)
+#     context = {'board_news': page_obj}
+#     return render(request, 'board/news_board.html', context)
+
+# 이 뷰는 인덱스 페이지에 전월세 최신글을 보여주려 만들었으나
+# 잘못된거 같음 삭제하실떼 board 에 url 맴필된 것도 같이 삭제 하셔야 합니다. 주석처리 해놨습니다,
+def index2(request):
+    page = request.GET.get('page, 1') #페이지
+    longmonth_board = Question2.objects.order_by('-create_date')
+    paginator = Paginator(longmonth_board, 5) # 페이지당 5개씩 보여주기
+    page_obj = paginator.get_page(page)
+    context = {'longmonth_board': page_obj}
     return render(request, 'board/index.html', context)
 
 
@@ -257,15 +281,6 @@ def longmonth_board_result(request, question2_id):
     question2 = get_object_or_404(Question2, pk=question2_id)
     context = {'question2': question2}
     return render(request, 'board/longmonth_board_result.html', context)
-
-
-# 뉴스 게시판
-# def board_news(request):
-#     page = request.GET.get('page', '1')  # 페이지
-#     paginator = Paginator(board_news, 5)  # 페이지당 5개씩 보여주기
-#     page_obj = paginator.get_page(page)
-#     context = {'board_news': board_news}
-#     return render(request, 'board/news_board.html', context)
 
 def board_news(request):
     page = request.GET.get('page', '1')
