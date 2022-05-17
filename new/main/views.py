@@ -4,7 +4,13 @@ from django.contrib.auth.decorators import login_required
 import folium
 from folium.plugins import MarkerCluster
 from .funtion import *
-
+from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
+from django.http import HttpResponseNotAllowed
+from django.core.paginator import Paginator
+from main.models import Subscription
+from django.contrib.auth.decorators import login_required  # 로그인한 유저만 접근가능하게 하는 클래스
+from django.contrib import messages
 
 # # Create your views here.
 # # 메인 페이지로 가는 뷰
@@ -20,7 +26,13 @@ from .funtion import *
 # 청약정보 가는 뷰
 # @login_required(login_url='common:login')
 def joomo(request):
-    return render(request, 'main/sub_division.html')
+    page = request.GET.get('page', '1')
+    subscription =  Subscription.objects.all()
+    subscription_board = Subscription.objects.order_by('-id')
+    paginator = Paginator(subscription_board, 5)
+    page_obj = paginator.get_page(page)
+    context = {'subscription_board':page_obj,'subscription': subscription}
+    return render(request, 'main/sub_division.html', context)
 
 # 가격변동 가는 뷰
 def variable_predict(request):
