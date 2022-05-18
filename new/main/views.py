@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import *
 from django.contrib.auth.decorators import login_required
 import folium
@@ -11,6 +12,7 @@ from django.core.paginator import Paginator
 from main.models import Subscription
 from django.contrib.auth.decorators import login_required  # 로그인한 유저만 접근가능하게 하는 클래스
 from django.contrib import messages
+from django.db.models import Q 
 
 # # Create your views here.
 # # 메인 페이지로 가는 뷰
@@ -29,7 +31,7 @@ def joomo(request):
     page = request.GET.get('page', '1')
     subscription =  Subscription.objects.all()
     subscription_board = Subscription.objects.order_by('-id')
-    paginator = Paginator(subscription_board, 5)
+    paginator = Paginator(subscription_board, 7)
     page_obj = paginator.get_page(page)
     context = {'subscription_board':page_obj,'subscription': subscription}
     return render(request, 'main/sub_division.html', context)
@@ -46,9 +48,13 @@ def variable_result(request):
     size = request.POST['size']
     print(locate, size)
     if len(locate)==0 or len(size)==0:
-        return render(request,'main/variable_predict.html')
+        context = {"alert":'평형대와 주소값을 입력하세요.'}
+        return render(request,"main/variable_predict.html", context)
     
     model_result = model(locate, size) # 데이터 가져오기
+    if model_result==0:
+        context = {"alert":'잘못된 주소값을 입력하였습니다.'}
+        return render(request,"main/variable_predict.html", context)
     model_result = model_result + (locate, size)
     print(model_result)
     context = {'model' : model_result}
@@ -67,3 +73,37 @@ def map_html(request):
     maps=m._repr_html_()
     context = {'map':maps}
     return render(request, 'main/map.html',context)
+
+# 청약정보 검색기능
+def get_queryset(self):
+    search_keyword = self.request.GET.get('q', '')
+    search_type = self.request.GET.get('type', '')
+    notice_list = Subscription.objects.order_by('location') 
+    
+    if search_keyword :
+        if len(search_keyword) > 1 :
+            if search_type == 'all':
+                search_notice_list = notice_list.filter(Q (title__icontains=search_keyword) | Q (content__icontains=search_keyword) | Q (writer__user_id__icontains=search_keyword))
+            elif search_type == 'title_content':
+                search_notice_list = notice_list.filter(Q (title__icontains=search_keyword) | Q (content__icontains=search_keyword))
+            elif search_type == 'title':
+                search_notice_list = notice_list.filter(title__icontains=search_keyword)    
+            elif search_type == 'content':
+                search_notice_list = notice_list.filter(content__icontains=search_keyword)    
+            elif search_type == 'writer':
+                search_notice_list = notice_list.filter(writer__user_id__icontains=search_keyword)
+
+            return search_notice_list
+        else:
+            messages.error(self.request, '검색어는 2글자 이상 입력해주세요.')
+    return notice_list
+
+def get_context_data(self, **kwargs):
+    search_keyword = self.request.GET.get('q', '')
+    search_type = self.request.GET.get('type', '')
+
+    if len(search_keyword) > 1 :
+        context['q'] = search_keyword
+    context['type'] = search_type
+
+    return context

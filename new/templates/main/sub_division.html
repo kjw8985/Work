@@ -20,7 +20,7 @@
         }
       </style>
     <section class="ftco-section">
-        <div class="container">
+        <div id="sub_div_cotainer">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
                     <!-- 텍스트 자리는 앞에 선택한것에 반응시키기 -->
@@ -35,13 +35,13 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>청약명</th>
+                                        <th>공급위치
                                         <th>특별공급일</th>
                                         <th>2순위공급일</th>
-                                        <th>평형 타입1</th>
-                                        <th>평형 타입2</th>
+                                        <th>타입1 평형</th>
+                                        <th>타입2 평형</th>
                                         <th>타입1 금액</th>
                                         <th>타입2 금액</th>
-                                        <th>조회수</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,6 +50,9 @@
                                     <tr>
                                         <td>
                                             <p>{{subscription.title}}&nbsp;&nbsp;</p>
+                                        </td>
+                                        <td>
+                                            <p>{{subscription.location|truncatechars:12}}<sup class="fortooltip">[세부위치]<span class="detailed_location">{{subscription.location}}</span></sup></p>
                                         </td>
                                         <td>
                                             <p>{{subscription.date_start| date:'Y-m-d'}}&nbsp;&nbsp;</p>
@@ -66,8 +69,6 @@
                                         </td>
                                         <td>
                                             <p>{{subscription.price_two}}만원&nbsp;&nbsp;</p>
-                                        <td>
-                                            <p>조회수 받아오기</p>
                                         </td>
                                       </tr>
                                     {% endfor %}
