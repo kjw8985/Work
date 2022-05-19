@@ -75,6 +75,9 @@ def map_html(request):
     return render(request, 'main/map.html',context)
 
 # 청약정보 검색기능
+def sub_search(request):
+    return render(request, 'main/sub_search.html')
+
 def get_queryset(self):
     search_keyword = self.request.GET.get('q', '')
     search_type = self.request.GET.get('type', '')
@@ -86,12 +89,6 @@ def get_queryset(self):
                 search_notice_list = notice_list.filter(Q (title__icontains=search_keyword) | Q (content__icontains=search_keyword) | Q (writer__user_id__icontains=search_keyword))
             elif search_type == 'title_content':
                 search_notice_list = notice_list.filter(Q (title__icontains=search_keyword) | Q (content__icontains=search_keyword))
-            elif search_type == 'title':
-                search_notice_list = notice_list.filter(title__icontains=search_keyword)    
-            elif search_type == 'content':
-                search_notice_list = notice_list.filter(content__icontains=search_keyword)    
-            elif search_type == 'writer':
-                search_notice_list = notice_list.filter(writer__user_id__icontains=search_keyword)
 
             return search_notice_list
         else:
