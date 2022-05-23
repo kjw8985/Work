@@ -7,7 +7,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
                     <!-- 텍스트 자리는 앞에 선택한것에 반응시키기 -->
-                    <h1>개인 거래 커뮤니티</h1>
+                    <h1>거래 게시판</h1>
                 </div>
             </div>
             <div class="row">
@@ -18,9 +18,9 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                    <th>글제목</th>
-                                    <th>유저명</th>
-                                    <th>작성날짜(시,분단위까지있으면좋음)</th>
+                                    <th class="col-8">글제목</th>
+                                    <th class"col-2">글쓴이</th>
+                                    <th class="col-2">작성일</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,7 +42,7 @@
                                             <p>{{ question.author.username }}</p>
                                         </td>
                                         <td>
-                                            <p id= "writingtime">{{ question.create_date }}</p>
+                                            <p id= "writingtime">{{ question.create_date | date:'Y-m-d H:i:s'}}</p>
                                         </td>
                                         {% endfor %}
                                         {% endif %}

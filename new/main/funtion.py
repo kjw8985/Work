@@ -15,6 +15,43 @@ import math
 import folium
 from pandas import DataFrame
 from folium.plugins import MarkerCluster
+import pymysql
+from main.models import Subscription
+
+def search1(search):
+    conn = pymysql.connect(host='localhost', user='root', password='03191121asd!@',
+                       db='joomo', charset='utf8')
+    
+    # Connection 으로부터 Cursor 생성
+    curs = conn.cursor()
+    
+    # SQL문 실행
+    sql = "select title, location, scale, date_start, date_finish, size_one, size_two , price_one, price_two from main_subscription where location like '%{}%'".format(search)
+    curs.execute(sql)
+    
+    # 데이타 Fetch
+    rows = curs.fetchall()
+    print('type : ',type(rows))     # 전체 rows
+    # print(rows[0])  # 첫번째 row: (1, '김정수', 1, '서울')
+    # print(rows[1])  # 두번째 row: (2, '강수정', 2, '서울')
+    # Subscription.objects
+    # Connection 닫기
+
+    conn.close()
+    
+    #sobject=Subscription()
+    # for i in range(len(rows)):
+    #     sobject.title = rows[i][0]
+    #     sobject.location = rows[i][1]
+    #     sobject.scale = rows[i][2]
+    #     sobject.date_start = rows[i][3]
+    #     sobject.date_finish = rows[i][4]
+    #     sobject.size_one = rows[i][5]
+    #     sobject.size_two = rows[i][6]
+    #     sobject.price_one = rows[i][7]
+    #     sobject.price_two = rows[i][8]
+    
+    return rows
 
 
 def foliumMap(month, size):
@@ -102,6 +139,11 @@ def model(locate, size):
     df = pd.concat((df,pd.read_csv('media/csv_file/as_2201.csv', encoding='CP949',skiprows=15)))
     df = pd.concat((df,pd.read_csv('media/csv_file/as_2204.csv', encoding='CP949',skiprows=15)))
 
+    err = df.query('시군구 == "{}"'.format(locate)).loc[:,['시군구']]
+    
+    if (err.count()[0] ==0):
+        return 0
+    
     for i in range(6,22):
         for j in range(1,13):
             i_z = str(i).zfill(2)
@@ -297,7 +339,7 @@ def model(locate, size):
         early_stopping_cb = keras.callbacks.EarlyStopping(patience =2, restore_best_weights = True)
         history = model.fit(train_input, train_target, epochs=100,validation_data = (val_input, val_target), callbacks=[checkpoint_cb, early_stopping_cb])
 
-        if (history.history['loss'][-3:-2][0]<1):
+        if (len(history.history['loss'])>20):
             pair_accuracy.append(['@@\n',learn_num, history.history['accuracy'][-3:-2][0], history.history['val_accuracy'][-3:-2][0]])
             pair_loss.append(['@@\n',learn_num, history.history['loss'][-3:-2][0], history.history['val_loss'][-3:-2][0]])
             pair_predict.append([learn_num, model.predict(train_data[-1:]), train_data[-1:]])# 4개면 과거 4개를 넣어서 확인
@@ -307,12 +349,20 @@ def model(locate, size):
         print(model.predict(val_input[-1:]))
         print(model.predict(train_input[:]))
 
-    betl = max(pair_accuracy[0][2], pair_accuracy[0][3])
-    bet_accuracyl = min(pair_accuracy[0][2], pair_accuracy[0][3])
-    bet_lossl = max(pair_loss[0][2], pair_loss[0][3])
-    bet_numl=pair_accuracy[0][1]
-    bet_predictl = pair_predict[0][1][0][0]
-
+    if(len(pair_accuracy)>0):
+        betl = max(pair_accuracy[0][2], pair_accuracy[0][3])
+        bet_accuracyl = min(pair_accuracy[0][2], pair_accuracy[0][3])
+        bet_lossl = max(pair_loss[0][2], pair_loss[0][3])
+        bet_numl=pair_accuracy[0][1]
+        bet_predictl = pair_predict[0][1][0][0]
+    else:
+        betl=0
+        bet_accuracyl = 0
+        bet_lossl = 0
+        bet_numl=0
+        bet_predictl = 0
+        
+        
     if len(pair_accuracy) >2:
         for i in range(1, len(pair_accuracy)):
             if ((pair_accuracy[i][2] > (betl+bet_accuracyl)/2 or pair_accuracy[i][3] > (betl+bet_accuracyl)/2) and (abs(pair_accuracy[i][2]-pair_accuracy[i][3]))<abs(betl-bet_accuracyl)):
@@ -432,7 +482,7 @@ def model(locate, size):
         history = model.fit(train_input, train_target, epochs=100,validation_data = (val_input, val_target), callbacks=[checkpoint_cb, early_stopping_cb])
 
         
-        if (history.history['loss'][-3:-2][0]<1):
+        if (len(history.history['loss'])>20):
             pair_accuracy.append(['@@\n',learn_num, history.history['accuracy'][-3:-2][0], history.history['val_accuracy'][-3:-2][0]])
             pair_loss.append(['@@\n',learn_num, history.history['loss'][-3:-2][0], history.history['val_loss'][-3:-2][0]])
             pair_predict.append([learn_num, model.predict(train_data[-1:]), train_data[-1:]])# 4개면 과거 4개를 넣어서 확인
@@ -442,12 +492,18 @@ def model(locate, size):
         print(model.predict(val_input[-1:]))
         print(model.predict(train_input[:]))
 
-        
-    bet = max(pair_accuracy[0][2], pair_accuracy[0][3])
-    bet_accuracy = min(pair_accuracy[0][2], pair_accuracy[0][3])
-    bet_loss = max(pair_loss[0][2], pair_loss[0][3])
-    bet_num=pair_accuracy[0][1]
-    bet_predict = pair_predict[0][1][0][0]
+    if(len(pair_accuracy)>0):
+        bet = max(pair_accuracy[0][2], pair_accuracy[0][3])
+        bet_accuracy = min(pair_accuracy[0][2], pair_accuracy[0][3])
+        bet_loss = max(pair_loss[0][2], pair_loss[0][3])
+        bet_num=pair_accuracy[0][1]
+        bet_predict = pair_predict[0][1][0][0]
+    else:
+        bet =0
+        bet_accuracy=0
+        bet_loss=0
+        bet_num=0
+        bet_predict=0
 
 
     best = []

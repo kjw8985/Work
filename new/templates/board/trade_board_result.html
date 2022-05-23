@@ -6,65 +6,44 @@
     <!-- 작성글 보여주기 -->
     <title>개인거래 게시판 리뷰작성 완료</title>
     <div id="signupbox">
-        <p id="writeboardtitle">제목 : {{ question.subject }}</p>
-        <span id = "userid"><u>작성자 </u>: {{ question.author.username }}</span>
-        <span id = "writedate"><u>작성일자 </u>: {{ question.create_date }}</span>
-    <hr>
+        <p id="writeboardtitle">🏠 {{ question.subject }}</p>
+        <span id = "userid"> {{ question.author.username }}</span><br>
+        <span id = "writedate" style="margin-left: 4%"> {{ question.create_date | date:'Y-m-d H:i:s' }}</span>
+        <!-- 작성글 삭제하기 -->
+        {% if request.user == question.author %}  <!-- 작성자와 접근자가 같다면 버튼을 보여주는 구문-->
+        <a href="{% url 'board:trade_delete' question.id %}"
+           class="btn btn-sm btn-outline-secondary" style="float:right">삭제</a>
+        <!-- 작성글 수정하기 -->
+        <a href="{% url 'board:trade_modify' question.id %}"
+           class="btn btn-sm btn-outline-secondary" style="float:right">수정</a>
+        {% endif %}
+        <hr>
         <pre>
         <p>{{ question.content }}</p>
         </pre>
     </div>
-
-    <!-- 작성글 수정하기 -->
-    <div>
-        {% if request.user == question.author %}  <!-- 작성자와 접근자가 같다면 버튼을 보여주는 구문-->
-        <a href="{% url 'board:trade_modify' question.id %}"
-           class="btn btn-sm btn-outline-secondary">수정하기</a>  <!-- 버튼위치 잡아주세요 구현만 해놨습니다.-->
-    <!-- 작성글 삭제하기 -->
-        <a href="{% url 'board:trade_delete' question.id %}"
-           class="btn btn-sm btn-outline-secondary">삭제하기</a> <!-- 버튼위치 잡아주세요 구현만 해놨습니다.-->
-        {% endif %}
-    </div>
-
 <div>
-
-
 <!--    이 구문은 댓글에 총 갯수를 나타내주는 구문입니다. 밑에 페이징 처리하는 포문과 중첩되서 기능구현 오류가 있어서 주석 처리 해놨습니다.-->
-<!--    <h5>{{question.answer_set.count}}개의 댓글이 있습니다.</h5>-->
-<!--    {% for answer in question.answer_set.all %}-->
-
-
-
-    <!-- 댓글 페이징 되게 넣은 함수 입니다. -->
-    {% if trade_result %}
-    {% for answer in trade_result %}
-     <!-- 댓글 -->
-    <!-- board_filter 로드해야 작동됨-->
-    {{ trade_result.paginator.count|sub:trade_result.start_index|sub:forloop.counter0|add:1 }}
+     <h5>{{question.answer_set.count}}개의 댓글이 있습니다.</h5>
+     {% if trade_result %}
+     {% for answer in trade_result %}
     <div id = "commentbox">
-        <span id = "userid"><u>작성자</u>: {{ answer.author.username }}</span>
-        <span id = "writedate"><u>작성일자</u>: {{ answer.create_date }}</span>
-            <!-- 댓글 수정하기 -->
-        <div>
+     <!-- 댓글 -->
+        <span id = "userid"> {{ answer.author.username }}</span>
+        <span id = "writedate"> {{ answer.create_date | date:'Y-m-d H:i:s' }}</span>
+            <!-- 댓글 삭제하기 -->
+                {% if request.user == answer.author %}
+                <a href="{% url 'board:answer_delete' answer.id %}"
+                class="btn btn-sm" style="margin:0px; border:0px; padding:0px; float:right">🗑</a>
+                <!-- 댓글 수정하기 -->
+                <a href="{% url 'board:answer_modify' answer.id %}"
+                class="btn btn-sm" style="margin:0px; border:0px; padding:0px; float:right">✏</a>
+                {% endif %}
+        <p id = "commentarea" style="margin-left: 4%">{{ answer.content }}</p>
 
-
-
-            {% if request.user == answer.author %}
-            <a href="{% url 'board:answer_modify' answer.id %}"
-            class="btn btn-sm btn-outline-secondary">수정하기</a><!-- 버튼위치 잡아주세요 구현만 해놨습니다.-->
-           <!-- 댓글 삭제하기 -->
-            <a href="{% url 'board:answer_delete' answer.id %}"
-               class="btn btn-sm btn-outline-secondary">삭제하기</a> <!-- 버튼위치 잡아주세요 구현만 해놨습니다.-->
-            {% endif %}
-        </div>
-    <hr>
-        <p id = "commentarea">{{ answer.content }}</p>
     </div>
-<!--    {% endfor %}   댓글수 돌리는 포문에 앤드 포문 입니다. -->
-
-    {% endif %}
-    {% endfor %}
-
+    {% endfor %}   
+    {% endif %} 
 </div>
     <!-- 댓글 작성하기 -->
     <form action="{% url 'board:answer_create' question.id %}" method="post">
@@ -88,11 +67,10 @@
             <textarea {% if not user.is_authenticated %}disabled{% endif %}
                     id="commentwrite" rows="3" name="content" placeholder="댓글을 입력해주세요"></textarea>
             <div id="commenton">
-                <input id = "submitcomment" type="submit" value="댓글쓰기"/>
+                <input id = "submitcomment" type="submit" value="등록"/>
             </div>
         </div>
-
-
+        <hr>
     <!-- 페이징 처리 -->
     <div>
         <ul class="pagination justify-content-center">

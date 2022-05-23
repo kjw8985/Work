@@ -68,64 +68,60 @@
         </li>
         {% endif %}
     </ul>
+  </div>
     <!-- 페이징처리 끝 -->
                     <!-- 최신 부동산 뉴스 불러오기 끝 -->
-            <div id = "three">
-                <p id = "maintext4">
-                    <a href="{% url 'board:trade' %}">개인거래 게시판</a>
-                    <button id = "indexwritebutton" class="btn btn-primary"  onclick="location.href='{% url 'board:trade_writi'%}' ">새글쓰기</button>
-        
-                  <!-- 대충 구현만 했습니다. 스타일 잡아주시면 좋을것 같습니다. -->
-                  <!-- 최신 개인거래 게시글 제목 불러오기 시작 -->
+              <div id = "three">
+                <p id = "maintext4"><a href="{% url 'board:trade' %}">개인거래 게시판</a></p>
+                  <button id = "indexwritebutton" class="btn btn-primary"  onclick="location.href='{% url 'board:trade_writi'%}' ">새글쓰기</button>
                   <div class="table-wrap">
                   <table class="table">
                       <thead>
                         <tr>
-                          <th class="col-1" id="boardcount"><p>번호</p></th>
-                          <th class="col-11"><p>내용</p></th>
+                          <th><p>제목</p></th>
+                          <th class="col-3"><p>작성일</p></th>
                         </tr>
                       </thead>
                         <tbody>
                             {% if trade_board %}
                             {% for question in trade_board %}
                             <tr>
-                              <td id="boardcount">
-                            <!-- board_filter 로드해야 작동됨-->
-
-                            
+                              <td class="boardtext col-9">
+                                <p><a href="{% url 'board:trade_result' question.id %}">{{ question.subject | truncatechars:15 }}</a></p>
                               </td>
-                              <td class="boardtext">
-                                <p>{{ question.subject}}</p>
+                              <td style="font-size:small">
+                                {{ question.create_date | date:'m-d'}}</p>
                               </td>
+                              
                             {% endfor %}
                             {% endif %}
                             </tr>
                         </tbody>
                   </table>
-                 </div>
+                  </div>
+              </div>
 
                   <!-- 최신 거인거래 게시글 제목 불러오기 끝-->
                   <div id = "four">
-                    <p id = "maintext5">
-                         <a href="{% url 'board:long_board' %}">전월세 물건지 리뷰</a>
-                      <span id = longmonthbutton>
+                    <p id = "maintext5"><a href="{% url 'board:long_board' %}">전월세 물건지 리뷰</a></p>
                         <button id = "indexwritebutton" class="btn btn-primary" onclick="location.href='{% url 'board:long_writi' %}' ">새글쓰기</button>
-                      </span>
-                                  <!-- 대충 구현만 했습니다. 스타일 잡아주시면 좋을것 같습니다. -->
-                    <!-- 최신 개인거래 게시글 제목 불러오기 시작 -->
                     <div class="table-wrap">
                     <table class="table">
                         <thead>
+                          <tr>
+                            <th><p>제목</p></th>
+                            <th class="col-3"><p>작성일</p></th>
+                          </tr>
                         </thead>
                           <tobody>
                               {% if longmonth_board %}
                               {% for question2 in longmonth_board %}
                               <tr>
-                                  <td id="boardcount">
-                                      {{ longmonth_board.paginator.count|sub:longmonth_board.start_index|sub:forloop.counter0|add:1 }}
+                                  <td class="boardtext col-9">
+                                  <a href="{% url 'board:long_result' question2.id %}"><p>{{ question2.subject | truncatechars:15 }}</p></a>
                                   </td>
-                                  <td class="boardtext">
-                                  <p><a href="{% url 'board:long_result' question2.id %}">{{ question2.subject}}</a></p>
+                                  <td style="font-size:small">
+                                  <p>{{ question2.create_date | date:'m-d' }}</p>
                                   </td>
                            {% endfor %}
                            {% endif %}
@@ -135,8 +131,6 @@
                    </div>
                   <!-- 최신 거인거래 게시글 제목 불러오기 끝-->
                   </p>
-                  <p>
-                  <a href = "" id = 'minitext'>크롤링한 관련 뉴스들 sql에서 받아오면서 for문 돌릴것</a></div></p>
                   <div id = "center">
                     <div id = "quick_view">
                       <p id = "maintext3">
@@ -215,8 +209,6 @@
                         </ul>
                     </div>
                     <!-- 페이징처리 끝 -->
-                    </div>
-                  </div>
     </section>
     </div>
 {% endblock %}

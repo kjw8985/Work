@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
-    a{
-    color:
-    black;
-    }
 </style>
     <title>joomo</title>
       <div id = "one">
@@ -54,21 +50,18 @@
             </div>
           </div>
       <div id = "three">
-          <p id = "maintext4">
-              <a href="{% url 'board:trade' %}">개인거래 게시판</a>
-            <span id = tradebutton>
+          <p id = "maintext4"><a href="{% url 'board:trade' %}">개인거래 게시판</a></p>
+            <span id = 'tradebutton'>
               <button id = "indexwritebutton" class="btn btn-primary"  onclick="location.href='{% url 'board:trade_writi'%}' ">새글쓰기</button>
             </span>
           </p>
           <p>
-          <a href= "" id = minitext>게시판 제목들 sql에서 받아오면서 for문 돌릴것</a></div></p>
       <div id = "four">
           <p id = "maintext5">
                <a href="{% url 'board:long_board' %}">전월세 물건지 리뷰</a>
-            <span id = longmonthbutton>
+            <span id = 'longmonthbutton'>
               <button id = "indexwritebutton" class="btn btn-primary" onclick="location.href='{% url 'board:long_writi' %}' ">새글쓰기</button>
             </span>
           </p>
           <p>
-          <a href = "" id = minitext>크롤링한 관련 뉴스들 sql에서 받아오면서 for문 돌릴것</a></div></p>
 {% endblock %}

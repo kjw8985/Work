@@ -281,12 +281,12 @@ tbody {
 }
 
 #write {
-    width: 7%;
     font-family: "IBMPlexSansKR-Regular";
     border-radius: 14px;
-    font-size: 18px;
+    font-size:18px;
     text-align: center;
-    margin-left: 93%;
+    float: right;
+    z-index: 2;
 }
 
 #writeboardtitle {
@@ -299,19 +299,25 @@ tbody {
     font-size: 18px;
 }
 
+#userid {
+    font-family: "SLEIGothicTTF";
+}
+
+#writedate {
+    font-size: small;
+}
 
 /* longmonth & trade_boardwriting */
 #goback {
-    width: 7%;
     font-family: "IBMPlexSansKR-Regular";
     border-radius: 14px;
     padding: 0.2%;
     font-size: 18px;
     text-align: center;
+    float: none
 }
 
 #writing {
-    width: 6%;
     font-family: "IBMPlexSansKR-Regular";
     border-radius: 14px;
     padding: 0.2%;

@@ -20,6 +20,10 @@
     opacity: 0.5;
 }
 
+iframe{
+    margin-top: 30%;
+}
+
 body{
     padding-top: 30%;
 }
@@ -55,7 +59,11 @@ body{
     margin: auto;
     padding-left: 5%;
 }
-span {
+button {
+    margin-right: 0 ;
+    float: right;
+}
+#headtext {
     font-size: 0px;
 }
 
@@ -70,7 +78,16 @@ span {
 #logout{
     font-size: 0;
 }
-.btn{
+/* 헤드 로그인 버튼 글씨 없애기 */ 
+#headbtn {
+    font-size: 0;
+    image-rendering: url(http://www.w3.org/2000/svg);
+}
+#open {
+    font-size: 0;
+    image-rendering: url(http://www.w3.org/2000/svg);
+}
+#open2 {
     font-size: 0;
     image-rendering: url(http://www.w3.org/2000/svg);
 }
@@ -82,7 +99,7 @@ span {
     padding: 0; 
 }
 #maintext1 {
-    background-color: burlywood;
+    background-color: #d2e0f7;
 }
 #img1 {
     display: none;
@@ -93,7 +110,7 @@ span {
     padding: 0;
 }
 #maintext2{
-    background-color: burlywood;
+    background-color: #d2e0f7;
 }
 #img2 {
     display: none;
@@ -104,7 +121,7 @@ span {
     display: block;
 }
 #maintext3{
-    background-color: whitesmoke;
+    background-color: #d2e0f7;
     text-align: left;
 }
 
@@ -127,6 +144,9 @@ span {
 .d2{
     display: block;
 }
+#locate {
+    width: 80%;
+}
 /* 개인거래 게시판 */
 #three {
 
@@ -139,7 +159,7 @@ span {
 }
 
 #maintext4{
-    background-color: whitesmoke;
+    background-color: #d2e0f7;
     text-align: left;
 }
 #indexwritebutton {
@@ -147,9 +167,67 @@ span {
     margin-top: 5%;
     outline: white;
 }
+
+
+/* 개인거래 게시판 signup */
+#signupbox{
+    width: 100%;
+    margin: 7% auto 0;
+    padding: 0;
+    box-shadow: none;
+    font-family: "IBMPlexSansKR-Regular";
+        font-size: 4vw;
+}
+
+#writeboardtitle{
+    font-family: "SLEIGothicTTF";
+    font-size: 8vw;
+}
+
+/* 개인거래 게시판 댓글 */
+#commentbox{
+    width: 100%;
+    margin: 7% auto 0;
+    margin-bottom: 3%;
+    padding: 0;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+#writecommentbox{
+    text-align: center;
+    margin-bottom: 1%;
+}
+#commentwrite{
+    resize: none;
+    width: 90%;
+    margin-bottom: 1%;
+}
+#commenton{
+    position: static;
+    margin-left: 75%;
+}
+
+/* 개인거래 게시판 글쓰기 */
+#areatitle {
+    resize: none;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 100%;
+}
+#areatext {
+    resize: none;
+    margin-bottom: 1%;
+    width: 100%;
+}
+
 /* 뉴스 */
 #maintext5{
-    background-color: whitesmoke;
+    background-color: #d2e0f7;
     text-align: left;
 
+}
+
+/* 구현버튼들 */
+#button{
+    font-size: 5vw;
 }

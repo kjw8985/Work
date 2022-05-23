@@ -1,51 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
     <title>전월세 리뷰작성 완료</title>
-    <div id="signupbox">
-        <p id="writeboardtitle">제목 : {{ question2.subject }}</p>
-        <span id = "userid"><u>작성자</u> : {{ question2.author.username }}</span>
-        <span id = "writedate"><u>작성일시</u> : {{ question2.create_date }}</span>
+    <div id="signupbox" style = "margin-bottom: 5%;">
+        <p id="writeboardtitle">🏠 {{ question2.subject }}</p>
+        <span id = "userid">{{ question2.author.username }}</span><br>
+        <span id = "writedate" style="margin-left: 4%">{{ question2.create_date | date:'Y-m-d H:i:s' }}</span>
+
+    <!-- 게시판 글삭제 -->
+    {% if request.user == question2.author %}
+        <a href="{% url 'board:long_delete' question2.id %}"
+           class="btn btn-sm btn-outline-secondary" style="float:right">삭제</a>
+    {% endif %}
+    <!-- 게시판 글수정 -->
+    {% if request.user == question2.author %}
+        <a href="{% url 'board:long_modify' question2.id %}"
+           class="btn btn-sm btn-outline-secondary" style="float:right">수정</a>
+    {% endif %}
     <hr>
         <pre>
-        <!-- css 넣어주면 좋을것 같습니다-->
         <p>{{ question2.content }}</p>
         </pre>
     </div>
-
-    <!-- 게시판 글수정 -->
     <div>
-    {% if request.user == question2.author %}
-        <a href="{% url 'board:long_modify' question2.id %}"
-           class="btn btn-sm btn-outline-secondary">수정하기</a> <!-- 구현만 해놨습니다 스타일 잡아주세요 -->
-    {% endif %}
-    </div>
-
-    <!-- 게시판 글삭제 -->
-    <div>
-    {% if request.user == question2.author %}
-        <a href="{% url 'board:long_delete' question2.id %}"
-           class="btn btn-sm btn-outline-secondary">삭제하기</a> <!-- 구현만 해놨습니다. 스타일 잡아주세요 -->
-    {% endif %}
-    </div>
-
     <!-- 댓글  -->
-    <h5>{{ question2.answer2_set.count }} 개의 댓글이 있습니다.</h5>
     {% for answer2 in question2.answer2_set.all %}
-    <div id = "commentbox">
-        <span id = "userid"><u>작성자</u> : {{ answer2.author.username }}</span>
-        <span id = "writedate"><u>작성일자</u> : {{ answer2.create_date }}</span>
-        <!-- 댓글 수정하기 -->
-    <div>
+    <div id = "commentbox" style = "margin-bottom : 1%;">
+        <span id = "userid" style= "margin-bottom: 2%;"> {{ answer2.author.username }}</span>
+        <span id = "writedate"> {{ answer2.create_date | date:'Y-m-d H:i:s' }}</span>
+        
         {% if request.user == answer2.author %}
-        <a href="{% url 'board:answer_modify2' answer2.id %}"
-        class="btn btn-sm btn-outline-secondary">수정하기</a><!-- 버튼위치 잡아주세요 구현만 해놨습니다.-->
-       <!-- 댓글 삭제하기 -->
+        <!-- 댓글 삭제하기 -->
         <a href="{% url 'board:answer_delete2' answer2.id %}"
-           class="btn btn-sm btn-outline-secondary">삭제하기</a> <!-- 버튼위치 잡아주세요 구현만 해놨습니다.-->
+        class="btn btn-sm" style="margin:0px; border:0px; padding:0px; float:right">🗑</a>
+        <!-- 댓글 수정하기 -->
+        <a href="{% url 'board:answer_modify2' answer2.id %}"
+        class="btn btn-sm" style="margin:0px; border:0px; padding:0px; float:right">✏</a>
         {% endif %}
-    </div>
-    <hr>
-        <p id = "commentarea">{{ answer2.content }}</p>
+        <p id = "commentarea"  style="margin-left: 4%">{{ answer2.content }}</p>
     </div>
     {% endfor %}
 

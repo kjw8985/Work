@@ -15,7 +15,6 @@ urlpatterns = [
     path('averageprice/', views.averageprice, name='avg'),
     path('map_html/', views.map_html, name='map_html'),#
     #path('board/', TemplateView.as_view(template_name='trade_boardwriting.html')),
-    path('sub_search/', views.sub_search, name='sub_search'),
 ]
 
 
