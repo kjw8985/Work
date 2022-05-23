@@ -64,5 +64,46 @@
             <input id = "submitcomment" type="submit"  value="댓글쓰기"/>
             </div>
         </div>
+        <hr>
+    <!-- 페이징 처리 -->
+    <div>
+        <ul class="pagination justify-content-center">
+            <!-- 이전 페이지 -->
+            {% if long_result.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ long_result.previous_page_number }}">이전</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+            </li>
+            {% endif %}
+            <!-- 페이지리스트 -->
+            {% for page_number in long_result.paginator.page_range %}
+            {% if page_number >= long_result.number|add:-3 and page_number <= long_result.number|add:3 %}
+            {% if page_number == long_result.number %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <!-- 다음페이지 -->
+            {% if long_result.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ long_result.next_page_number }}">다음</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    <!-- 페이징처리 끝 -->
     </form>
 {% endblock %}

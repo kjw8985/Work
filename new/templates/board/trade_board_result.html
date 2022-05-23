@@ -5,7 +5,7 @@
 
     <!-- 작성글 보여주기 -->
     <title>개인거래 게시판 리뷰작성 완료</title>
-    <div id="signupbox">
+    <div id="signupbox" style = "margin-bottom: 5%;">
         <p id="writeboardtitle">🏠 {{ question.subject }}</p>
         <span id = "userid"> {{ question.author.username }}</span><br>
         <span id = "writedate" style="margin-left: 4%"> {{ question.create_date | date:'Y-m-d H:i:s' }}</span>
@@ -23,13 +23,11 @@
         </pre>
     </div>
 <div>
-<!--    이 구문은 댓글에 총 갯수를 나타내주는 구문입니다. 밑에 페이징 처리하는 포문과 중첩되서 기능구현 오류가 있어서 주석 처리 해놨습니다.-->
-     <h5>{{question.answer_set.count}}개의 댓글이 있습니다.</h5>
      {% if trade_result %}
      {% for answer in trade_result %}
-    <div id = "commentbox">
+    <div id = "commentbox" style = "margin-bottom : 1%;">
      <!-- 댓글 -->
-        <span id = "userid"> {{ answer.author.username }}</span>
+        <span id = "userid" style= "margin-bottom: 2%;"> {{ answer.author.username }}</span>
         <span id = "writedate"> {{ answer.create_date | date:'Y-m-d H:i:s' }}</span>
             <!-- 댓글 삭제하기 -->
                 {% if request.user == answer.author %}
@@ -67,7 +65,7 @@
             <textarea {% if not user.is_authenticated %}disabled{% endif %}
                     id="commentwrite" rows="3" name="content" placeholder="댓글을 입력해주세요"></textarea>
             <div id="commenton">
-                <input id = "submitcomment" type="submit" value="등록"/>
+                <input id = "submitcomment" type="submit" value="댓글쓰기"/>
             </div>
         </div>
         <hr>
@@ -93,7 +91,7 @@
             </li>
             {% else %}
             <li class="page-item">
-                <a class="page-item" href="?page={{ page_number }}">{{ page_number }}</a>
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
             </li>
             {% endif %}
             {% endif %}

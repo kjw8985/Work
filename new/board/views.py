@@ -131,7 +131,7 @@ def answer_create(request, question_id):
             return redirect('board:trade_result', question_id=question.id)
     else:
         return HttpResponseNotAllowed('Only POST is possible.')
-    context = {'question': question, 'form': form, 'trade_board_result': page_obj}
+    context = {'question': question, 'form': form, 'trade_board_result': page_obj,}
     return render(request, 'board/trade_board_result.html', context)
 
 
@@ -167,7 +167,7 @@ def answer_delete(request, answer_id):
 def trade_board_result(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     page = request.GET.get('page', '1')  # 페이지
-    trade_result = Answer.objects.order_by('-create_date')
+    trade_result = Answer.objects.order_by('create_date')
     paginator = Paginator(trade_result, 5)  # 페이지당 5개씩 보여주기
     page_obj = paginator.get_page(page)
     context = {'question': question,'trade_result': page_obj}
@@ -227,13 +227,16 @@ def longmonth_writi_delete(request, question2_id):
     question2.delete()
     return redirect('board:long_board')
 
-
 @login_required(login_url='common:login')
 # 전월세 게시판 댓글 뷰
 def answer_create2(request, question2_id):
     """
     board 답변등록
     """
+    page = request.GET.get('page', '1')  # 페이지
+    longmonth_board_result = Answer.objects.order_by('-create_date')
+    paginator = Paginator(longmonth_board_result, 5)  # 페이지당 5개씩 보여주기
+    page_obj = paginator.get_page(page)
     question2 = get_object_or_404(Question2, pk=question2_id)
     if request.method == 'POST':
         form = Answer2Form(request.POST)
@@ -246,7 +249,7 @@ def answer_create2(request, question2_id):
             return redirect('board:long_result', question2_id=question2.id)
     else:
         return HttpResponseNotAllowed('Only POST is possible.')
-    context = {'question2': question2, 'form': form}
+    context = {'question2': question2, 'form': form, 'longmonth_board_result': page_obj}
     return render(request, 'board/longmonth_board_result.html', context)
 
 
@@ -255,14 +258,14 @@ def answer_modify2(request, answer2_id):
     answer2 = get_object_or_404(Answer2, pk=answer2_id)
     if request.user != answer2.author:
         messages.error(request, '수정권한이 없습니다.')
-        return redirect('board:treade_result', question2_id=answer2.question.id)
+        return redirect('board:long_result', question2_id=answer2.question.id)
     if request.method == 'POST':
         form = AnswerForm(request.POST, instance=answer2)
         if form.is_valid():
             answer2 = form.save(commit=False)
             answer2.modify_date = timezone.now()
             answer2.save()
-            return redirect('board/trade_result', question2_id=answer2.question.id)
+            return redirect('board/long_result', question2_id=answer2.question.id)
     else:
         form = AnswerForm(instance=answer2)
     context = {'answer2': answer2, 'form': form}
