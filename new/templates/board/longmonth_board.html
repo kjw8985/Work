@@ -18,9 +18,13 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="col-8">글제목</th>
-                                        <th class"col-2">글쓴이</th>
-                                        <th class="col-2">작성일</th>
+
+                                    
+                                    <th class="col-8">글제목</th>
+                                    <th class"col-2">글쓴이</th>
+                                    <th class="col-2">작성일</th>
+                                    <th class="col-8">조회수</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,6 +46,9 @@
                                         </td>
                                         <td>
                                             <p id= "writingtime">{{ question2.create_date | date:'Y-m-d H:i:s' }}</p>
+                                        </td>
+                                        <td>
+                                            <p><p> {{question2.hit}} 회</p></p>
                                         </td>
                                         {% endfor %}
                                         {% endif %}

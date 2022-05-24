@@ -1,3 +1,4 @@
+from turtle import update
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Question, Question2, Answer, Answer2, BoardNews
@@ -7,6 +8,8 @@ from django.core.paginator import Paginator
 from main.models import Subscription
 from django.contrib.auth.decorators import login_required  # 로그인한 유저만 접근가능하게 하는 클래스
 from django.contrib import messages
+from django.db.models import F
+from datetime import datetime, timedelta
 
 # 메인 페이지 뷰 (게시판 글 표시 함수)
 def index(request):
@@ -32,24 +35,6 @@ def index(request):
     page_obj4 = paginator4.get_page(page4)
     context = {'trade_board': page_obj, 'longmonth_board': page_obj2, ' question': question, 'question2': question2, 'board_news': page_obj3, 'boardnews': boardnews,
                'subscription_board':page_obj4,'subscription': subscription}
-    return render(request, 'board/index.html', context)
-
-# def board_news(request):
-#     page = request.GET.get('page', '1')
-#     board_news = BoardNews.objects.order_by('-id')
-#     paginator = Paginator(board_news, 12)
-#     page_obj = paginator.get_page(page)
-#     context = {'board_news': page_obj}
-#     return render(request, 'board/news_board.html', context)
-
-# 이 뷰는 인덱스 페이지에 전월세 최신글을 보여주려 만들었으나
-# 잘못된거 같음 삭제하실떼 board 에 url 맴필된 것도 같이 삭제 하셔야 합니다. 주석처리 해놨습니다,
-def index2(request):
-    page = request.GET.get('page, 1') #페이지
-    longmonth_board = Question2.objects.order_by('-create_date')
-    paginator = Paginator(longmonth_board, 5) # 페이지당 5개씩 보여주기
-    page_obj = paginator.get_page(page)
-    context = {'longmonth_board': page_obj}
     return render(request, 'board/index.html', context)
 
 
@@ -131,7 +116,7 @@ def answer_create(request, question_id):
             return redirect('board:trade_result', question_id=question.id)
     else:
         return HttpResponseNotAllowed('Only POST is possible.')
-    context = {'question': question, 'form': form, 'trade_board_result': page_obj,}
+    context = {'question': question, 'form': form, 'trade_board_result': page_obj}
     return render(request, 'board/trade_board_result.html', context)
 
 
@@ -165,9 +150,53 @@ def answer_delete(request, answer_id):
 
 # 개인거래 게시판 글작성 확인 뷰
 def trade_board_result(request, question_id):
+    
     question = get_object_or_404(Question, pk=question_id)
+    
+    if request.method == "GET":
+        context = {'question': question}
+        q_id : str = str(question_id)
+        # 로그인 한 경우
+        if request.user.is_authenticated is True:
+            cookie_hits_key = f'hits_{request.user.id}'
+        # 비로그인 경우
+        else:
+            cookie_hits_key = 'hits_0'
+
+         # 쿠키로부터 방문기록 로드
+        cookie_hits_value: str = request.COOKIES.get(cookie_hits_key, '')
+        # 쿠키에 cookie_hits_key 항목이 있는 경우
+        if cookie_hits_value != '':
+            q_id_list = cookie_hits_value.split('|')
+            # 방문한 경우는 그대로 응답
+            if q_id in q_id_list:
+                return render(request, 'board/trade_board_result.html', context)
+            # 방문하지 않은 경우
+            else:
+                new_hits_dict = (cookie_hits_key, cookie_hits_value+f'|{q_id}')
+                question.hit = F('hit') + 1
+                question.save()
+                question.refresh_from_db()
+        # hits 가 없는 경우
+        else:
+            new_hits_dict = (cookie_hits_key, q_id)
+            question.hit = F('hit') + 1
+            question.save()
+            question.refresh_from_db()
+
+        response = render(request, 'board/trade_board_result.html', context)
+        # 만료시간 설정
+        midnight_kst = datetime.replace(datetime.utcnow() + timedelta(days=1, hours=9), hour=0, minute=0, second=0)
+        midnight_kst_to_utc = midnight_kst - timedelta(hours=9)
+
+        response.set_cookie(*new_hits_dict,
+                            expires=midnight_kst_to_utc,
+                            # secure=True,
+                            httponly=True,
+                            samesite='Strict')
+        return response
     page = request.GET.get('page', '1')  # 페이지
-    trade_result = Answer.objects.order_by('create_date')
+    trade_result = Answer.objects.order_by('-create_date')
     paginator = Paginator(trade_result, 5)  # 페이지당 5개씩 보여주기
     page_obj = paginator.get_page(page)
     context = {'question': question,'trade_result': page_obj}
@@ -227,16 +256,13 @@ def longmonth_writi_delete(request, question2_id):
     question2.delete()
     return redirect('board:long_board')
 
+
 @login_required(login_url='common:login')
 # 전월세 게시판 댓글 뷰
 def answer_create2(request, question2_id):
     """
     board 답변등록
     """
-    page = request.GET.get('page', '1')  # 페이지
-    longmonth_board_result = Answer.objects.order_by('-create_date')
-    paginator = Paginator(longmonth_board_result, 5)  # 페이지당 5개씩 보여주기
-    page_obj = paginator.get_page(page)
     question2 = get_object_or_404(Question2, pk=question2_id)
     if request.method == 'POST':
         form = Answer2Form(request.POST)
@@ -249,7 +275,7 @@ def answer_create2(request, question2_id):
             return redirect('board:long_result', question2_id=question2.id)
     else:
         return HttpResponseNotAllowed('Only POST is possible.')
-    context = {'question2': question2, 'form': form, 'longmonth_board_result': page_obj}
+    context = {'question2': question2, 'form': form}
     return render(request, 'board/longmonth_board_result.html', context)
 
 
@@ -258,14 +284,14 @@ def answer_modify2(request, answer2_id):
     answer2 = get_object_or_404(Answer2, pk=answer2_id)
     if request.user != answer2.author:
         messages.error(request, '수정권한이 없습니다.')
-        return redirect('board:long_result', question2_id=answer2.question.id)
+        return redirect('board:treade_result', question2_id=answer2.question.id)
     if request.method == 'POST':
         form = AnswerForm(request.POST, instance=answer2)
         if form.is_valid():
             answer2 = form.save(commit=False)
             answer2.modify_date = timezone.now()
             answer2.save()
-            return redirect('board/long_result', question2_id=answer2.question.id)
+            return redirect('board/trade_result', question2_id=answer2.question.id)
     else:
         form = AnswerForm(instance=answer2)
     context = {'answer2': answer2, 'form': form}
@@ -281,9 +307,57 @@ def answer_delete2(request, answer2_id):
 
 # 전월세 게시판 글작성 확인 뷰
 def longmonth_board_result(request, question2_id):
+
     question2 = get_object_or_404(Question2, pk=question2_id)
+    if request.method == "GET":
+        context = {'question2': question2}
+        q_id : str = str(question2_id)
+        # 로그인 한 경우
+        if request.user.is_authenticated is True:
+            cookie_hits_key = f'hits_{request.user.id}'
+        # 비로그인 경우
+        else:
+            cookie_hits_key = 'hits_0'
+
+         # 쿠키로부터 방문기록 로드
+        cookie_hits_value: str = request.COOKIES.get(cookie_hits_key, '')
+        # 쿠키에 cookie_hits_key 항목이 있는 경우
+        if cookie_hits_value != '':
+            q_id_list = cookie_hits_value.split('|')
+            # 방문한 경우는 그대로 응답
+            if q_id in q_id_list:
+                return render(request, 'board/longmonth_board_result.html', context)
+            # 방문하지 않은 경우
+            else:
+                new_hits_dict = (cookie_hits_key, cookie_hits_value+f'|{q_id}')
+                question2.hit = F('hit') + 1
+                question2.save()
+                question2.refresh_from_db()
+        # hits 가 없는 경우
+        else:
+            new_hits_dict = (cookie_hits_key, q_id)
+            question2.hit = F('hit') + 1
+            question2.save()
+            question2.refresh_from_db()
+
+        response = render(request, 'board/longmonth_board_result.html', context)
+        # 만료시간 설정
+        midnight_kst = datetime.replace(datetime.utcnow() + timedelta(days=1, hours=9), hour=0, minute=0, second=0)
+        midnight_kst_to_utc = midnight_kst - timedelta(hours=9)
+
+        response.set_cookie(*new_hits_dict,
+                            expires=midnight_kst_to_utc,
+                            # secure=True,
+                            httponly=True,
+                            samesite='Strict')
+        return response
+    
     context = {'question2': question2}
     return render(request, 'board/longmonth_board_result.html', context)
+
+
+###############################################################################
+###############################################################################
 
 def board_news(request):
     page = request.GET.get('page', '1')
@@ -292,4 +366,6 @@ def board_news(request):
     page_obj = paginator.get_page(page)
     context = {'board_news': page_obj}
     return render(request, 'board/news_board.html', context)
+
+
 

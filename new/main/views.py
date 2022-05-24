@@ -106,67 +106,68 @@ def map_html(request):
 #    return render(request, 'main/sub_division.html')
 
 
-
+'''
 # 청약정보 검색기능
-# class NoticeListView(ListView):
-#     model = Subscription
-#     paginate_by = 15
-#     template_name = 'main/sub_division.html'         #DEFAULT : <app_label>/<model_name>_list.html
-#     context_object_name = 'main_list'        #DEFAULT : <app_label>_list
+class NoticeListView(ListView):
+    model = Subscription
+    paginate_by = 15
+    template_name = 'main/sub_division.html'         #DEFAULT : <app_label>/<model_name>_list.html
+    context_object_name = 'main_list'        #DEFAULT : <app_label>_list
 
-#     def get_queryset(self):
-#         search_keyword = self.request.GET.get('q','')
-#         search_keyword.encoding = 'euc-kr'        
-#         search_type = self.request.GET.get('type','')
-#         main_list = Subscription.objects.all()#.order_by('-id')
-#         print('main_list : ',main_list)
-#         print('subscription : ',Subscription)
-#         print('keyword type : ', type(search_keyword))
-#         if search_keyword :
-#             if len(search_keyword) > 1 :
-#                 if search_type == 'all':
-#                     search_notice_list = main_list.filter(Q (title__icontains=search_keyword) | Q (location__icontains=search_keyword) | Q (Announcement_date__icontains=search_keyword))
-#                 elif search_type == 'title_content':
-#                     search_notice_list = main_list.filter(Q (title__icontains=search_keyword) | Q (location__icontains=search_keyword))
-#                 elif search_type == 'title':
-#                     search_notice_list = main_list.filter(title__icontains=search_keyword)    
-#                 elif search_type == 'content':
-#                     search_notice_list = main_list.filter(location__icontains=search_keyword)    
-#                 elif search_type == 'writer':
-#                     search_notice_list = main_list.filter(Announcement_date__icontains=search_keyword)
+    def get_queryset(self):
+        search_keyword = self.request.GET.get('q','')
+        search_keyword.encoding = 'euc-kr'        
+        search_type = self.request.GET.get('type','')
+        main_list = Subscription.objects.all()#.order_by('-id')
+        print('main_list : ',main_list)
+        print('subscription : ',Subscription)
+        print('keyword type : ', type(search_keyword))
+        if search_keyword :
+            if len(search_keyword) > 1 :
+                if search_type == 'all':
+                    search_notice_list = main_list.filter(Q (title__icontains=search_keyword) | Q (location__icontains=search_keyword) | Q (Announcement_date__icontains=search_keyword))
+                elif search_type == 'title_content':
+                    search_notice_list = main_list.filter(Q (title__icontains=search_keyword) | Q (location__icontains=search_keyword))
+                elif search_type == 'title':
+                    search_notice_list = main_list.filter(title__icontains=search_keyword)    
+                elif search_type == 'content':
+                    search_notice_list = main_list.filter(location__icontains=search_keyword)    
+                elif search_type == 'writer':
+                    search_notice_list = main_list.filter(Announcement_date__icontains=search_keyword)
 
-#                 # if not search_notice_list :
-#                 #     messages.error(self.request, '일치하는 검색 결과가 없습니다.')
-#                 messages.error(self.request, '잘했어요')
-#                 return search_notice_list
-#             else:
-#                 messages.error(self.request, '검색어는 2글자 이상 입력해주세요.')
-#         return main_list
+                # if not search_notice_list :
+                #     messages.error(self.request, '일치하는 검색 결과가 없습니다.')
+                messages.error(self.request, '잘했어요')
+                return search_notice_list
+            else:
+                messages.error(self.request, '검색어는 2글자 이상 입력해주세요.')
+        return main_list
 
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         paginator = context['paginator']
-#         page_numbers_range = 5
-#         max_index = len(paginator.page_range)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = context['paginator']
+        page_numbers_range = 5
+        max_index = len(paginator.page_range)
 
-#         page = self.request.GET.get('page')
-#         current_page = int(page) if page else 1
+        page = self.request.GET.get('page')
+        current_page = int(page) if page else 1
 
-#         start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
-#         end_index = start_index + page_numbers_range
-#         if end_index >= max_index:
-#             end_index = max_index
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
 
-#         page_range = paginator.page_range[start_index:end_index]
-#         context['page_range'] = page_range
+        page_range = paginator.page_range[start_index:end_index]
+        context['page_range'] = page_range
 
-#         search_keyword = self.request.GET.get('q', '')
-#         search_type = self.request.GET.get('type', '')
-#         notice_fixed = Subscription.objects.filter(top_fixed=True).order_by('-registered_date')
+        search_keyword = self.request.GET.get('q', '')
+        search_type = self.request.GET.get('type', '')
+        notice_fixed = Subscription.objects.filter(top_fixed=True).order_by('-registered_date')
 
-#         if len(search_keyword) > 1 :
-#             context['q'] = search_keyword
-#         context['type'] = search_type
-#         context['notice_fixed'] = notice_fixed
+        if len(search_keyword) > 1 :
+            context['q'] = search_keyword
+        context['type'] = search_type
+        context['notice_fixed'] = notice_fixed
 
-#         return context
+        return context
+'''

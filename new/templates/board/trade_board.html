@@ -18,9 +18,11 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                    <th class="col-8">글제목</th>
-                                    <th class"col-2">글쓴이</th>
-                                    <th class="col-2">작성일</th>
+                                    <th>글제목</th>
+                                    <th>유저명</th>
+                                    <th>작성날짜(시,분단위까지있으면좋음)</th>
+                                    <th>조회수</th>
+                                    <th>댓글수</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,10 +35,6 @@
                                             {{ trade_board.paginator.count|sub:trade_board.start_index|sub:forloop.counter0|add:1 }}
                                             <a id ="boardtitle" href ="{% url 'board:trade_result' question.id %}">{{ question.subject}}</a>
                                             <!-- 댓글 표시 시작 -->
-                                                {% if question.answer_set.count > 0 %}
-                                        <span class="text-danger small mx-2">댓글수: {{ question.answer_set.count }}</span>
-                                        {% endif %}
-                                            <!-- 댓글 표시 끝 -->
                                         </td>
                                         <td>
                                             <p>{{ question.author.username }}</p>
@@ -44,6 +42,15 @@
                                         <td>
                                             <p id= "writingtime">{{ question.create_date | date:'Y-m-d H:i:s'}}</p>
                                         </td>
+                                        <td>
+                                            <p> {{question.hit}} 회</p>
+                                        </td>
+                                        <td>
+                                            {% if question.answer_set.count > 0 %}
+                                                <span class="text-danger small mx-2"> {{ question.answer_set.count }}개</span>
+                                            {% endif %}
+                                        <!-- 댓글 표시 끝 -->
+                                            </td>
                                         {% endfor %}
                                         {% endif %}
                                     </tr>

@@ -8,7 +8,7 @@ def news_crawling():
     def insert():
         conn = pymysql.connect(host='localhost',
                                user='root',
-                               password='03191121asd!@',
+                               password='2352486',
                                db='joomo',
                                charset='utf8')
 

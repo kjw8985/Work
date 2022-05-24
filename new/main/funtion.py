@@ -19,7 +19,7 @@ import pymysql
 from main.models import Subscription
 
 def search1(search):
-    conn = pymysql.connect(host='localhost', user='root', password='03191121asd!@',
+    conn = pymysql.connect(host='localhost', user='root', password='1q2w3e4r!!',
                        db='joomo', charset='utf8')
     
     # Connection 으로부터 Cursor 생성

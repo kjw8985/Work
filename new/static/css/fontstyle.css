@@ -202,33 +202,54 @@ tbody {
     height: 7%;
     padding: 1%;
     font-family: "IBMPlexSansKR-Regular";
-    font-size: 33px;
+    font-size: 30px;
+    box-shadow: 1px 6px 6px 1px #dadce0 inset;
+    border-radius: 25px;
+    border-width: 0.1px;
 }
 
 #kinds {
     width: auto;
-    height: 5%;
+    height: 7%;
     padding: 1%;
     font-family: "IBMPlexSansKR-Regular";
-    font-size: 33px;
+    font-size: 30px;
+    box-shadow: 1px 6px 6px 1px #dadce0 inset;
+    border-radius: 25px;
+    border-width: 0.1px;
 }
 
 #size {
     width: auto;
+    height: 7%;
     padding: 1%;
     font-family: "IBMPlexSansKR-Regular";
-    font-size: 33px;
+    font-size: 30px;
+    box-shadow: 1px 6px 6px 1px #dadce0 inset;
+    border-radius: 25px;
+    border-width: 0.5px;
 }
 
 #button {
-    width: 30%;
-    border-radius: 18px;
+    width: 35%;
+    box-shadow: 1px 6px 6px 1px #dadce0;
+    border-radius: 25px;
+    border-width: 0.5px;
+    background-color: white;
     font-family: "IBMPlexSansKR-Regular";
     font-size: 30px;
     padding: 1%;
     text-align: center;
     margin-top: 4%;
+    color: black;
+    transition-duration: 0.3s;
 }
+
+#button:hover {
+    color: white;
+    box-shadow: 800px 0 0 0 #7b9acc inset;
+}
+
 
 /* variable_result */
 #predict {
@@ -283,7 +304,7 @@ tbody {
 #write {
     font-family: "IBMPlexSansKR-Regular";
     border-radius: 14px;
-    font-size:18px;
+    font-size: 18px;
     text-align: center;
     float: right;
     z-index: 2;

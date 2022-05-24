@@ -313,6 +313,7 @@ th {
 }
 
 /* variable_predict */
+
 #selectbox {
     margin-top: 5%;
     text-align: center;
@@ -320,6 +321,10 @@ th {
 
 #buttonbox {
     text-align: center;
+}
+
+#size {
+    margin-left: 1%;
 }
 
 /* variable_result */

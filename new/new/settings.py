@@ -99,9 +99,9 @@ WSGI_APPLICATION = 'new.wsgi.application'
 DATABASES = {
 	'default': {
     	'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'joomo',
+        'NAME': 'sample',
         'USER': 'root',
-        'PASSWORD': '03191121asd!@',
+        'PASSWORD': 'dltnaks123',
         'HOST': 'localhost',
         'PORT': '3306',
      }
