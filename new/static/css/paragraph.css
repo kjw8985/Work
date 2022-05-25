@@ -329,7 +329,23 @@ th {
 
 /* variable_result */
 #predict {
-    margin-bottom: 5%;
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
+#image {
+    width: 30%;
+    float: left;
+    margin-left: 20%;
+}
+
+#text2 {
+    width: 50%;
+    float: right;
+}
+
+#choice_btn {
+    margin-bottom: 1%;
 }
 
 #graph {

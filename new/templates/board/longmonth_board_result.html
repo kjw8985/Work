@@ -23,7 +23,8 @@
     </div>
     <div>
     <!-- 댓글  -->
-    {% for answer2 in question2.answer2_set.all %}
+    {% if answer2 %}
+    {% for answer2 in answer2%}
     <div id = "commentbox" style = "margin-bottom : 1%;">
         <span id = "userid" style= "margin-bottom: 2%;"> {{ answer2.author.username }}</span>
         <span id = "writedate"> {{ answer2.create_date | date:'Y-m-d H:i:s' }}</span>
@@ -39,6 +40,7 @@
         <p id = "commentarea"  style="margin-left: 4%">{{ answer2.content }}</p>
     </div>
     {% endfor %}
+    {% endif %}
 
     <!-- 댓글 작성하기-->
     <form action="{% url 'board:answer_create2' question2.id %}" method="post">
@@ -69,9 +71,9 @@
     <div>
         <ul class="pagination justify-content-center">
             <!-- 이전 페이지 -->
-            {% if long_result.has_previous %}
+            {% if answer2.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ long_result.previous_page_number }}">이전</a>
+                <a class="page-link" href="?page={{ answer2.previous_page_number }}">이전</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -79,9 +81,9 @@
             </li>
             {% endif %}
             <!-- 페이지리스트 -->
-            {% for page_number in long_result.paginator.page_range %}
-            {% if page_number >= long_result.number|add:-3 and page_number <= long_result.number|add:3 %}
-            {% if page_number == long_result.number %}
+            {% for page_number in answer2.paginator.page_range %}
+            {% if page_number >= answer2.number|add:-3 and page_number <= answer2.number|add:3 %}
+            {% if page_number == answer2.number %}
             <li class="page-item active" aria-current="page">
                 <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
             </li>
@@ -93,9 +95,9 @@
             {% endif %}
             {% endfor %}
             <!-- 다음페이지 -->
-            {% if long_result.has_next %}
+            {% if answer2.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ long_result.next_page_number }}">다음</a>
+                <a class="page-link" href="?page={{ answer2.next_page_number }}">다음</a>
             </li>
             {% else %}
             <li class="page-item disabled">

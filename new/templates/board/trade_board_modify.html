@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<title>개인거래 게시판 리뷰작성</title>
+
+<body>
+    <article id = "writewrap">
+        <form method="post" id="titleandtext">
+            {% csrf_token %}
+
+            <!-- 오류 표시 시작-->
+            {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for field in form %}
+                {% if field.errors %}
+                <div>
+                    <strong>{{ field.textarea }}</strong>
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            <!-- 오류 표시  끝-->
+
+        <div id="titlearea">
+                <textarea id="areatitle" cols="130" rows="1" name="subject" id="subject" placeholder="제목을 입력해주세요"
+                value="{{ form.subject.value|default_if_none:'' }}" >{{ question.subject}}</textarea>
+        </div>
+        <div id="textarea">
+                <textarea id="areatext" cols="130" rows="20" name="content" id="content" placeholder="글내용을 입력해주세요">{{ question.content}}
+                </textarea>
+                <br>
+
+                <button id="goback" type="button" class="btn btn-primary" onclick="location.href='{% url 'board:trade' %}' " >수정 취소</button>
+                <input id ="writing" type= "submit"  class="btn btn-primary" name="" value='수정하기'/>
+             </div>
+        </form>
+    </article>
+</body>
+{% endblock %}

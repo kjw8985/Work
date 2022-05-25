@@ -232,7 +232,7 @@ tbody {
 
 #button {
     width: 35%;
-    box-shadow: 1px 6px 6px 1px #dadce0;
+    box-shadow: 1px 1px 1px 1px grey;
     border-radius: 25px;
     border-width: 0.5px;
     background-color: white;
@@ -247,9 +247,14 @@ tbody {
 
 #button:hover {
     color: white;
-    box-shadow: 800px 0 0 0 #7b9acc inset;
+    background-color: #7b9acc;
+    box-shadow: 1px 1px 1px 1px grey;
 }
 
+#button:active {
+    box-shadow: 1px 1px 1px 1px grey inset;
+    transition-duration: 0.1s;
+}
 
 /* variable_result */
 #predict {
@@ -258,8 +263,53 @@ tbody {
     text-align: center;
 }
 
-#checkbtn {
-    margin-bottom: 3%;
+#rs_hint {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+}
+
+#amount {
+    box-shadow: 1px 1px 1px 1px grey;
+    border-radius: 25px;
+    border-width: 0.5px;
+    font-size: 21px;
+    background-color: white;
+    font-family: "IBMPlexSansKR-Regular";
+    padding: 1%;
+    transition-duration: 0.3s;
+}
+
+#amount:hover {
+    color: white;
+    background-color: #7b9acc;
+    box-shadow: 1px 1px 1px 1px grey;
+}
+
+#amount:active {
+    box-shadow: 1px 1px 1px 1px grey inset;
+    transition-duration: 0.1s;
+}
+
+#square {
+    box-shadow: 1px 1px 1px 1px grey;
+    border-radius: 25px;
+    border-width: 0.5px;
+    font-size: 21px;
+    background-color: white;
+    font-family: "IBMPlexSansKR-Regular";
+    padding: 1%;
+    transition-duration: 0.3s;
+}
+
+#square:hover {
+    color: white;
+    background-color: #5e7e9b;
+    box-shadow: 1px 1px 1px 1px grey;
+}
+
+#square:active {
+    box-shadow: 1px 1px 1px 1px grey inset;
+    transition-duration: 0.1s;
 }
 
 #needbtn1 {
@@ -278,21 +328,30 @@ tbody {
     display: none;
 }
 
-#needbtn3 {
-    font-family: "IBMPlexSansKR-Regular";
-    font-size: 21px;
-    display: none;
-}
-
-#firstmeet3 {
-    font-family: "IBMPlexSansKR-Regular";
-    font-size: 21px;
-}
-
 #variable_button {
+    box-shadow: 1px 1px 1px 1px grey;
     border-radius: 18px;
+    border-width: 0.5px;
     font-family: "IBMPlexSansKR-Regular";
     font-size: 15px;
+    padding: 1%;
+    transition-duration: 0.3s;
+}
+
+#variable_button:hover {
+    color: white;
+    background-color: #7b9acc;
+    box-shadow: 1px 1px 1px 1px grey;
+}
+
+#variable_button:active {
+    box-shadow: 1px 1px 1px 1px grey inset;
+    transition-duration: 0.1s;
+}
+
+#predict_per {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
 }
 
 

@@ -83,7 +83,7 @@ def trade_writi_modify(request, question_id):
     else:
         form = QuestionForm(instance=question)
     context = {'question': question, 'form': form}
-    return render(request, 'board/trade_boardwriting.html', context)
+    return render(request, 'board/trade_board_modify.html', context)
 
 
 @login_required(login_url= 'common:login')
@@ -100,10 +100,6 @@ def answer_create(request, question_id):
     """
     board 답변등록
     """
-    page = request.GET.get('page', '1')  # 페이지
-    trade_board_result = Answer.objects.order_by('-create_date')
-    paginator = Paginator(trade_board_result, 5)  # 페이지당 5개씩 보여주기
-    page_obj = paginator.get_page(page)
     question = get_object_or_404(Question, pk=question_id)
     if request.method == "POST":
         form = AnswerForm(request.POST)
@@ -116,7 +112,7 @@ def answer_create(request, question_id):
             return redirect('board:trade_result', question_id=question.id)
     else:
         return HttpResponseNotAllowed('Only POST is possible.')
-    context = {'question': question, 'form': form, 'trade_board_result': page_obj}
+    context = {'question': question, 'form': form}
     return render(request, 'board/trade_board_result.html', context)
 
 
@@ -150,11 +146,14 @@ def answer_delete(request, answer_id):
 
 # 개인거래 게시판 글작성 확인 뷰
 def trade_board_result(request, question_id):
-    
+    answer = Answer.objects.filter(question_id=question_id).order_by('-create_date')
+    page = request.GET.get('page', '1')  # 페이지
+    paginator = Paginator(answer, 5)  # 페이지당 5개씩 보여주기
+    page_obj = paginator.get_page(page)
     question = get_object_or_404(Question, pk=question_id)
     
     if request.method == "GET":
-        context = {'question': question}
+        context = {'question': question, 'answer': answer, 'answer': page_obj}
         q_id : str = str(question_id)
         # 로그인 한 경우
         if request.user.is_authenticated is True:
@@ -195,11 +194,7 @@ def trade_board_result(request, question_id):
                             httponly=True,
                             samesite='Strict')
         return response
-    page = request.GET.get('page', '1')  # 페이지
-    trade_result = Answer.objects.order_by('-create_date')
-    paginator = Paginator(trade_result, 5)  # 페이지당 5개씩 보여주기
-    page_obj = paginator.get_page(page)
-    context = {'question': question,'trade_result': page_obj}
+    context = {'question': question, 'answer': answer, 'answer': page_obj}
     return render(request, 'board/trade_board_result.html', context)
 
 
@@ -308,11 +303,15 @@ def answer_delete2(request, answer2_id):
 # 전월세 게시판 글작성 확인 뷰
 def longmonth_board_result(request, question2_id):
 
+    answer2 = Answer2.objects.filter(question_id=question2_id).order_by('-create_date')
+    page = request.GET.get('page', '1')  # 페이지
+    paginator = Paginator(answer2, 5)  # 페이지당 5개씩 보여주기
+    page_obj = paginator.get_page(page)
     question2 = get_object_or_404(Question2, pk=question2_id)
     if request.method == "GET":
-        context = {'question2': question2}
+        context = {'question2': question2, 'answer2': answer2, 'answer2': page_obj}
         q_id : str = str(question2_id)
-        # 로그인 한 경우
+        # e로그인 한 경우
         if request.user.is_authenticated is True:
             cookie_hits_key = f'hits_{request.user.id}'
         # 비로그인 경우
@@ -352,7 +351,7 @@ def longmonth_board_result(request, question2_id):
                             samesite='Strict')
         return response
     
-    context = {'question2': question2}
+    context = {'question2': question2, 'answer2': answer2, 'answer2':page_obj}
     return render(request, 'board/longmonth_board_result.html', context)
 
 
