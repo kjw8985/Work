@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
+<link rel="stylesheet"  href="{% static 'css/board_btn.css'%}?after">
     <title>전월세 리뷰작성 완료</title>
     <div id="signupbox" style = "margin-bottom: 5%;">
         <p id="writeboardtitle">🏠 {{ question2.subject }}</p>
@@ -62,8 +64,8 @@
         <div id = "writecommentbox">
             <textarea {% if not user.is_authenticated %}disabled{% endif %}
                     id="commentwrite" rows="3" name="content" placeholder="댓글을 입력해주세요"></textarea>
-            <div id="commenton">
-            <input id = "submitcomment" type="submit"  value="댓글쓰기"/>
+            <div id="commenton" style="margin-left:70%;">
+                <button  type="submit" class="button button--quidel button--round-s" style="padding:0.5%; width:100px; height:40px;font-size:15px;">댓글쓰기</button>
             </div>
         </div>
         <hr>

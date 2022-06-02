@@ -33,7 +33,7 @@ def joomo(request):
     page = request.GET.get('page', '1')
     page1 = request.GET.get('page1', '1')
     subscription =  Subscription.objects.all()
-    subscription_board = Subscription.objects.order_by('-id')
+    subscription_board = Subscription.objects.order_by('-date_start')
     paginator = Paginator(subscription_board, 7)
     page_obj = paginator.get_page(page)
     

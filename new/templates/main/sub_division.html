@@ -40,7 +40,7 @@
                                         <div class="form-row">
                                             <div class="col" style="margin-top: 10px;">
                                                 <input type="text" name="search" class="form-control form-control-md"
-                                                    style="width: 15em;" placeholder="검색어를 입력해주세요.">
+                                                    style="width: 15em;" placeholder="검색할 위치를 입력하세요.">
                                                 <!-- <button class="btn btn-md btn-outline-dark" type="submit">검색</button> -->
                                                 <button class="btn btn" type="submit" id="search_btn" style="float: right;">검색</button>
                                             </div>
@@ -67,26 +67,26 @@
 
                                     {% for subscription in subscription_board %}
                                     <tr>
-                                        <td>
-                                            <p>{{subscription.title}}&nbsp;&nbsp;</p>
+                                        <td style="width:20%;">
+                                            <p>{{subscription.title|truncatechars:10}}<sup class="fortooltip">[세부명칭]<span class="detailed_location">{{subscription.title}}</span></sup>&nbsp;&nbsp;</p>
                                         </td>
-                                        <td>
+                                        <td style="width:20%;">
                                             <p>{{subscription.location|truncatechars:12}}<sup class="fortooltip">[세부위치]<span class="detailed_location">{{subscription.location}}</span></sup></p>
                                         </td>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p>{{subscription.date_start| date:'Y-m-d'}}&nbsp;&nbsp;</p>
                                         </td>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p>{{subscription.date_finish| date:'Y-m-d'}}&nbsp;&nbsp;</p>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p>{{subscription.size_one}}㎡&nbsp;&nbsp;</p>
                                         </td>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p>{{subscription.size_two}}㎡&nbsp;&nbsp;</p>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p>{{subscription.price_one}}만원&nbsp;&nbsp;</p>
                                         </td>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p>{{subscription.price_two}}만원&nbsp;&nbsp;</p>
                                         </td>
                                       </tr>
@@ -98,26 +98,26 @@
                                     {% for subscription in subscription_board1 %}
                                     
                                     <tr>
-                                        <td>
-                                            <p>{{subscription.0|truncatechars:10}}<sup class="fortooltip">[세부위치]<span class="detailed_location">{{subscription.0}}</span></sup>&nbsp;&nbsp;</p>
+                                        <td style="width:20%;">
+                                            <p>{{subscription.0|truncatechars:10}}<sup class="fortooltip">[세부명칭]<span class="detailed_location">{{subscription.0}}</span></sup>&nbsp;&nbsp;</p>
                                         </td>
-                                        <td>
+                                        <td style="width:20%;">
                                             <p>{{subscription.1|truncatechars:12}}<sup class="fortooltip">[세부위치]<span class="detailed_location">{{subscription.1}}</span></sup></p>
                                         </td>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p>{{subscription.3| date:'Y-m-d'}}&nbsp;&nbsp;</p>
                                         </td>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p>{{subscription.4| date:'Y-m-d'}}&nbsp;&nbsp;</p>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p>{{subscription.5}}㎡&nbsp;&nbsp;</p>
                                         </td>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p>{{subscription.6}}㎡&nbsp;&nbsp;</p>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p>{{subscription.7}}만원&nbsp;&nbsp;</p>
                                         </td>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p>{{subscription.8}}만원&nbsp;&nbsp;</p>
                                         </td>
                                       </tr>

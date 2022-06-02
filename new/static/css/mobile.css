@@ -20,10 +20,6 @@
     opacity: 0.5;
 }
 
-iframe{
-    margin-top: 30%;
-}
-
 body{
     padding-top: 30%;
 }
@@ -82,6 +78,9 @@ button {
 #headbtn {
     font-size: 0;
     image-rendering: url(http://www.w3.org/2000/svg);
+}
+#shodowbutton {
+    margin-left: 20px;
 }
 #open {
     font-size: 0;
@@ -147,10 +146,21 @@ button {
 #locate {
     width: 80%;
 }
-/* 개인거래 게시판 */
-#three {
+
+
+/* 가격변동 결과 페이지 */
+
+#image {
+    margin-left: 0;
+    width: 100%;
 
 }
+#text2 {
+    width: auto;
+    float: none;
+}
+
+/* 개인거래 게시판 */
 #boardcount{
     width: 20%;
 }

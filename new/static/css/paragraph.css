@@ -408,25 +408,22 @@ th {
 #commentbox {
     width: 50%;
     margin: 2% auto 0;
-    margin-bottom: 3%;
     padding: 2%;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }
 
 #writecommentbox {
     text-align: center;
-    margin-bottom: 1%;
 }
 
 #commentwrite {
     resize: none;
     width: 50%;
-    margin-bottom: 1%;
 }
 
 #commenton {
     position: static;
-    margin-left: 50%;
+    text-align: center;
 }
 
 /* sub_division */
@@ -526,4 +523,9 @@ h1 {
     padding: 10px 12px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+/* 평단가 지도 */
+iframe {
+    position: fixed;
 }

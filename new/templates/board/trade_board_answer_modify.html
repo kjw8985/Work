@@ -2,8 +2,11 @@
 {% block content %}
 <!-- 답변 수정-->
 <!-- 댓글 작성하기 -->
-<form method="post" action="{% url 'board:trade_result' question_id=answer.question.id %}">
+<title>댓글 수정</title>
+
+<form method="post">
     {% csrf_token %}
+
     <!-- 오류표시 시작 -->
     {% if form.errors %}
     <div class="alert alert-danger" role="alert">
@@ -18,11 +21,14 @@
     </div>
     {% endif %}
     <!-- 오류표시 끝 -->
+
     <div id = "writecommentbox">
-        <textarea id="commentwrite" rows="3" name="content" placeholder="댓글을 입력해주세요"></textarea>
-        <div id="commenton">
-            <input id = "submitcomment" type="submit" value="저장하기"/>
-        </div>
+        <textarea id="commentwrite" rows="3" name="content" id="content" placeholder="댓글을 입력해주세요"
+        value="{{ form.content.value|default_if_none:'' }}" >{{ answer.content}}</textarea>
+    </div>
+    <div id="commenton">
+        <button  type="button" class="btn btn-outline-secondary" style="padding:0.5%; width:150px; font-size:18px;" onclick="location.href='{% url 'board:trade_result' question_id=answer.question.id %}' " >수정 취소</button>
+        <input id = "submitcomment" type="submit" class="btn btn-outline-secondary" style="padding:0.5%; width:150px; font-size:18px;" value="저장하기"/>
     </div>
 </form>
 {% endblock %}

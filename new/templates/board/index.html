@@ -1,8 +1,8 @@
-{% extends "base.html" %}
-{% load board_filter %} <!-- 게시글 불러오기 위해 보드앱에 만들어 놓은 템플릿테그 폴더 안에 board_filter 를 로드-->
-{% block content %}
-  <title>joomo</title>
-  <div class='main_content'>
+    {% extends "base.html" %}
+    {% load board_filter %} <!-- 게시글 불러오기 위해 보드앱에 만들어 놓은 템플릿테그 폴더 안에 board_filter 를 로드-->
+    {% block content %}
+    <title>joomo</title>
+    <div class='main_content'>
     <section class="right-content">
         <div id = "one">
             <a href="{% url 'main:variable_pd' %}"><img id = "img1" src = "/media/graph.jpg"><p id = 'maintext1'>주택가격 변동 예측하기</p></a>
@@ -10,12 +10,11 @@
         <div id = "two">
             <a href="{% url 'main:avg' %}"><img id = "img2" src = "/media/map.png"><p id = 'maintext2'>평단가를 알려줘</p></a>
         </div>
-            
+
     </section>
             <!-- 최신 부동산 뉴스 불러오기 시작-->
-  <style>
- a:hover { text-decoration: underline;}
-</style>
+     <style>
+     </style>
         <section class='left-content'>
             <div id = "news"><a href="{% url 'board:board_news' %}">부동산 뉴스</a>
                            <table class="table">
@@ -44,37 +43,62 @@
                                 <!-- 게시글 불러오기 끝-->
                                 </tbody>
                             </table>
+                <div>
+                <!-- 페이징처리 시작 -->
+                <ul class="pagination pagination-sm justify-content-center">
+                    <!-- 이전페이지 -->
+                    {% if board_news.has_previous %}
+                    <li class="page-item">
+                     <a class="page-link" href="?page1=1"><<</a>
+                    <li class="page-item">
+                        <a class="page-link" href="?page1={{ board_news.previous_page_number }}">이전</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                    </li>
+                    {% endif %}
+                    <!-- 페이지리스트 -->
+                    {% for page_number in board_news.paginator.page_range %}
+                    {% if page_number >= board_news.number|add:-3 and page_number <= board_news.number|add:3 %}
+                    {% if page_number == board_news.number %}
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="?page1={{ page_number }}">{{ page_number }}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page1={{ page_number }}">{{ page_number }}</a>
+                    </li>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
 
-    <!-- 페이징처리 시작 -->
-    <ul class="pagination justify-content-center">
-        <!-- 이전페이지 -->
-        {% if board_news.has_previous %}
-        <li class="page-item">
-            <a class="page-link" href="?page={{ board_news.previous_page_number }}">이전</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-        </li>
-        {% endif %}
-        <!-- 다음페이지 -->
-        {% if board_news.has_next %}
-        <li class="page-item">
-            <a class="page-link" href="?page={{ board_news.next_page_number }}">다음</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-        </li>
-        {% endif %}
-    </ul>
-    <!-- 페이징처리 끝 -->
+                    <!-- 다음페이지 -->
+                    {% if board_news.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page1={{ board_news.next_page_number }}">다음</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page1={{ board_news.paginator.num_pages }}">>></a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <!-- 페이징처리 끝 -->
+                </div>
+            </div>
                     <!-- 최신 부동산 뉴스 불러오기 끝 -->
-              <div id = "three">
+            </br></br>
+
+            <div id = "three">
                 <p id = "maintext4">
                     <a href="{% url 'board:trade' %}">개인거래 게시판</a>
                     <button id = "indexwritebutton" class="btn btn-primary"  onclick="location.href='{% url 'board:trade_writi'%}' ">새글쓰기</button>
-                  <div class="table-wrap">
+                </p>
+                <div class="table-wrap">
                   <table class="table">
                       <thead>
                         <tr>
@@ -82,7 +106,7 @@
                           <th>제목</th>
                           <th>댓글수</th>
                           <th>작성일</th>
-                          <th>조회수</th>        
+                          <th>조회수</th>
                         </tr>
                       </thead>
                         <tbody>
@@ -97,177 +121,224 @@
                                 <td>{{ question.hit }}</td>
                             {% endfor %}
                             {% endif %}
-                            
                             </tr>
                         </tbody>
                   </table>
-                  <div>
-                     <ul class="pagination justify-content-center">
-                  
+                </div>
+                <div>
+                     <ul class="pagination pagination-sm justify-content-center">
+                         <!-- 이전 페이지 -->
                         {% if trade_board.has_previous %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ trade_board.previous_page_number }}">이전</a>
+                           <a class="page-link" href="?page2=1"><<</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page2={{ trade_board.previous_page_number }}">이전</a>
                         </li>
                         {% else %}
                         <li class="page-item disabled">
                             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
                         </li>
                         {% endif %}
-                  
+                        <!-- 페이지리스트 -->
+                        {% for page_number in trade_board.paginator.page_range %}
+                        {% if page_number >= trade_board.number|add:-3 and page_number <= trade_board.number|add:3 %}
+                        {% if page_number == trade_board.number %}
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="?page2={{ page_number }}">{{ page_number }}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page2={{ page_number }}">{{ page_number }}</a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                         <!-- 다음 페이지 -->
                         {% if trade_board.has_next %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ trade_board.next_page_number }}">다음</a>
+                            <a class="page-link" href="?page2={{ trade_board.next_page_number }}">다음</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page2={{ trade_board.paginator.num_pages }}">>></a>
                         </li>
                         {% else %}
                         <li class="page-item disabled">
                             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
                         </li>
                         {% endif %}
-                        
                     </ul>
                 </div>
-              
-
+            </div>
                   <!-- 최신 거인거래 게시글 제목 불러오기 끝-->
-                  <div id = "four">
-                    <p id = "maintext5">
-                         <a href="{% url 'board:long_board' %}">전월세 물건지 리뷰</a>
-                        <button id = "indexwritebutton" class="btn btn-primary" onclick="location.href='{% url 'board:long_writi' %}' ">새글쓰기</button>
-                    <div class="table-wrap">
-                    <table class="table">
-                        <thead>
+            </br></br>
+
+            <div id = "four">
+                <p id = "maintext5">
+                     <a href="{% url 'board:long_board' %}">전월세 물건지 리뷰</a>
+                    <button id = "indexwritebutton" class="btn btn-primary" onclick="location.href='{% url 'board:long_writi' %}' ">새글쓰기</button>
+                </p>
+                <div class="table-wrap">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th>순번</th>
+                        <th>제목</th>
+                        <th>댓글수</th>
+                        <th>작성일</th>
+                        <th>조회수</th>
+                      </tr>
+                    </thead>
+                      <tobody>
+                          {% if longmonth_board %}
+                          {% for question2 in longmonth_board %}
                           <tr>
-                            <th>순번</th>
-                            <th>제목</th>
-                            <th>댓글수</th>
-                            <th>작성일</th>
-                            <th>조회수</th> 
+                            <td class="boardtext">
+                              {{ question2.id }}</td>
+                              <td><a href="{% url 'board:long_result' question2.id %}">{{ question2.subject }}</a></td>
+                              <td>{{ question2.answer2_set.count }}</td>
+                              <td>{{ question2.question2_created_string }}</td>
+                              <td>{{ question2.hit }}</td>
+                          {% endfor %}
+                          {% endif %}
                           </tr>
-                        </thead>
-                          <tobody>
-                              {% if longmonth_board %}
-                              {% for question2 in longmonth_board %}
-                              <tr>
-                                <td class="boardtext">
-                                  {{ question2.id }}</td>
-                                  <td><a href="{% url 'board:long_result' question2.id %}">{{ question2.subject }}</a></td>
-                                  <td>{{ question2.answer2_set.count }}</td>
-                                  <td>{{ question2.question2_created_string }}</td>
-                                  <td>{{ question2.hit }}</td>
-                              {% endfor %}
-                              {% endif %}
-                              </tr>
-                          </tobody>
-                    </table>
-                    <div>
-                      <ul class="pagination justify-content-center">
-                   
+                      </tobody>
+                </table>
+                </div>
+                <div>
+                      <ul class="pagination pagination-sm justify-content-center">
+                         <!-- 이전 페이지 -->
                          {% if longmonth_board.has_previous %}
                          <li class="page-item">
-                             <a class="page-link" href="?page={{ longmonth_board.previous_page_number }}">이전</a>
+                             <a class="page-link" href="?page3=1"><<</a>
+                         </li>
+                         <li class="page-item">
+                             <a class="page-link" href="?page3={{ longmonth_board.previous_page_number }}">이전</a>
                          </li>
                          {% else %}
                          <li class="page-item disabled">
                              <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
                          </li>
                          {% endif %}
-                   
+                          <!-- 페이지리스트 -->
+                        {% for page_number in longmonth_board.paginator.page_range %}
+                        {% if page_number >= longmonth_board.number|add:-3 and page_number <= longmonth_board.number|add:3 %}
+                        {% if page_number == longmonth_board.number %}
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="?page3={{ page_number }}">{{ page_number }}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page3={{ page_number }}">{{ page_number }}</a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                          <!-- 다음 페이지 -->
                          {% if longmonth_board.has_next %}
                          <li class="page-item">
-                             <a class="page-link" href="?page={{ longmonth_board.next_page_number }}">다음</a>
+                             <a class="page-link" href="?page3={{ longmonth_board.next_page_number }}">다음</a>
+                         </li>
+                         <li class="page-item">
+                             <a class="page-link" href="?page3={{ longmonth_board.paginator.num_pages }}">>></a>
                          </li>
                          {% else %}
                          <li class="page-item disabled">
                              <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
                          </li>
                          {% endif %}
-                         
-                     </ul>
+                      </ul>
                  </div>
-                   </div>
-                   
+            </div>
                   <!-- 최신 거인거래 게시글 제목 불러오기 끝-->
+            </br></br>
+
+            <div id = "center">
+                <div id = "quick_view">
+                  <p id = "maintext3">
+                     <a href="{% url 'main:joomo' %}">청약분양 한 눈에 보기</a>
                   </p>
-                  <div id = "center">
-                    <div id = "quick_view">
-                      <p id = "maintext3">
-                         <a href="{% url 'main:joomo' %}">청약분양 한 눈에 보기</a>
-                      </p>
-                      <table id = "quick_table">
-                        <thead>
-                          <tr>
-                            <th class="d2"><p>청약명</p></th>
-                            <th class="d2"><p>청약일</p></th>
-                            <th class="d2"><p>평형</p></th>
-                            <th class="d2"><p>금액</p></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {% if subscription_board %}
-                          {% for subscription in subscription_board %}
-                          <tr>                          
-                            <td class="d1">
-                              
-                              <p>{{subscription.title}}&nbsp;&nbsp;</p>
-                            </td>
-                            <td class="d1">
-                              <p>{{subscription.date_start| date:'Y-m-d'}}&nbsp;&nbsp;</p>
-                            </td>
-                            <td class="d1">
-                              <p>{{subscription.size_one}}㎡&nbsp;&nbsp;</p>
-                            </td>
-                            <td class="d1">
-                              <p>{{subscription.price_one}}만원&nbsp;&nbsp;</p>
-                            </td>
-                      
-                            </td>
-                          </tr>
-                          {% endfor %}
-                          {% endif %}
-                        </tbody>
-                      </table>
-                      <!-- 페이징 처리 -->
-                      <div>
-                        <ul class="pagination justify-content-center">
-                            <!-- 이전 페이지 -->
-                            {% if subscription_board.has_previous %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ subscription_board.previous_page_number }}">이전</a>
-                            </li>
-                            {% else %}
-                            <li class="page-item disabled">
-                              <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-                          </li>
-                            {% endif %}
-                            <!-- 페이지리스트 -->
-                            {% for page_number in subscription_board.paginator.page_range %}
-                            {% if page_number >= subscription_board.number|add:-5 and page_number <= subscription_board.number|add:5 %}
-                            {% if page_number == subscription_board.number %}
-                            <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-                            </li>
-                            {% else %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-                           </li>
-                            {% endif %}
-                            {% endif %}
-                            {% endfor %}
-                            <!-- 다음페이지 -->
-                            {% if subscription_board.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ subscription_board.next_page_number }}">다음</a>
-                            </li>
-                            {% else %}
-                            <li class="page-item disabled
-                                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                    <!-- 페이징처리 끝 -->
-                  </div>
+                  <table id = "quick_table">
+                    <thead>
+                      <tr>
+                        <th class="d2"><p>청약1명</p></th>
+                        <th class="d2"><p>청약일</p></th>
+                        <th class="d2"><p>평형</p></th>
+                        <th class="d2"><p>금액</p></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if subscription_board %}
+                      {% for subscription in subscription_board %}
+                      <tr>
+                        <td class="d1">
+
+                          <p>{{subscription.title}}&nbsp;&nbsp;</p>
+                        </td>
+                        <td class="d1">
+                          <p>{{subscription.date_start| date:'Y-m-d'}}&nbsp;&nbsp;</p>
+                        </td>
+                        <td class="d1">
+                          <p>{{subscription.size_one}}㎡&nbsp;&nbsp;</p>
+                        </td>
+                        <td class="d1">
+                          <p>{{subscription.price_one}}만원&nbsp;&nbsp;</p>
+                        </td>
+
+                        </td>
+                      </tr>
+                      {% endfor %}
+                      {% endif %}
+                    </tbody>
+                  </table>
                 </div>
+                  <!-- 페이징 처리 -->
+                <div>
+                    <ul class="pagination pagination-sm justify-content-center">
+                        <!-- 이전 페이지 -->
+                        {% if subscription_board.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page4=1"><<</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page4={{ subscription_board.previous_page_number }}">이전</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                      </li>
+                        {% endif %}
+                        <!-- 페이지리스트 -->
+                        {% for page_number in subscription_board.paginator.page_range %}
+                        {% if page_number >= subscription_board.number|add:-3 and page_number <= subscription_board.number|add:3 %}
+                        {% if page_number == subscription_board.number %}
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="?page4={{ page_number }}">{{ page_number }}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page4={{ page_number }}">{{ page_number }}</a>
+                       </li>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        <!-- 다음페이지 -->
+                        {% if subscription_board.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page4={{ subscription_board.next_page_number }}">다음</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page4={{ subscription_board.paginator.num_pages }}">>></a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled
+                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <!-- 페이징처리 끝 -->
+            </div>
     </section>
     </div>
-{% endblock %}
+    {% endblock %}

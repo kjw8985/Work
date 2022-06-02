@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load board_filter %} <!-- 게시글 불러오기 위해 보드앱에 만들어 놓은 템플릿테그 폴더 안에 board_filter 를 로드-->
 {% block content %}
+{% load static %}
+<link rel="stylesheet"  href="{% static 'css/board_btn.css'%}?after">
 <title>개인거래 게시판</title>
     <section class="ftco-section">
         <div class="container">
@@ -12,17 +14,16 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
+                        <button class="button button--quidel button--round-s" style="float:right;"onclick="location.href='{% url 'board:trade_writi'%}' ">글쓰기</button>
                     <!-- 버튼 style 넣기 -->
-                    <button id="write" type="button" class="btn btn-primary" onclick="location.href='{% url 'board:trade_writi'%}' ">글쓰기</button>
                     <div class="table-wrap">
                             <table class="table">
                                 <thead>
                                     <tr>
                                     <th>글제목</th>
                                     <th>유저명</th>
-                                    <th>작성날짜(시,분단위까지있으면좋음)</th>
+                                    <th>작성시간</th>
                                     <th>조회수</th>
-                                    <th>댓글수</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -30,33 +31,30 @@
                                 {% if trade_board %}
                                 {% for question in trade_board %}
                                     <tr>
-                                        <td>
+                                        <td style="width:35%;">
                                             <!-- board_filter 로드해야 작동됨-->
                                             {{ trade_board.paginator.count|sub:trade_board.start_index|sub:forloop.counter0|add:1 }}
-                                            <a id ="boardtitle" href ="{% url 'board:trade_result' question.id %}">{{ question.subject}}</a>
+                                            <a id ="boardtitle" href ="{% url 'board:trade_result' question.id %}">{{ question.subject|truncatechars:19}}&nbsp;&nbsp;</a>
                                             <!-- 댓글 표시 시작 -->
+                                            {% if question.answer_set.count > 0 %}
+                                            <span class="text-danger small mx 3">댓글수: {{ question.answer_set.count }}</span>
+                                            {% endif %}
                                         </td>
-                                        <td>
+                                        <td style="width:15%;">
                                             <p>{{ question.author.username }}</p>
                                         </td>
-                                        <td>
+                                        <td style="width:40%;">
                                             <p id= "writingtime">{{ question.create_date | date:'Y-m-d H:i:s'}}</p>
                                         </td>
-                                        <td>
+                                        <td style="width:10%;">
                                             <p> {{question.hit}} 회</p>
                                         </td>
-                                        <td>
-                                            {% if question.answer_set.count > 0 %}
-                                                <span class="text-danger small mx-2"> {{ question.answer_set.count }}개</span>
-                                            {% endif %}
-                                        <!-- 댓글 표시 끝 -->
-                                            </td>
                                         {% endfor %}
                                         {% endif %}
-                                    </tr>
-                                <!-- 게시글 불러오기 끝 -->
-                                </tbody>
-                            </table>
+                                </tr>
+                            <!-- 게시글 불러오기 끝 -->
+                            </tbody>
+                        </table>
                         <!-- 페이징 처리 -->
                         <div>
                             <ul class="pagination justify-content-center">
@@ -79,7 +77,7 @@
                                 </li>
                                 {% else %}
                                 <li class="page-item">
-                                    <a class="page-item" href="?page={{ page_number }}">{{ page_number }}</a>
+                                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
                                 </li>
                                 {% endif %}
                                 {% endif %}

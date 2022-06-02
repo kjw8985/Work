@@ -41,6 +41,9 @@ class Answer(models.Model):
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
 
+    def __str__(self):
+        return self.content
+
 #   전월세 게시판 모델
 class Question2(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -49,6 +52,9 @@ class Question2(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     modify_date = models.DateTimeField(null=True, blank=True)
     hit = models.PositiveIntegerField(null=True, blank=True, default=0)
+
+    def __str__(self):
+        return self.subject
     
     @property
     def question2_created_string(self):
@@ -72,6 +78,9 @@ class Answer2(models.Model):
     content = models.TextField()
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return self.content
 
 # 뉴스 게시판
 class BoardNews(models.Model):

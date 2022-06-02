@@ -13,8 +13,8 @@ from datetime import datetime, timedelta
 
 # 메인 페이지 뷰 (게시판 글 표시 함수)
 def index(request):
-    page = request.GET.get('page', '1')  # 페이지
-    page2 = request.GET.get('page', '1')
+    page = request.GET.get('page2', '1')  # 페이지
+    page2 = request.GET.get('page3', '1')
     question = Question.objects.all()
     question2 = Question2.objects.all()
     boardnews = BoardNews.objects.all()
@@ -24,11 +24,11 @@ def index(request):
     paginator2 = Paginator(longmonth_board, 5)
     page_obj = paginator.get_page(page)
     page_obj2 = paginator2.get_page(page2)
-    page3 = request.GET.get('page', '1')
+    page3 = request.GET.get('page1', '1')
     board_news = BoardNews.objects.order_by('-id')
     paginator3 = Paginator(board_news, 5)
     page_obj3 = paginator3.get_page(page3)
-    page4 = request.GET.get('page', '1')
+    page4 = request.GET.get('page4', '1')
     subscription =  Subscription.objects.all()
     subscription_board = Subscription.objects.order_by('-id')
     paginator4 = Paginator(subscription_board, 5)
@@ -130,7 +130,7 @@ def answer_modify(request, answer_id):
             answer = form.save(commit=False)
             answer.modify_date = timezone.now()
             answer.save()
-            return redirect('board/trade_result', question_id=answer.question.id)
+            return redirect('board:trade_result', question_id=answer.question.id)
     else:
         form = AnswerForm(instance=answer)
     context = {'answer': answer, 'form': form}
@@ -279,14 +279,14 @@ def answer_modify2(request, answer2_id):
     answer2 = get_object_or_404(Answer2, pk=answer2_id)
     if request.user != answer2.author:
         messages.error(request, '수정권한이 없습니다.')
-        return redirect('board:treade_result', question2_id=answer2.question.id)
+        return redirect('board:long_result', question2_id=answer2.question.id)
     if request.method == 'POST':
         form = AnswerForm(request.POST, instance=answer2)
         if form.is_valid():
             answer2 = form.save(commit=False)
             answer2.modify_date = timezone.now()
             answer2.save()
-            return redirect('board/trade_result', question2_id=answer2.question.id)
+            return redirect('board:long_result', question2_id=answer2.question.id)
     else:
         form = AnswerForm(instance=answer2)
     context = {'answer2': answer2, 'form': form}

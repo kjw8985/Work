@@ -1,4 +1,6 @@
 import shutil
+from sre_constants import BRANCH
+from matplotlib.figure import Figure
 import pandas as pd
 import numpy as np
 from pandas import DataFrame
@@ -17,9 +19,11 @@ from pandas import DataFrame
 from folium.plugins import MarkerCluster
 import pymysql
 from main.models import Subscription
+from branca.element import Figure
+import branca
 
 def search1(search):
-    conn = pymysql.connect(host='localhost', user='root', password='1q2w3e4r!!',
+    conn = pymysql.connect(host='localhost', user='root', password='03191121asd!@',
                        db='joomo', charset='utf8')
     
     # Connection 으로부터 Cursor 생성
@@ -56,12 +60,12 @@ def search1(search):
 
 def foliumMap(month, size):
     print('주택 거래 내역 가져오는 중')
-    test = pd.read_csv('media/csv_file/as_{}.csv'.format(month), encoding='CP949',skiprows=15)
-    tst=test.loc[:,['시군구', '전용면적(㎡)', '단지명','거래금액(만원)','계약년월']].replace(',','',regex=True).astype({'거래금액(만원)':float})
-    tst['평수'] = tst['전용면적(㎡)']/3.3
-    tst['평단가'] = tst['거래금액(만원)']/tst['평수']
-    tstt = tst.loc[:,['시군구','평수','단지명','평단가','계약년월']]
-    #print(tstt)
+    # test = pd.read_csv('media/csv_file/as_{}.csv'.format(month), encoding='CP949',skiprows=15)
+    # tst=test.loc[:,['시군구', '전용면적(㎡)', '단지명','거래금액(만원)','계약년월']].replace(',','',regex=True).astype({'거래금액(만원)':float})
+    # tst['평수'] = tst['전용면적(㎡)']/3.3
+    # tst['평단가'] = tst['거래금액(만원)']/tst['평수']
+    # tstt = tst.loc[:,['시군구','평수','단지명','평단가','계약년월']]
+    tstt = pd.read_csv('./as_{}.csv'.format(month), encoding='utf-8', engine="pyarrow")
     df = DataFrame()
 
     sigungu_arr = tstt.loc[:,'시군구'].unique() 
@@ -84,15 +88,16 @@ def foliumMap(month, size):
     print('법정동 정보 가져오는 중')
     #position = pd.read_excel('D:/kerina/git_final_pro/final_project/media/csv_file/pos.xlsx')
     #position.to_csv('D:/kerina/git_final_pro/final_project/media/csv_file/position.csv')
-    pos = pd.read_csv('media/csv_file/position.csv', encoding='utf-8')
-    poss = pos.loc[:,['시도','시군구','읍면동','하위','위도','경도']]
-    poss = poss.fillna('')
-    #else:
-    poss['시군구'] = poss['시도']+ ' '+poss['시군구'] +' '+poss['읍면동']+ ' '+poss['하위']
+    # pos = pd.read_csv('media/csv_file/position.csv', encoding='utf-8')
+    # poss = pos.loc[:,['시도','시군구','읍면동','하위','위도','경도']]
+    # poss = poss.fillna('')
+    # #else:
+    # poss['시군구'] = poss['시도']+ ' '+poss['시군구'] +' '+poss['읍면동']+ ' '+poss['하위']
+    #
+    # poss['평단가'] = np.nan
+    # poss = poss.loc[:, ['시군구', '위도','경도','평단가']]
 
-    poss['평단가'] = np.nan
-    poss = poss.loc[:, ['시군구', '위도','경도','평단가']]
-    
+    poss = pd.read_csv('./position.csv', encoding='utf-8', engine="pyarrow")
     #print(poss)
     print('지도와 평단가를 매칭하는 중')
     position = []
@@ -105,7 +110,7 @@ def foliumMap(month, size):
     for i in range(df.count()[0]):
         index_ = poss.loc[poss['시군구'].str.contains(df.loc[i,'시군구'][:-1], case=False, na=False)].index
         index_num.append(index_)
-    
+
     naindex= []
     for i in range(df.count()[0]):
         if len(index_num[i][:]) ==0:
@@ -119,7 +124,9 @@ def foliumMap(month, size):
     print(df_real.count()[0])
     #print(df_real['위도','경도'][1170:1180])
     
-    m = folium.Map(location = [37.500335, 127.037596],zoom_start=14,width='100%',height='100%')
+    fig = branca.element.Figure(width='100%',height='100%')
+    m = folium.Map(location = [37.500335, 127.037596],zoom_start=14)
+    fig.add_child(m)
     marker_cluster = MarkerCluster().add_to(m)   
     for i in range(df_real.count()[0]-1):
         try:
@@ -133,31 +140,8 @@ def foliumMap(month, size):
 
 def model(locate, size):
     print('데이터 모음 가져오는 중')
-    df = DataFrame()
-    df = pd.read_csv('media/csv_file/as_2203.csv',encoding='CP949',skiprows=15)
-    df = pd.concat((df,pd.read_csv('media/csv_file/as_2202.csv', encoding='CP949',skiprows=15)))
-    df = pd.concat((df,pd.read_csv('media/csv_file/as_2201.csv', encoding='CP949',skiprows=15)))
-    df = pd.concat((df,pd.read_csv('media/csv_file/as_2204.csv', encoding='CP949',skiprows=15)))
 
-    err = df.query('시군구 == "{}"'.format(locate)).loc[:,['시군구']]
-    
-    if (err.count()[0] ==0):
-        return 0
-    
-    for i in range(6,22):
-        for j in range(1,13):
-            i_z = str(i).zfill(2)
-            j_z = str(j).zfill(2)
-            df = pd.concat((df,pd.read_csv('media/csv_file/as_{0}{1}.csv'.format(i_z,j_z),encoding='CP949',skiprows=15, low_memory=False)))
-        print('20{}'.format(str(i).zfill(2)))
-        
-    print('데이터 프레임 생성 중')
-    tst=df.loc[:,['시군구', '전용면적(㎡)', '단지명','거래금액(만원)','계약년월','건축년도']].replace(',','',regex=True).astype({'거래금액(만원)':float})
-    tst['평수'] = tst['전용면적(㎡)']/3.3
-    tst['평단가'] = tst['거래금액(만원)']/tst['평수']
-    tst['준공기간'] = (tst['계약년월']/100) - tst['건축년도']
-    final_tst = tst.loc[:,['시군구','평수','단지명','평단가','계약년월','준공기간']]
-
+    final_tst = pd.read_csv('./test_total.csv',encoding='utf-8', engine="pyarrow")
 
     print('평당가 생성 중')
     price = []
@@ -168,7 +152,7 @@ def model(locate, size):
     pyengsu = {'10평대':'평수 >= 10 and 평수 < 15', '15평대':'평수 >= 15 and 평수 < 20','20평대':'평수 >= 20 and 평수 < 25',
             '25평대':'평수 >= 25 and 평수 < 30','30평대':'평수 >= 30 and 평수 < 35','35평대':'평수 >= 35 and 평수 < 40','40평대':'평수 >= 40 and 평수 < 45'}
 
-    for i in range(6,22):
+    for i in range(12,22):
         for j in range(1,13):
             i_z = str(i).zfill(2)
             j_z = str(j).zfill(2)
