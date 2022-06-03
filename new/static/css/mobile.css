@@ -1,12 +1,18 @@
-*{  
+* {
     margin: 0px;
     position: relative;
 }
-#background{
+
+#background {
     position: relative;
 }
-#background::before{
-    content:"";
+
+p {
+    margin-bottom: 0px;
+}
+
+#background::before {
+    content: "";
     background-image: url(/media/moonsky.jpg);
     background-repeat: repeat-x;
     animation: infinite;
@@ -20,45 +26,50 @@
     opacity: 0.5;
 }
 
-body{
+body {
     padding-top: 30%;
 }
 
-.main_content{
+.main_content {
     width: auto;
     margin: auto;
 }
-.left-content{
+
+.left-content {
     float: none;
     width: 100%;
 }
-.right-content{
+
+.right-content {
     float: none;
     width: 100%;
     position: top;
 }
+
 /* navbar 고정 */
 #maintitle {
-    display: flex;
-    align-items: center;
-    margin-left: 45%;
-    margin-right: auto;
+    font-size: xx-large;
+    text-align: center;
 }
+
 #indexpage {
     display: flex;
     align-items: center;
     margin: 1px;
 }
+
 #buttonset {
     display: flex;
     align-items: center;
     margin: auto;
     padding-left: 5%;
 }
+
 button {
-    margin-right: 0 ;
+    margin-right: 0;
     float: right;
 }
+
 #headtext {
     font-size: 0px;
 }
@@ -68,63 +79,76 @@ button {
     height: 25px;
 }
 
-#login{
-    font-size: 0; 
-}
-#logout{
+#login {
     font-size: 0;
 }
-/* 헤드 로그인 버튼 글씨 없애기 */ 
+
+#logout {
+    font-size: 0;
+}
+
+/* 헤드 로그인 버튼 글씨 없애기 */
 #headbtn {
     font-size: 0;
     image-rendering: url(http://www.w3.org/2000/svg);
 }
+
 #shodowbutton {
     margin-left: 20px;
 }
+
 #open {
     font-size: 0;
     image-rendering: url(http://www.w3.org/2000/svg);
 }
+
 #open2 {
     font-size: 0;
     image-rendering: url(http://www.w3.org/2000/svg);
 }
+
 /* 주택가격 변동 예측 */
 #one {
     align-items: center;
     margin: 0;
     width: 100%;
-    padding: 0; 
+    padding: 0;
 }
+
 #maintext1 {
     background-color: #d2e0f7;
 }
+
 #img1 {
     display: none;
 }
+
 #two {
     margin: 0;
     width: 100%;
     padding: 0;
 }
-#maintext2{
+
+#maintext2 {
     background-color: #d2e0f7;
 }
+
 #img2 {
     display: none;
 }
-#ggimg{
+
+#ggimg {
     max-width: 100%;
     height: auto;
     display: block;
 }
-#maintext3{
+
+#maintext3 {
     background-color: #d2e0f7;
     text-align: left;
 }
 
-#quick_table{
+#quick_table {
     display: flex;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -132,17 +156,21 @@ button {
     overflow-y: auto;
     margin-left: 0;
 }
-#quick_table tbody{
+
+#quick_table tbody {
     display: inline-flex;
 }
-.d1{
+
+.d1 {
     display: block;
     overflow-y: auto;
     overflow-x: auto;
 }
-.d2{
+
+.d2 {
     display: block;
 }
+
 #locate {
     width: 80%;
 }
@@ -155,23 +183,26 @@ button {
     width: 100%;
 
 }
+
 #text2 {
     width: auto;
     float: none;
 }
 
 /* 개인거래 게시판 */
-#boardcount{
+#boardcount {
     width: 20%;
 }
-.boardtext{
+
+.boardtext {
     display: revert;
 }
 
-#maintext4{
+#maintext4 {
     background-color: #d2e0f7;
     text-align: left;
 }
+
 #indexwritebutton {
     float: right;
     margin-top: 5%;
@@ -180,22 +211,22 @@ button {
 
 
 /* 개인거래 게시판 signup */
-#signupbox{
+#signupbox {
     width: 100%;
     margin: 7% auto 0;
     padding: 0;
     box-shadow: none;
     font-family: "IBMPlexSansKR-Regular";
-        font-size: 4vw;
+    font-size: 4vw;
 }
 
-#writeboardtitle{
+#writeboardtitle {
     font-family: "SLEIGothicTTF";
     font-size: 8vw;
 }
 
 /* 개인거래 게시판 댓글 */
-#commentbox{
+#commentbox {
     width: 100%;
     margin: 7% auto 0;
     margin-bottom: 3%;
@@ -203,16 +234,18 @@ button {
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }
 
-#writecommentbox{
+#writecommentbox {
     text-align: center;
     margin-bottom: 1%;
 }
-#commentwrite{
+
+#commentwrite {
     resize: none;
     width: 90%;
     margin-bottom: 1%;
 }
-#commenton{
+
+#commenton {
     position: static;
     margin-left: 75%;
 }
@@ -224,20 +257,101 @@ button {
     margin-bottom: 1%;
     width: 100%;
 }
+
 #areatext {
     resize: none;
     margin-bottom: 1%;
     width: 100%;
 }
 
+/* 청약분양 페이지 */
+.table--block thead {
+    display: none;
+}
+
+.table--block tr {
+    display: block;
+    margin-bottom: 10px;
+    border-top: none;
+}
+
+.table--block th {
+    display: block;
+    position: relative;
+    padding: 10px 0;
+    padding-left: 50%;
+    border-width: 0 0 1px 0;
+}
+
+.table--block td {
+    display: block;
+    position: relative;
+    padding: 10px 0;
+    padding-left: 50%;
+    border-width: 0 0 1px 0;
+}
+
+.table--block td:before {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    padding: 10px 0;
+    background: #ccc;
+}
+
+.table--block td:nth-child(1):before {
+    content: '청약명';
+}
+
+.table--block td:nth-child(2):before {
+    content: '공급위치';
+}
+
+.table--block td:nth-child(3):before {
+    content: '특별공급일';
+}
+
+.table--block td:nth-child(4):before {
+    content: '2순위공급일';
+}
+
+.table--block td:nth-child(5):before {
+    content: '타입1 평형';
+}
+
+.table--block td:nth-child(6):before {
+    content: '타입2 평형';
+}
+
+.table--block td:nth-child(7):before {
+    content: '타입1 금액';
+}
+
+.table--block td:nth-child(8):before {
+    content: '타입2 금액';
+}
+
+#d3 {
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+}
+
+#d4 {
+    width: auto;
+}
+
 /* 뉴스 */
-#maintext5{
+#maintext5 {
     background-color: #d2e0f7;
     text-align: left;
-
 }
 
 /* 구현버튼들 */
-#button{
+#button {
     font-size: 5vw;
 }

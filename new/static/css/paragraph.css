@@ -38,7 +38,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 2;
     background-color: #7b9acc;
     opacity: 1;
 }
@@ -49,21 +49,14 @@ header {
     margin: auto;
 }
 
-/* 왼쪽 section */
+/* 게시판들 중앙 레이아웃 */
 
-.left-content {
-    float: left;
-    width: 70%;
+#board-list {
+    width: 50%;
+    margin: 0 auto;
 }
 
 
-
-/* 오른쪽 section */
-
-.right-content {
-    float: right;
-    width: 30%
-}
 
 
 /* signup */
@@ -179,10 +172,7 @@ header {
 /* index */
 
 #maintitle {
-    display: flex;
-    align-items: center;
-    margin-left: 49%;
-    margin-right: auto;
+    text-align: center;
 }
 
 #indexpage {
@@ -525,7 +515,31 @@ h1 {
     cursor: pointer;
 }
 
+#headbtn {
+    all: unset;
+    background-color: steelblue;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 /* 평단가 지도 */
 iframe {
     position: fixed;
+}
+
+
+
+/* 청약분양 테이블 */
+#d3 {
+    width: 20%;
+}
+
+#d4 {
+    width: 10%;
+}
+
+#loading {
+    text-align: center;
 }

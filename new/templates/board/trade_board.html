@@ -47,11 +47,11 @@
                                             <p id= "writingtime">{{ question.create_date | date:'Y-m-d H:i:s'}}</p>
                                         </td>
                                         <td style="width:10%;">
-                                            <p> {{question.hit}} 회</p>
+                                            <p> {{question.hit | default_if_none:"0" }} 회</p>
                                         </td>
                                         {% endfor %}
                                         {% endif %}
-                                </tr>
+                                    </tr>
                             <!-- 게시글 불러오기 끝 -->
                             </tbody>
                         </table>

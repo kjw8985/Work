@@ -47,7 +47,7 @@
                                             <p id= "writingtime">{{ question2.create_date | date:'Y-m-d H:i:s' }}</p>
                                         </td>
                                         <td style="width:10%;">
-                                            <p> {{question2.hit}} 회</p>
+                                            <p> {{question2.hit | default_if_none:"0"}} 회</p>
                                         </td>
                                         {% endfor %}
                                         {% endif %}

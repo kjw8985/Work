@@ -2,7 +2,7 @@
     {% load board_filter %} <!-- 게시글 불러오기 위해 보드앱에 만들어 놓은 템플릿테그 폴더 안에 board_filter 를 로드-->
     {% block content %}
     <title>joomo</title>
-    <div class='main_content'>
+    {% comment %} <div class='main_content'>
     <section class="right-content">
         <div id = "one">
             <a href="{% url 'main:variable_pd' %}"><img id = "img1" src = "/media/graph.jpg"><p id = 'maintext1'>주택가격 변동 예측하기</p></a>
@@ -11,11 +11,35 @@
             <a href="{% url 'main:avg' %}"><img id = "img2" src = "/media/map.png"><p id = 'maintext2'>평단가를 알려줘</p></a>
         </div>
 
-    </section>
-            <!-- 최신 부동산 뉴스 불러오기 시작-->
-     <style>
-     </style>
-        <section class='left-content'>
+    </section> {% endcomment %}
+    <style>
+        * {
+            border: solid red 1px;
+        }
+    </style>
+
+    <!-- Carousel -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel" style="width:300px; margin:0 auto;">
+  
+    <!-- The slideshow/carousel -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a href="{% url 'main:variable_pd' %}"><img src="/media/graph.jpg" class="d-block w-100"></a>
+      </div>
+      <div class="carousel-item">
+        <a href="{% url 'main:avg' %}"><img src = "/media/map.png" class="d-block w-100"></a>
+      </div>
+    </div>
+  
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+        <div id='board-list'>
             <div id = "news"><a href="{% url 'board:board_news' %}">부동산 뉴스</a>
                            <table class="table">
                                 <thead>
@@ -102,23 +126,23 @@
                   <table class="table">
                       <thead>
                         <tr>
-                          <th>순번</th>
                           <th>제목</th>
-                          <th>댓글수</th>
-                          <th>작성일</th>
-                          <th>조회수</th>
+                          <th class="col-2">작성일</th>
+                          <th class="col-2">조회수</th>
                         </tr>
                       </thead>
                         <tbody>
                             {% if trade_board %}
                             {% for question in trade_board %}
+                            
                             <tr>
-                              <td class="boardtext">
-                                {{ question.id }}</td>
-                                <td><a href="{% url 'board:trade_result' question.id %}">{{ question.subject }}</a></td>
-                                <td>{{ question.answer_set.count }}</td>
+                                <td><a href="{% url 'board:trade_result' question.id %}">{{ question.subject }} [{{ question.answer_set.count }}]</a></td>
+                                {% if question.question_created_string == False %}
+                                <td>{{ question.create_date | date:"m-d"}}</td>
+                                {% else %}
                                 <td>{{ question.question_created_string }}</td>
-                                <td>{{ question.hit }}</td>
+                                {% endif %}
+                                <td>{{ question.hit | default_if_none:"0"}}</td>
                             {% endfor %}
                             {% endif %}
                             </tr>
@@ -182,23 +206,22 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th>순번</th>
                         <th>제목</th>
-                        <th>댓글수</th>
-                        <th>작성일</th>
-                        <th>조회수</th>
+                        <th class="col-2">작성일</th>
+                        <th class="col-2">조회수</th>
                       </tr>
                     </thead>
                       <tobody>
                           {% if longmonth_board %}
                           {% for question2 in longmonth_board %}
                           <tr>
-                            <td class="boardtext">
-                              {{ question2.id }}</td>
-                              <td><a href="{% url 'board:long_result' question2.id %}">{{ question2.subject }}</a></td>
-                              <td>{{ question2.answer2_set.count }}</td>
+                              <td><a href="{% url 'board:long_result' question2.id %}">{{ question2.subject }} [{{ question2.answer2_set.count }}]</a></td>
+                              {% if question2.question2_created_string == False %}
+                              <td>{{ question2.create_date | date:"m-d"}}</td>
+                              {% else %}
                               <td>{{ question2.question2_created_string }}</td>
-                              <td>{{ question2.hit }}</td>
+                              {% endif %}
+                              <td>{{ question2.hit | default_if_none:"0"}}</td>
                           {% endfor %}
                           {% endif %}
                           </tr>
@@ -261,7 +284,7 @@
                   <table id = "quick_table">
                     <thead>
                       <tr>
-                        <th class="d2"><p>청약1명</p></th>
+                        <th class="d2"><p>청약명</p></th>
                         <th class="d2"><p>청약일</p></th>
                         <th class="d2"><p>평형</p></th>
                         <th class="d2"><p>금액</p></th>
@@ -331,7 +354,7 @@
                             <a class="page-link" href="?page4={{ subscription_board.paginator.num_pages }}">>></a>
                         </li>
                         {% else %}
-                        <li class="page-item disabled
+                        <li class="page-item disabled">
                             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
                         </li>
                         {% endif %}
@@ -339,6 +362,6 @@
                 </div>
                 <!-- 페이징처리 끝 -->
             </div>
-    </section>
+        </div>
     </div>
     {% endblock %}
