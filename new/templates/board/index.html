@@ -2,36 +2,17 @@
     {% load board_filter %} <!-- 게시글 불러오기 위해 보드앱에 만들어 놓은 템플릿테그 폴더 안에 board_filter 를 로드-->
     {% block content %}
     <title>joomo</title>
-    {% comment %} <div class='main_content'>
-    <section class="right-content">
-        <div id = "one">
-            <a href="{% url 'main:variable_pd' %}"><img id = "img1" src = "/media/graph.jpg"><p id = 'maintext1'>주택가격 변동 예측하기</p></a>
-        </div>
-        <div id = "two">
-            <a href="{% url 'main:avg' %}"><img id = "img2" src = "/media/map.png"><p id = 'maintext2'>평단가를 알려줘</p></a>
-        </div>
-
-    </section> {% endcomment %}
-    <style>
-        * {
-            border: solid red 1px;
-        }
-    </style>
-
-    <!-- Carousel -->
-<div id="demo" class="carousel slide" data-bs-ride="carousel" style="width:300px; margin:0 auto;">
-  
-    <!-- The slideshow/carousel -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel" style="width:50%; margin:0 auto;">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <a href="{% url 'main:variable_pd' %}"><img src="/media/graph.jpg" class="d-block w-100"></a>
+        <div class="inner_text">가격변동 확인하기 <p class="inner_text_sub">주택가격이 오를지 확인해보세요</p></div>
+        <a href="{% url 'main:variable_pd' %}"><img src="/media/12345.png"class="d-block w-100" style="height:300px;"></a>
       </div>
       <div class="carousel-item">
-        <a href="{% url 'main:avg' %}"><img src = "/media/map.png" class="d-block w-100"></a>
+        <div class="inner_text">가격지도 확인하기 <p class="inner_text_sub">지도에서 평단가를 확인해보세요</p> </div>
+        <a href="{% url 'main:avg' %}"><img src = "/media/12345678.png" class="d-block w-100" style="height:300px;"></a>
       </div>
     </div>
-  
-    <!-- Left and right controls/icons -->
     <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
       <span class="carousel-control-prev-icon"></span>
     </button>
@@ -40,7 +21,7 @@
     </button>
   </div>
         <div id='board-list'>
-            <div id = "news"><a href="{% url 'board:board_news' %}">부동산 뉴스</a>
+            <div id = "news"><p id="newstitle"><a href="{% url 'board:board_news' %}">부동산 뉴스</a></p>
                            <table class="table">
                                 <thead>
                                     <tr>
@@ -284,27 +265,27 @@
                   <table id = "quick_table">
                     <thead>
                       <tr>
-                        <th class="d2"><p>청약명</p></th>
-                        <th class="d2"><p>청약일</p></th>
-                        <th class="d2"><p>평형</p></th>
-                        <th class="d2"><p>금액</p></th>
+                        <th class="d2" style="width:40%;"><p>청약명</p></th>
+                        <th class="d2"style="width:20%;"><p>청약일</p></th>
+                        <th class="d2"style="width:20%;"><p>평형</p></th>
+                        <th class="d2"style="width:20%;"><p>금액</p></th>
                       </tr>
                     </thead>
                     <tbody>
                       {% if subscription_board %}
                       {% for subscription in subscription_board %}
                       <tr>
-                        <td class="d1">
+                        <td class="d1" style="width:40%;">
 
                           <p>{{subscription.title}}&nbsp;&nbsp;</p>
                         </td>
-                        <td class="d1">
+                        <td class="d1" style="width:20%;">
                           <p>{{subscription.date_start| date:'Y-m-d'}}&nbsp;&nbsp;</p>
                         </td>
-                        <td class="d1">
+                        <td class="d1" style="width:20%;">
                           <p>{{subscription.size_one}}㎡&nbsp;&nbsp;</p>
                         </td>
-                        <td class="d1">
+                        <td class="d1" style="width:20%;">
                           <p>{{subscription.price_one}}만원&nbsp;&nbsp;</p>
                         </td>
 

@@ -1,7 +1,10 @@
+{% load socialaccount %}
+{% providers_media_js %}
 <!-- 헤더, 네비게이션 바-->
 <header xmlns="http://www.w3.org/1999/html" class=" bg-shodow text-white col-xs">
-  <li id ="maintitle"><a href="{% url 'board:index' %}" class="col-xs nav-link px-1 text-dark">주<span style="font-size:18px;">택 거래하는 사람들의</span>모<span style="font-size:18px;">임</span></a></li>
-    <ul class="nav col-xs">
+  
+    <div class="nav">
+      <div id ="maintitle"><a href="{% url 'board:index' %}" class="col nav-link px-1 text-dark">주<span style="font-size:18px;">택 거래하는 사람들의</span>모<span style="font-size:18px;">임</span></a></div>
       <a id ="indexpage" href="{% url 'main:variable_pd' %}" class="nav-link px-2 text-dark">
         <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
@@ -28,11 +31,13 @@
           <span id="buttonset" class="col-2 center">
 
             {% if not user.is_authenticated %}
+            <div id="modal_login">
               <a href="{% url 'common:signup' %}"><button type="button" id="open2" class="btn btn-outline-dark me-2" id="headbtn" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
               <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
               <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
               <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
             </svg>회원가입</button></a>
+          </div>
             <div id="modal_login">
               <button type="button" id='open' class="btn btn-outline-dark me-2" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
@@ -62,6 +67,19 @@
                                     value="{{ form.password.value|default_if_none:'' }}">
                           </div>
                           <button type="submit" class="btn btn-primary">로그인</button>
+                          </br>
+                          <a href="{% provider_login_url 'google' %}">
+                              <img src="\media\google.png">
+                          </a>
+                          </br>
+                          <a href="{% provider_login_url 'naver' %}">
+                              <img src="\media\naver.png">
+                          </a>
+                          </br>
+                          <a href="{% provider_login_url 'kakao' %}">
+                              카카오로그인
+                          </a>
+
                       </form>
                   </div>
               </div>
@@ -83,14 +101,16 @@
             </script>
             {% endif %}
             {% if user.is_authenticated %}
+            <div id="modal_login">
             <button class="btn btn-outline-shodow" id="shodowbutton"></button>
             <a href="{% url 'common:logout' %}"><button type="button" class="btn btn-outline-dark me-2" id="headbtn">{{ user.username }} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock-fill" viewBox="0 0 16 16">
             <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2z"/>
             </svg>(로그아웃)</button></a>
+          </div>
             {% else %}
       {% endif %}
           </span>
-  </ul>
+        </div>
 </header>
 
 

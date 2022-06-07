@@ -22,6 +22,14 @@
     font-style: normal;
 }
 
+/* 메뉴바 폰트 */
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 
 /* navbar */
@@ -35,7 +43,10 @@
 }
 
 #indexpage {
-    font-family: "";
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
     font-size: 18px;
 }
 
@@ -54,6 +65,14 @@ li {
 
 a {
     text-decoration: none;
+}
+
+#modal_login {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    color: black;
 }
 
 /* signup */
@@ -111,6 +130,8 @@ a {
     font-size: 30px;
     text-decoration: none;
     text-align: center;
+    text-align: left;
+    margin: 3%;
 }
 
 #one {
@@ -405,4 +426,30 @@ tbody {
     padding: 0.2%;
     font-size: 18px;
     text-align: center;
+}
+
+.inner_text {
+    position: absolute;
+    z-index: 1;
+    font-family: "SLEIGothicTTF";
+    font-size: 38px;
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.inner_text_sub {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 26px;
+}
+
+.carousel-control-prev-icon {
+    width: 24px;
+    height: 24px;
+    background-color: black;
+}
+
+.carousel-control-next-icon {
+    width: 24px;
+    height: 24px;
+    background-color: black;
 }
