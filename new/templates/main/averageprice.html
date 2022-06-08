@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
     <title>가격지도</title>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
     <h1>평단가를 알려줘~</h1>
     <form action="{% url 'main:map_html'%}" method = 'post'>
         {% csrf_token %}
@@ -24,9 +26,22 @@
             </select>
             </div>
         <div id = "buttonbox">
-            <button id ="button">지도보기</button>
+            <input type='submit' id='button' value ='지도보기'>
         </div>
     </form>
+
+    <script>
+        $(document).ready(function() {
+        $('#loading').hide();
+        $('#button').click(function(){
+            $('#loading').show();
+            return ture;
+                });
+            });
+    </script>
+<div id = "loading" class = "loading_img">
+<img src="https://www.railtrip.co.kr/image/loading2.gif">
+</div>
 
     
 {% endblock%}

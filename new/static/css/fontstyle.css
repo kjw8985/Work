@@ -185,9 +185,11 @@ a {
     color: #fff;
 }
 
-thead {
+#maintable thead {
     font-family: "IBMPlexSansKR-Regular";
     font-size: 18px;
+    color: #fff;
+    background-color: black;
 }
 
 tbody {

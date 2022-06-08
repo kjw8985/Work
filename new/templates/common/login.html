@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load socialaccount %}
+{% providers_media_js %}
 {% block content %}
 <title>로그인</title>
     <h1>로그인</h1>
@@ -20,6 +22,18 @@
                    value="{{ form.password.value|default_if_none:'' }}">
         </div>
         <button type="submit" class="btn btn-primary">로그인</button>
+        </br>
+        <a href="{% provider_login_url 'google' %}">
+            <img src="\media\google.png">
+        </a>
+        </br>
+        <a href="{% provider_login_url 'naver' %}">
+            <img src="\media\naver.png">
+        </a>
+        </br>
+        <a href="{% provider_login_url 'kakao' %}">
+          <img src="\media\kakao.png">
+        </a>
 <!--        <input type="button" value="창닫기" onclick="self.close();" />-->
     </form>
 </div>
