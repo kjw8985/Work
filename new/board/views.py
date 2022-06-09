@@ -46,7 +46,7 @@ def index(request):
 def trade(request):
     page = request.GET.get('page', '1')  # 페이지
     trade_board = Question.objects.order_by('-create_date')
-    paginator = Paginator(trade_board, 5)  # 페이지당 5개씩 보여주기
+    paginator = Paginator(trade_board, 10)  # 페이지당 10개씩 보여주기
     page_obj = paginator.get_page(page)
     context = {'trade_board': page_obj}
     return render(request, 'board/trade_board.html', context)
@@ -206,7 +206,7 @@ def trade_board_result(request, question_id):
 def longmonth_board(request):
     page = request.GET.get('page', '1')  # 페이지
     longmonth_board = Question2.objects.order_by('-create_date')
-    paginator = Paginator(longmonth_board, 5)  # 페이지당 5개씩 보여주기
+    paginator = Paginator(longmonth_board, 10)  # 페이지당 10개씩 보여주기
     page_obj = paginator.get_page(page)
     context = {'longmonth_board': page_obj}
     return render(request, 'board/longmonth_board.html', context)

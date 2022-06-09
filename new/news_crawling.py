@@ -8,7 +8,7 @@ def news_crawling():
     def insert():
         conn = pymysql.connect(host='localhost',
                                user='root',
-                               password='2352486',
+                               password='03191121asd!@',
                                db='joomo',
                                charset='utf8')
 
@@ -21,7 +21,7 @@ def news_crawling():
 
 
     dt_now = datetime.datetime.now()
-    result = dt_now.strftime("%Y년 %m월 %d일")
+    result = dt_now.strftime("%Y년 %m월 %d일".encode('unicode-escape').decode()).encode().decode('unicode-escape')
     datecreated = result
     header = {'User-agent' : 'Mozila/2.0'}
 
