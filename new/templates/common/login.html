@@ -21,7 +21,8 @@
                    placeholder="비밀번호를 입력하세요"
                    value="{{ form.password.value|default_if_none:'' }}">
         </div>
-        <button type="submit" class="btn btn-primary">로그인</button>
+        <button type="submit" id="submit" style="font-size: 21px; padding:8px; border-radius:8px;">로그인</button>
+
         </br>
         <a href="{% provider_login_url 'google' %}">
             <img src="\media\google.png">
