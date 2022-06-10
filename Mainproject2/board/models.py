@@ -13,6 +13,8 @@ class Question(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     modify_date = models.DateTimeField(null=True, blank=True)
     hit = models.PositiveIntegerField(null=True, blank=True, default=0)
+    imgfile = models.FileField(upload_to='Uploaded_Files/%y/%m/%d/',blank=True)
+    uploadDate = models.DateField(auto_now = True)
 
     def __str__(self):
         return self.subject

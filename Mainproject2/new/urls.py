@@ -29,4 +29,7 @@ urlpatterns = [
     path('', views.index, name='index'),  # '/' 에 해당되는 path
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('allauth.urls')),
-]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+]
+# + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

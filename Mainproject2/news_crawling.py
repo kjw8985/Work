@@ -21,7 +21,7 @@ def news_crawling():
 
 
     dt_now = datetime.datetime.now()
-    result = dt_now.strftime("%Y년 %m월 %d일".encode('unicode-escape').decode()).encode().decode('unicode-escape')
+    result = dt_now.strftime("%Y년 %m월 %d일")
     datecreated = result
     header = {'User-agent' : 'Mozila/2.0'}
 

@@ -5,10 +5,13 @@ from board.models import Question, Answer, Question2, Answer2, BoardNews
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question  # 사용할 모델
-        fields = ['subject', 'content']  # QuestionForm에서 사용할 Question 모델의 속성
+        fields = ['subject', 'content','imgfile']  # QuestionForm에서 사용할 Question 모델의 속성
         textarea = {
             'subject': '',
             'content': '',
+        }
+        label = {
+            'imgfile': '첨부파일'
         }
 # 개인거래 게시판 댓글 폼
 class AnswerForm(forms.ModelForm):

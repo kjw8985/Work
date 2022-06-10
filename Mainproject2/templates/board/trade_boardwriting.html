@@ -2,7 +2,7 @@
 {% block content %}
 <title>개인거래 게시판 리뷰작성</title>
     <article id = "writewrap">
-        <form method="post" id="titleandtext">
+        <form method="post" id="titleandtext" enctype="multipart/form-data">
             {% csrf_token %}
 
             <!-- 오류 표시 시작-->
@@ -42,7 +42,9 @@
 내용▶
                 </textarea>
                 <br>
-
+                <label for="imgfile">첨부파일 : </label>
+                <input type="file" class="form-control" name="imgfile" id="imgfile">
+                <br>
                 <button id="goback" type="button" class="btn btn-outline-secondary" style="padding:0.5%; width:150px; font-size:18px;" onclick="location.href='{% url 'board:trade' %}' " >글작성 취소</button>
                 <input id ="writing" type= "submit"  class="btn btn-outline-secondary" style="padding:0.5%; width:150px; font-size:18px;" name="" value='글쓰기'/>
              </div>

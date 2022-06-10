@@ -1,6 +1,7 @@
 from turtle import update
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from board import models
 from .models import Question, Question2, Answer, Answer2, BoardNews
 from django.http import HttpResponseNotAllowed
 from .forms import QuestionForm, AnswerForm, Question2Form, Answer2Form, BoardNewsForm
@@ -60,8 +61,13 @@ def trade_writi(request):
         if form.is_valid():
             question = form.save(commit=False)
             question.author = request.user
+            question.imgfile = request.FILES.get('imgfile','')
+            b_fj = models.Question(
+                imgfile= question
+            )
             question.create_date = timezone.now()
             question.save()
+            # b_fj.save()
             return redirect('board:trade')
     else:
         form = QuestionForm()
