@@ -4,20 +4,15 @@
     {% load static %}
 <link rel="stylesheet"  href="{% static 'css/board_btn.css'%}?after">
     <title>joomo</title>
-    <style>
-        *{
-            border:1px solid red;
-        }
-    </style>
 <div id="demo" class="carousel slide" data-bs-ride="carousel" style="width:50%; margin:0 auto;">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="inner_text">가격변동 확인하기 <p class="inner_text_sub">주택가격이 오를지 확인해보세요</p></div>
-        <a href="{% url 'main:variable_pd' %}"><img src="/media/12345.png"class="d-block w-100" style="height:300px;"></a>
+        <a href="{% url 'main:variable_pd' %}"><img src="/media/var_img.png"class="d-block w-100" style="height:300px;"></a>
       </div>
       <div class="carousel-item">
         <div class="inner_text">가격지도 확인하기 <p class="inner_text_sub">지도에서 평단가를 확인해보세요</p> </div>
-        <a href="{% url 'main:avg' %}"><img src = "/media/12345678.png" class="d-block w-100" style="height:300px;"></a>
+        <a href="{% url 'main:avg' %}"><img src = "/media/avg_img.png" class="d-block w-100" style="height:300px;"></a>
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
@@ -108,9 +103,7 @@
             <div id = "three">
                 <p id = "maintext4">
                     <a href="{% url 'board:trade' %}">개인거래 게시판</a>
-                    <span>
-                    <button class="button button--quidel button--round-s" style="float:right;"onclick="location.href='{% url 'board:trade_writi'%}' ">글쓰기</button>
-                    </span>
+                    <button class="button button--quidel button--round-s" style="margin-top:0.6%;float:right;"onclick="location.href='{% url 'board:trade_writi'%}' ">글쓰기</button>
                     {% comment %} <button id = "indexwritebutton" class="btn btn-primary"  onclick="location.href='{% url 'board:trade_writi'%}' ">새글쓰기</button> {% endcomment %}
                 </p>
                 <div class="table-wrap">
@@ -191,7 +184,7 @@
             <div id = "four">
                 <p id = "maintext5">
                      <a href="{% url 'board:long_board' %}">전월세 물건지 리뷰</a>
-                     <button class="button button--quidel button--round-s" style="float:right;"onclick="location.href='{% url 'board:long_writi' %}' ">새글쓰기</button>
+                     <button class="button button--quidel button--round-s" style="margin-top:0.6%;float:right;"onclick="location.href='{% url 'board:long_writi' %}' ">새글쓰기</button>
                 </p>
                 <div class="table-wrap">
                 <table class="table" id="maintable">
