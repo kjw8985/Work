@@ -455,3 +455,20 @@ tbody {
     height: 24px;
     background-color: black;
 }
+
+/* footer */
+
+footer {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 15px;
+}
+
+footer>div>span {
+    margin-left: 1%;
+    margin-right: 1%;
+    opacity: 0.5;
+}
+
+footer>div>p {
+    margin-top: 2%;
+}

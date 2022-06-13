@@ -3,6 +3,11 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet"  href="{% static 'css/board_btn.css'%}?after">
+<style>
+    #fileimg {
+        text-align: center;
+    }
+</style>
 <!-- board_filter 로드해야 작동됨-->
 
     <!-- 작성글 보여주기 -->
@@ -23,7 +28,7 @@
         <pre>
         <p>{{ question.content }}</p>
         <div id ="fileimg">
-        <p><img src="/media/{{ question.imgfile }}" /></p>
+        <p><img src="/media/{{ question.imgfile }}" style="width:500px"/></p>
         </div>
         </pre>
     </div>

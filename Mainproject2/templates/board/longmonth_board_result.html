@@ -2,6 +2,11 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet"  href="{% static 'css/board_btn.css'%}?after">
+<style>
+    #fileimg2 {
+        text-align: center;
+    }
+</style>
     <title>전월세 게시판</title>
     <div id="signupbox" style = "margin-bottom: 5%;">
         <p id="writeboardtitle">🏠 {{ question2.subject }}</p>
@@ -21,6 +26,9 @@
     <hr>
         <pre>
         <p>{{ question2.content }}</p>
+        <div id ="fileimg2">
+        <p><img src="/media/{{ question2.longmonth_img }}" style="width:500px"/></p>
+        </div>
         </pre>
     </div>
     <div>

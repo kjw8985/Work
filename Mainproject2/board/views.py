@@ -62,12 +62,8 @@ def trade_writi(request):
             question = form.save(commit=False)
             question.author = request.user
             question.imgfile = request.FILES.get('imgfile','')
-            b_fj = models.Question(
-                imgfile= question
-            )
             question.create_date = timezone.now()
             question.save()
-            # b_fj.save()
             return redirect('board:trade')
     else:
         form = QuestionForm()
@@ -226,6 +222,7 @@ def longmonth_writi(request):
         if form.is_valid():
             question2 = form.save(commit=False)
             question2.author = request.user
+            question2.longmonth_img = request.FILES.get('longmonth_img','')
             question2.create_date = timezone.now()
             question2.save()
             return redirect('board:long_board')
@@ -247,8 +244,8 @@ def longmonth_writi_modify(request, question2_id):
             return redirect('board:long_result', question2_id=question2.id)
     else:
         form = Question2Form(instance=question2)
-    context = {'form': form}
-    return render(request, 'board/longmonth_boardwriting.html', context)
+    context = {'question2':question2,'form': form}
+    return render(request, 'board/longmonth_board_modify.html', context)
 
 
 # 전원세 게시판 글삭제 뷰
