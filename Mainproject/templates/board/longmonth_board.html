@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load board_filter %} <!-- 게시글 불러오기 위해 보드앱에 만들어 놓은 템플릿테그 폴더 안에 board_filter 를 로드-->
+{% block content %}
+{% load static %}
+<link rel="stylesheet"  href="{% static 'css/board_btn.css'%}?after">
+    <title>전월세 게시판</title>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <!-- 텍스트 자리는 앞에 선택한것에 반응시키기 -->
+                    <h1>전월세 게시판</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- 버튼 style 넣기 -->
+                    <button class="button button--quidel button--round-s" style="float:right;" onclick="location.href='{% url 'board:long_writi' %}' ">글쓰기</button>
+                    <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr>                                    
+                                    <th>글제목</th>
+                                    <th>유저명</th>
+                                    <th>작성시간</th>
+                                    <th>조회수</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <!-- 게시글 불러오기 시작 -->
+                                {% if longmonth_board %}
+                                {% for question2 in longmonth_board %}
+                                    <tr>
+                                        <td style="width:35%;">
+                                            <!-- board_filter 로드해야 작동됨-->
+                                            {{ longmonth_board.paginator.count|sub:longmonth_board.start_index|sub:forloop.counter0|add:1 }}
+                                            <a id ="boardtitle" href ="{% url 'board:long_result' question2.id %}">{{ question2.subject|truncatechars:19}}&nbsp;&nbsp;</a>
+                                            <!-- 댓글 표시 시작-->
+                                            {% if question2.answer2_set.count > 0 %}
+                                        <span class="text-danger small mx 3">댓글수: {{ question2.answer2_set.count }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td style="width:15%;">
+                                            <p>{{ question2.author.username }}</p>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <p id= "writingtime">{{ question2.create_date | date:'Y-m-d H:i:s' }}</p>
+                                        </td>
+                                        <td style="width:10%;">
+                                            <p> {{question2.hit | default_if_none:"0"}} 회</p>
+                                        </td>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </tr>
+                            <!-- 게시글 불러오기 끝-->
+                            </tbody>
+                        </table>
+                            <!-- 페이징 처리 -->
+                        <div>
+                            <ul class="pagination justify-content-center">
+                                <!-- 이전 페이지 -->
+                                {% if longmonth_board.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ longmonth_board.previous_page_number }}">이전</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                                </li>
+                                {% endif %}
+                                <!-- 페이지리스트 -->
+                                {% for page_number in longmonth_board.paginator.page_range %}
+                                {% if page_number >= longmonth_board.number|add:-5 and page_number <= longmonth_board.number|add:5 %}
+                                {% if page_number == longmonth_board.number %}
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                               </li>
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                                <!-- 다음페이지 -->
+                                {% if longmonth_board.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ longmonth_board.next_page_number }}">다음</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <!-- 페이징처리 끝 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

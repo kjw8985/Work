@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+    <title>전월세 리뷰작성</title>
+    <article id = "writewrap">
+        <form method="post" id = "titleandtext">
+            {% csrf_token %}
+
+               <!-- 오류 표시 시작-->
+            {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for field in form %}
+                {% if field.errors %}
+                <div>
+                    <strong>{{ field.textarea }}</strong>
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            <!-- 오류 표시  끝-->
+            <div id="titlearea">
+                <textarea id="areatitle" cols = "130"rows="1" name="subject" id="subject" placeholder="제목을 입력해주세요">{{ question2.subject}}</textarea>
+            </div>
+            <div id="textarea">
+                <textarea id="areatext" cols="130"rows="20" name="content" id-="content" placeholder="글내용을 입력해주세요">{{ question2.content}}
+                </textarea>
+                <br>                         
+                <button id="goback" type="button" class="btn btn-outline-secondary" style="padding:0.5%; width:150px; font-size:18px;" onclick="location.href='{% url 'board:long_board' %}' " >글작성 취소</button>
+                <input id ="writing" type= "submit"  class="btn btn-outline-secondary" style="padding:0.5%; width:150px; font-size:18px;" name="" value='글쓰기'/>
+            </div>
+        </form>
+    </article>
+{% endblock %}

@@ -1,0 +1,474 @@
+@font-face {
+    font-family: 'JSArirang-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSArirang-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    color: black;
+}
+
+/* 큰제목 전용 폰트 */
+@font-face {
+    font-family: 'SLEIGothicTTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SLEIGothicTTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 내용 전용 폰트 , 문단제목 설정시 이 폰트로 bold 설정주기 */
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 메뉴바 폰트 */
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+/* navbar */
+#maintitle {
+    font-size: 45px;
+    font-family: 'JSArirang-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSArirang-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    color: black;
+}
+
+#indexpage {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px;
+}
+
+
+h1 {
+    margin: 7%;
+    font-family: "SLEIGothicTTF";
+    text-align: center;
+    font-size: 48px;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+#modal_login {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    color: black;
+}
+
+/* signup */
+#signupbox {
+    background: white;
+    color: black;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+    text-align: left;
+}
+
+#signupbox>#box {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+#idcheck {
+    background: black;
+    color: white;
+    font-size: 15px;
+    transition: 0.5s;
+}
+
+#idcheck:hover {
+    background: white;
+    color: black;
+}
+
+#namecheck {
+    background: black;
+    color: white;
+    font-size: 15px;
+    transition: 0.5s;
+}
+
+#namecheck:hover {
+    background: white;
+    color: black;
+}
+
+#submit {
+    color: white;
+    background: black;
+    transition: 0.5s;
+}
+
+#submit:hover {
+    color: black;
+    background: white;
+}
+
+/* index */
+#news {
+    font-family: "SLEIGothicTTF";
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+    text-align: left;
+    margin: 3%;
+}
+
+#one {
+    text-align: center;
+}
+
+#maintext1 {
+    font-family: "SLEIGothicTTF";
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#two {
+    text-align: center;
+}
+
+#maintext2 {
+    font-family: "SLEIGothicTTF";
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#maintext3 {
+    font-family: "SLEIGothicTTF";
+    font-size: 30px;
+    text-decoration: none;
+    text-align: left;
+}
+
+#viewbuttontext {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 15px;
+    border-radius: 8px;
+    padding: 0.5% 2%;
+    text-align: center;
+}
+
+#indexwritebutton {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 15px;
+    border-radius: 8px;
+    padding: 0.5% 2%;
+    text-align: center;
+}
+
+#quick_table thead {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+    color: #fff;
+}
+
+#maintable thead {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+    color: #fff;
+    background-color: black;
+}
+
+tbody {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+}
+
+#maintext4 {
+    font-family: "SLEIGothicTTF";
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#maintext5 {
+    font-family: "SLEIGothicTTF";
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#minitext {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+    text-decoration: none;
+}
+
+/* variable_predict */
+#selectbox {
+    font-family: "IBMPlexSansKR-Regular";
+}
+
+#locate {
+    width: auto;
+    height: 7%;
+    padding: 1%;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 30px;
+    box-shadow: 1px 6px 6px 1px #dadce0 inset;
+    border-radius: 25px;
+    border-width: 0.1px;
+}
+
+#kinds {
+    width: auto;
+    height: 7%;
+    padding: 1%;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 30px;
+    box-shadow: 1px 6px 6px 1px #dadce0 inset;
+    border-radius: 25px;
+    border-width: 0.1px;
+}
+
+#size {
+    width: auto;
+    height: 7%;
+    padding: 1%;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 30px;
+    box-shadow: 1px 6px 6px 1px #dadce0 inset;
+    border-radius: 25px;
+    border-width: 0.5px;
+}
+
+#button {
+    width: 35%;
+    box-shadow: 1px 1px 1px 1px grey;
+    border-radius: 25px;
+    border-width: 0.5px;
+    background-color: white;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 30px;
+    padding: 1%;
+    text-align: center;
+    margin-top: 4%;
+    color: black;
+    transition-duration: 0.3s;
+}
+
+#button:hover {
+    color: white;
+    background-color: #7b9acc;
+    box-shadow: 1px 1px 1px 1px grey;
+}
+
+#button:active {
+    box-shadow: 1px 1px 1px 1px grey inset;
+    transition-duration: 0.1s;
+}
+
+/* variable_result */
+#predict {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 24px;
+    text-align: center;
+}
+
+#rs_hint {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+}
+
+#amount {
+    box-shadow: 1px 1px 1px 1px grey;
+    border-radius: 25px;
+    border-width: 0.5px;
+    font-size: 21px;
+    background-color: white;
+    font-family: "IBMPlexSansKR-Regular";
+    padding: 1%;
+    transition-duration: 0.3s;
+}
+
+#amount:hover {
+    color: white;
+    background-color: #7b9acc;
+    box-shadow: 1px 1px 1px 1px grey;
+}
+
+#amount:active {
+    box-shadow: 1px 1px 1px 1px grey inset;
+    transition-duration: 0.1s;
+}
+
+#square {
+    box-shadow: 1px 1px 1px 1px grey;
+    border-radius: 25px;
+    border-width: 0.5px;
+    font-size: 21px;
+    background-color: white;
+    font-family: "IBMPlexSansKR-Regular";
+    padding: 1%;
+    transition-duration: 0.3s;
+}
+
+#square:hover {
+    color: white;
+    background-color: #5e7e9b;
+    box-shadow: 1px 1px 1px 1px grey;
+}
+
+#square:active {
+    box-shadow: 1px 1px 1px 1px grey inset;
+    transition-duration: 0.1s;
+}
+
+#needbtn1 {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 21px;
+    display: none;
+}
+
+#firstmeet1 {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 21px;
+    display: block;
+}
+
+#needbtn2 {
+    display: none;
+}
+
+#variable_button {
+    box-shadow: 1px 1px 1px 1px grey;
+    border-radius: 18px;
+    border-width: 0.5px;
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 15px;
+    padding: 1%;
+    transition-duration: 0.3s;
+}
+
+#variable_button:hover {
+    color: white;
+    background-color: #7b9acc;
+    box-shadow: 1px 1px 1px 1px grey;
+}
+
+#variable_button:active {
+    box-shadow: 1px 1px 1px 1px grey inset;
+    transition-duration: 0.1s;
+}
+
+#predict_per {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+}
+
+
+/* longmonth & trade_board */
+#boardtitle {
+    text-decoration: none;
+}
+
+#write {
+    font-family: "IBMPlexSansKR-Regular";
+    border-radius: 14px;
+    font-size: 18px;
+    text-align: center;
+    float: right;
+    z-index: 2;
+}
+
+#writeboardtitle {
+    font-family: "SLEIGothicTTF";
+    font-size: 36px;
+}
+
+#boardtextarea {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 18px;
+}
+
+#userid {
+    font-family: "SLEIGothicTTF";
+}
+
+#writedate {
+    font-size: small;
+}
+
+/* longmonth & trade_boardwriting */
+#goback {
+    font-family: "IBMPlexSansKR-Regular";
+    border-radius: 14px;
+    padding: 0.2%;
+    font-size: 18px;
+    text-align: center;
+    float: none
+}
+
+#writing {
+    font-family: "IBMPlexSansKR-Regular";
+    border-radius: 14px;
+    padding: 0.2%;
+    font-size: 18px;
+    text-align: center;
+}
+
+.inner_text {
+    position: absolute;
+    z-index: 1;
+    font-family: "SLEIGothicTTF";
+    font-size: 38px;
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.inner_text_sub {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 26px;
+}
+
+.carousel-control-prev-icon {
+    width: 24px;
+    height: 24px;
+    background-color: black;
+}
+
+.carousel-control-next-icon {
+    width: 24px;
+    height: 24px;
+    background-color: black;
+}
+
+/* footer */
+
+footer {
+    font-family: "IBMPlexSansKR-Regular";
+    font-size: 15px;
+}
+
+footer>div>span {
+    margin-left: 1%;
+    margin-right: 1%;
+    opacity: 0.5;
+}
+
+footer>div>p {
+    margin-top: 2%;
+}

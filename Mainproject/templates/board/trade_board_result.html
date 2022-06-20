@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load board_filter %} <!-- 게시글 불러오기 위해 보드앱에 만들어 놓은 템플릿테그 폴더 안에 board_filter 를 로드-->
+{% block content %}
+{% load static %}
+<link rel="stylesheet"  href="{% static 'css/board_btn.css'%}?after">
+<style>
+    #fileimg {
+        text-align: center;
+    }
+</style>
+<!-- board_filter 로드해야 작동됨-->
+
+    <!-- 작성글 보여주기 -->
+    <title>개인거래 게시판</title>
+    <div id="signupbox" style = "margin-bottom: 5%;">
+        <p id="writeboardtitle">🏠 {{ question.subject }}</p>
+        <span id = "userid"> {{ question.author.username }}</span><br>
+        <span id = "writedate" style="margin-left: 4%"> {{ question.create_date | date:'Y-m-d H:i:s' }}</span>
+        <!-- 작성글 삭제하기 -->
+        {% if request.user == question.author %}  <!-- 작성자와 접근자가 같다면 버튼을 보여주는 구문-->
+        <a href="{% url 'board:trade_delete' question.id %}"
+           class="btn btn-sm btn-outline-secondary" style="float:right">삭제</a>
+        <!-- 작성글 수정하기 -->
+        <a href="{% url 'board:trade_modify' question.id %}"
+           class="btn btn-sm btn-outline-secondary" style="float:right">수정</a>
+        {% endif %}
+        <hr>
+        <pre>
+        <p>{{ question.content }}</p>
+        <div id ="fileimg">
+        <p><img src="/media/{{ question.imgfile }}" style="width:500px"/></p>
+        </div>
+        </pre>
+    </div>
+        {% if answer %}
+        {% for answer in answer %}
+        <div id = "commentbox" style = "margin-bottom : 1%;">
+         <!-- 댓글 -->
+            <span id = "userid" style= "margin-bottom: 2%;"> {{ answer.author.username }}</span>
+            <span id = "writedate"> {{ answer.create_date | date:'Y-m-d H:i:s' }}</span>
+                <!-- 댓글 삭제하기 -->
+                    {% if request.user == answer.author %}
+                    <a href="{% url 'board:answer_delete' answer.id %}"
+                    class="btn btn-sm" style="margin:0px; border:0px; padding:0px; float:right">🗑</a>
+                    <!-- 댓글 수정하기 -->
+                    <a href="{% url 'board:answer_modify' answer.id %}"
+                    class="btn btn-sm" style="margin:0px; border:0px; padding:0px; float:right">✏</a>
+                    {% endif %}
+            <p id = "commentarea" style="margin-left: 4%">{{ answer.content }}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <!-- 댓글 작성하기 -->
+    <form action="{% url 'board:answer_create' question.id %}" method="post">
+        {% csrf_token %}
+        <!-- 오류표시 시작 -->
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for field in form %}
+            {% if field.errors %}
+            <div>
+                <strong>{{ field.textarea }}</strong>
+                {{ field.errors }}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <!-- 오류표시 끝 -->
+
+        <div id = "writecommentbox">
+            <textarea {% if not user.is_authenticated %}disabled{% endif %}
+                    id="commentwrite" rows="3" name="content" placeholder="댓글을 입력해주세요"></textarea>
+            <div id="commenton" style="margin-left:70%;">
+                <button  type="submit" class="button button--quidel button--round-s" style="padding:0.5%; width:100px; height:40px;font-size:15px;">댓글쓰기</button>
+            </div>
+        </div>
+        <hr>
+    <!-- 페이징 처리 -->
+
+        <div>
+                <ul class="pagination justify-content-center">
+                <!-- 이전 페이지 -->
+                {% if answer.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ answer.previous_page_number }}">이전</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                </li>
+                {% endif %}
+                <!-- 페이지리스트 -->
+                {% for page_number in answer.paginator.page_range %}
+                {% if page_number >= answer.number|add:-3 and page_number <= answer.number|add:3 %}
+                {% if page_number == answer.number %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                <!-- 다음페이지 -->
+                {% if answer.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ answer.next_page_number }}">다음</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    <!-- 페이징처리 끝 -->
+    </form>
+{% endblock %}

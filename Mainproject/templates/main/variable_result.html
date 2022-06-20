@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<title>가격변동</title>
+<h1>주택가격 등락예측 & 거래량 확인하기</h1>
+<div id="predict">
+    <div id="choice_btn">
+        <input id="amount" type="button" class="needbtn" value="거래량 그래프 보기" onclick="clickbtn2()" />
+        <input id="square" type="button" class="firstmeet" value="평당가 그래프 보기" onclick="clickbtn()" />
+    </div>
+    <p id="rs_hint"> 버튼을 눌러서 그래프를 확인하세요 </p>
+    <p id="firstmeet1" class="firstmeet">{{ model.10 }} 지역 {{model.11}}평형 주택가격 예측율 입니다.</p>
+    <p id="needbtn1" class="needbtn">{{ model.10 }} 지역 {{model.11}} 평형 주택 거래량 입니다.</p>
+</div>
+<!-- 이미지 크기 조절해서 받기 -->
+<div>
+    <div id='image'>
+        <img id="firstmeet2" class="firstmeet" src="/media/img/predict.png" style="width: 100%;">
+        <img id='needbtn2' class="needbtn" src="/media/img/amount.png" style="width: 100%;">
+    </div>
+    <div id='text2'>
+        <p id="predict_per">해당 매물이 향후 상승할 확률은{{model.9}}% 입니다.</p>
+        <p id="predict_per">해당 매물이 한달후 상승할 확률은{{model.3}}% 입니다.</p>
+        <p id="predict_per">해당 매물이 한달 후 평당 예측된 평단가는 {{model.5}} 만원 입니다.</p>
+        <button id="variable_button" onclick="location.href='{% url 'main:variable_pd' %}' ">다른 주택 알아보기</button>
+    </div>
+
+</div>
+
+<script>
+    let needbtn1 = document.getElementById('needbtn1');
+    let needbtn2 = document.getElementById('needbtn2');
+    let firstmeet1 = document.getElementById('firstmeet1');
+    let firstmeet2 = document.getElementById('firstmeet2');
+
+    function clickbtn() {
+        if (needbtn1.style.display = 'block') {
+            needbtn1.style.display = 'none';
+            needbtn2.style.display = 'none';
+            firstmeet1.style.display = 'block';
+            firstmeet2.style.display = 'block';
+        }
+
+    }
+    function clickbtn2() {
+        if (firstmeet1.style.display = 'block') {
+            firstmeet1.style.display = 'none';
+            firstmeet2.style.display = 'none';
+            needbtn1.style.display = 'block';
+            needbtn2.style.display = 'block';
+        }
+
+    }
+</script>
+{% endblock%}
